@@ -7,22 +7,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ArtsController : ControllerBase
-        //ControllerCrudBase<Art, ArtRepository>
+    public class ArtsController : ControllerCrudBase<Art, ArtRepository>
     {
         readonly ArtDataContext db;
         readonly MockData mockdata = new MockData();
 
-        public ArtsController()
-            //ArtRepository ArtRepository) : base(ArtRepository)
+        public ArtsController(ArtRepository ArtRepository) : base(ArtRepository)
         {
            
         }
 
-        [HttpGet]
-        public IActionResult ListAll()
-        {
-            return Ok(mockdata.users);
-        }
-    }
+     }
 }
