@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
     [DbContext(typeof(ArtDataContext))]
-    [Migration("20191015105726_initial")]
-    partial class initial
+    [Migration("20191015135507_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 1,
                             Category = "barock",
-                            Created = new DateTime(2019, 10, 15, 12, 57, 26, 0, DateTimeKind.Local).AddTicks(6135),
+                            Created = new DateTime(2019, 10, 15, 15, 55, 7, 125, DateTimeKind.Local).AddTicks(3697),
                             Description = "Een schilderij van een vogel.",
                             ImageName = "devogel.jpg",
                             Name = "De Nachtegaal",
@@ -69,7 +69,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 2,
                             Category = "gothiek",
-                            Created = new DateTime(2019, 10, 15, 12, 57, 26, 5, DateTimeKind.Local).AddTicks(5432),
+                            Created = new DateTime(2019, 10, 15, 15, 55, 7, 128, DateTimeKind.Local).AddTicks(8725),
                             Description = "Een schilderij van een Vaas.",
                             ImageName = "devaas.jpg",
                             Name = "De Vaas",
@@ -80,7 +80,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 3,
                             Category = "abstracte kunst",
-                            Created = new DateTime(2019, 10, 15, 12, 57, 26, 5, DateTimeKind.Local).AddTicks(5549),
+                            Created = new DateTime(2019, 10, 15, 15, 55, 7, 128, DateTimeKind.Local).AddTicks(8792),
                             Description = "Een schilderij van een Egel.",
                             ImageName = "deegel.jpg",
                             Name = "De Egel",
@@ -91,7 +91,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 4,
                             Category = "Moderne Kunst",
-                            Created = new DateTime(2019, 10, 15, 12, 57, 26, 5, DateTimeKind.Local).AddTicks(5560),
+                            Created = new DateTime(2019, 10, 15, 15, 55, 7, 128, DateTimeKind.Local).AddTicks(8799),
                             Description = "Een schilderij van een trap.",
                             ImageName = "trap.jpg",
                             Name = "De Trap",

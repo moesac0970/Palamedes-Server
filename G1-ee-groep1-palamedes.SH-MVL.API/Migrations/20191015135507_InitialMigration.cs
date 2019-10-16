@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,10 +74,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                 columns: new[] { "Id", "Category", "Created", "Description", "ImageName", "Name", "Price", "Updated" },
                 values: new object[,]
                 {
-                    { 1, "barock", new DateTime(2019, 10, 15, 12, 57, 26, 0, DateTimeKind.Local).AddTicks(6135), "Een schilderij van een vogel.", "devogel.jpg", "De Nachtegaal", 300m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "gothiek", new DateTime(2019, 10, 15, 12, 57, 26, 5, DateTimeKind.Local).AddTicks(5432), "Een schilderij van een Vaas.", "devaas.jpg", "De Vaas", 1m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, "abstracte kunst", new DateTime(2019, 10, 15, 12, 57, 26, 5, DateTimeKind.Local).AddTicks(5549), "Een schilderij van een Egel.", "deegel.jpg", "De Egel", 5m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, "Moderne Kunst", new DateTime(2019, 10, 15, 12, 57, 26, 5, DateTimeKind.Local).AddTicks(5560), "Een schilderij van een trap.", "trap.jpg", "De Trap", 150m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, "barock", new DateTime(2019, 10, 15, 15, 55, 7, 125, DateTimeKind.Local).AddTicks(3697), "Een schilderij van een vogel.", "devogel.jpg", "De Nachtegaal", 300m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "gothiek", new DateTime(2019, 10, 15, 15, 55, 7, 128, DateTimeKind.Local).AddTicks(8725), "Een schilderij van een Vaas.", "devaas.jpg", "De Vaas", 1m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "abstracte kunst", new DateTime(2019, 10, 15, 15, 55, 7, 128, DateTimeKind.Local).AddTicks(8792), "Een schilderij van een Egel.", "deegel.jpg", "De Egel", 5m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, "Moderne Kunst", new DateTime(2019, 10, 15, 15, 55, 7, 128, DateTimeKind.Local).AddTicks(8799), "Een schilderij van een trap.", "trap.jpg", "De Trap", 150m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API
 {
@@ -22,8 +23,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<ArtDataContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("PalamedesArtDb")));
+            services.AddDbContext<ArtDataContext>(opt => opt.
+                UseSqlServer(Configuration.GetConnectionString("PalamedesArtDb")).EnableSensitiveDataLogging(true));
             services.AddScoped<ArtRepository>();
             //services.AddScoped<ArtInMemoryRepository>();
 
