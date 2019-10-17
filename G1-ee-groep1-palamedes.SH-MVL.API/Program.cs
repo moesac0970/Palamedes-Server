@@ -14,7 +14,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .UseUrls("http://localhost:5000");
                 });
     }
 }
