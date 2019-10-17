@@ -37,10 +37,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseRouting();
 
             app.UseHttpsRedirection();
-
-            app.UseRouting();
 
             app.UseAuthorization();
 

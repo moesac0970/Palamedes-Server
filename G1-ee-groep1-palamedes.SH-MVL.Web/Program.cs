@@ -21,7 +21,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
-                    .UseUrls("http://localhost:5001");
+                    .UseUrls("https://localhost:5001");
                 });
     }
 }
