@@ -4,14 +4,14 @@
     "G1_ee_groep1_palamedes.SH_MVL.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5000;http://localhost:5000",
-      "launchUrl": "https://localhost:5000/api/arts",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "launchUrl": "https://localhost:5001/api/arts",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "G1_ee_groep1_palamedes.SH_MVL.API": {
         "commandName": "Project",
-        "applicationUrl": "https://localhost:5000;http://localhost:5000",
+        "applicationUrl": "https://localhost:5001;http://localhost:5000",
         "environmentVariables": {
           "ASPNETCORE_ENVIRONMENT": "Release"
         }
