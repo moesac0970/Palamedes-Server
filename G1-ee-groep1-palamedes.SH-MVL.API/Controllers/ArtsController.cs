@@ -9,9 +9,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
     [ApiController]
     public class ArtsController : ControllerCrudBase<Art, ArtRepository>
     {
-        readonly ArtDataContext db;
-        readonly MockData mockdata = new MockData();
-
         public ArtsController(ArtRepository ArtRepository) : base(ArtRepository)
         {
            
