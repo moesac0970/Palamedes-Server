@@ -22,13 +22,17 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             db = context;
         }
 
+        // api/arts/{id}
         public virtual async Task<T> GetById(int id)
         {
             return await db.Set<T>()
                 .FindAsync(id);
         }
 
+        
+
         // get an IQueryAble: to manipulate with deferred execution
+        // api/arts
         public virtual IQueryable<T> GetAll()
         {
             // Entities won't be manipulated directly on this set --> faster with AsNoTracking()
@@ -53,6 +57,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return await GetFiltered(predicate).ToListAsync();
         }
 
+        //post api/arts
         public async Task<T> Add(T entity)
         {
             db.Set<T>().Add(entity);

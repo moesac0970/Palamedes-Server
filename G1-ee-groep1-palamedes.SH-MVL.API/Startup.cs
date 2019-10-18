@@ -1,12 +1,14 @@
 using G1_ee_groep1_palamedes.SH_MVL.API.Data;
 using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API
 {
@@ -25,8 +27,28 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
             services.AddControllers();
             services.AddDbContext<ArtDataContext>(opt => opt.
                 UseSqlServer(Configuration.GetConnectionString("PalamedesArtDb")).EnableSensitiveDataLogging(true));
-            services.AddScoped<ArtRepository>();
             //services.AddScoped<ArtInMemoryRepository>();
+
+            services.AddScoped<ArtRepository>();
+            services.AddScoped<UserRepository>();
+            
+            
+            // authentication service jwt bearer token
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "palamedes.be",
+                    ValidAudience = "palamedes.be",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lkjqsdflkjsdfkljqsdfkljqsdlkfjslqdkfjlskdfjlskqdjfhlk"))
+                };
+            });
+
+            services.AddMvc();
+
 
         }
 
@@ -38,16 +60,21 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
+            app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

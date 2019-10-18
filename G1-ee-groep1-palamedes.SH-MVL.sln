@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G1-ee-groep1-palamedes.SH-M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G1-ee-groep1-palamedes.SH-MVL.Lib", "G1-ee-groep1-palamedes.SH-MVL.Lib\G1-ee-groep1-palamedes.SH-MVL.Lib.csproj", "{05449ABE-94B8-4827-8210-196F978953C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G1-ee-groep1-palamedes.SH-MVL.Web", "G1-ee-groep1-palamedes.SH-MVL.Web\G1-ee-groep1-palamedes.SH-MVL.Web.csproj", "{C7178CCE-CD8D-4998-AA31-C5C5BE06F247}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G1-ee-groep1-palamedes.SH-MVL.Web", "G1-ee-groep1-palamedes.SH-MVL.Web\G1-ee-groep1-palamedes.SH-MVL.Web.csproj", "{C7178CCE-CD8D-4998-AA31-C5C5BE06F247}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -56,7 +56,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 1,
                             Category = "barock",
-                            Created = new DateTime(2019, 10, 15, 15, 55, 7, 125, DateTimeKind.Local).AddTicks(3697),
+                            Created = new DateTime(2019, 10, 16, 15, 19, 14, 342, DateTimeKind.Local).AddTicks(4382),
                             Description = "Een schilderij van een vogel.",
                             ImageName = "devogel.jpg",
                             Name = "De Nachtegaal",
@@ -67,7 +67,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 2,
                             Category = "gothiek",
-                            Created = new DateTime(2019, 10, 15, 15, 55, 7, 128, DateTimeKind.Local).AddTicks(8725),
+                            Created = new DateTime(2019, 10, 16, 15, 19, 14, 348, DateTimeKind.Local).AddTicks(8998),
                             Description = "Een schilderij van een Vaas.",
                             ImageName = "devaas.jpg",
                             Name = "De Vaas",
@@ -78,7 +78,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 3,
                             Category = "abstracte kunst",
-                            Created = new DateTime(2019, 10, 15, 15, 55, 7, 128, DateTimeKind.Local).AddTicks(8792),
+                            Created = new DateTime(2019, 10, 16, 15, 19, 14, 348, DateTimeKind.Local).AddTicks(9258),
                             Description = "Een schilderij van een Egel.",
                             ImageName = "deegel.jpg",
                             Name = "De Egel",
@@ -89,7 +89,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 4,
                             Category = "Moderne Kunst",
-                            Created = new DateTime(2019, 10, 15, 15, 55, 7, 128, DateTimeKind.Local).AddTicks(8799),
+                            Created = new DateTime(2019, 10, 16, 15, 19, 14, 348, DateTimeKind.Local).AddTicks(9270),
                             Description = "Een schilderij van een trap.",
                             ImageName = "trap.jpg",
                             Name = "De Trap",
@@ -114,11 +114,17 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("HashPasw")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TelNr")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
