@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G1-ee-groep1-palamedes.SH-MVL.Lib", "G1-ee-groep1-palamedes.SH-MVL.Lib\G1-ee-groep1-palamedes.SH-MVL.Lib.csproj", "{05449ABE-94B8-4827-8210-196F978953C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G1-ee-groep1-palamedes.SH-MVL.Web", "G1-ee-groep1-palamedes.SH-MVL.Web\G1-ee-groep1-palamedes.SH-MVL.Web.csproj", "{C7178CCE-CD8D-4998-AA31-C5C5BE06F247}"
+	ProjectSection(ProjectDependencies) = postProject
+		{05449ABE-94B8-4827-8210-196F978953C8} = {05449ABE-94B8-4827-8210-196F978953C8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
