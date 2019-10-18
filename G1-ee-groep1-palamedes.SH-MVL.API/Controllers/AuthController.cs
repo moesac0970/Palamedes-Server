@@ -30,11 +30,14 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
             var header = Request.Headers["Authorization"];
             if (header.ToString().StartsWith("Basic"))
             {
+                // header begins with 'Basic', and after follows base64encoded logincredentials 
                 var credValue = header.ToString().Substring("Basic ".Length).Trim();
+                // logincredentials decoded from base64 and put into variable
                 var usernameAndPassenc = Encoding.UTF8.GetString(Convert.FromBase64String(credValue)); //admin:pass
+                // put into string array 
                 var usernameAndPass = usernameAndPassenc.Split(":");
-                //check in DB username and pass exist
 
+                //check in DB username and pass exist
                 if (usernameAndPass[0] == "Admin" && usernameAndPass[1] == "pass")
                 {
                     var claimsdata = new[] { new Claim(ClaimTypes.Name, usernameAndPass[0]) };
