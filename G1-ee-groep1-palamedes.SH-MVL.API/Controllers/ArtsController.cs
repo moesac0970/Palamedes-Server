@@ -33,7 +33,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         [HttpGet]
         [Route("ImageByName/{filename}")]
         public IActionResult ImageByFileName(string filename)
-        {
+        { // expects a filename in this format:    "artisname:filename" ==> artistname(not user name)
             var artistAndPath = filename.Split(":");
             var image = Path.Combine(Directory.GetCurrentDirectory(),
                              "wwwroot", $"images/{artistAndPath[0]}", artistAndPath[1]);
