@@ -1,5 +1,6 @@
 using G1_ee_groep1_palamedes.SH_MVL.API.Data;
 using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
+using G1_ee_groep1_palamedes.SH_MVL.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,8 +32,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
 
             services.AddScoped<ArtRepository>();
             services.AddScoped<UserRepository>();
-            
-            
+
+            //mapper configuration
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutoMapperProfileConfiguration());
+            });
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
+
             // authentication service jwt bearer token
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {

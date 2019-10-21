@@ -2,6 +2,8 @@
 using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
 using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
@@ -14,5 +16,21 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
            
         }
 
-     }
+        [HttpGet]
+        [Route("Basic")]
+        public async Task<IActionResult> GetArtBasic()
+        {
+            return Ok(await repository.ListBasic());
+        }
+
+
+        [HttpGet]
+        [Route("ImageByName/{filename}")]
+        public IActionResult ImageByFileName(string filename)
+        {
+            var image = Path.Combine(Directory.GetCurrentDirectory(),
+                             "wwwroot", "images", filename);
+            return PhysicalFile(image, "image/jpeg");
+        }
+    }
 }

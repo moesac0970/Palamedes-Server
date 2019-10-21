@@ -16,10 +16,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
             modelBuilder.Entity<Art>()
                 .ToTable("Arts")
                 .HasData(
-                new Art { Id = 1, Name = "De Nachtegaal", Created = DateTime.Now, Description = "Een schilderij van een vogel.", Price = 300, Category = "barock", ImageName = "devogel.jpg" },
-                new Art { Id = 2, Name = "De Vaas", Created = DateTime.Now, Description = "Een schilderij van een Vaas.", Price = 1, Category = "gothiek", ImageName = "devaas.jpg" },
-                new Art { Id = 3, Name = "De Egel", Created = DateTime.Now, Description = "Een schilderij van een Egel.", Price = 5, Category = "abstracte kunst", ImageName = "deegel.jpg" },
-                new Art { Id = 4, Name = "De Trap", Created = DateTime.Now, Description = "Een schilderij van een trap.", Price = 150, Category = "Moderne Kunst", ImageName = "trap.jpg" }
+                new Art { Id = 1, Artist = "pablito", Name = "De Nachtegaal", Created = DateTime.Now, Description = "Een schilderij van een vogel.", Price = 300, Category = "barock", ImageName = "devogel.jpg" },
+                new Art { Id = 2, Artist = "pablito", Name = "De Vaas", Created = DateTime.Now, Description = "Een schilderij van een Vaas.", Price = 1, Category = "gothiek", ImageName = "devaas.jpg" },
+                new Art { Id = 3, Artist = "pablito", Name = "De Egel", Created = DateTime.Now, Description = "Een schilderij van een Egel.", Price = 5, Category = "abstracte kunst", ImageName = "deegel.jpg" },
+                new Art { Id = 4, Artist = "pablito", Name = "De Trap", Created = DateTime.Now, Description = "Een schilderij van een trap.", Price = 150, Category = "Moderne Kunst", ImageName = "trap.jpg" }
                 );
 
             modelBuilder.Entity<Art>()

@@ -11,16 +11,25 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Helper
     {
         public static T GetApiResult<T>(string uri)
         {
-            using (HttpClient httpClient = new HttpClient())
+            try
             {
-                Task<String> response = httpClient.GetStringAsync(uri);
-                return Task.Factory.StartNew
-                            (
-                                () => JsonConvert
-                                        .DeserializeObject<T>(response.Result)
-                            )
-                            .Result;
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    Task<String> response = httpClient.GetStringAsync(uri);
+                    return Task.Factory.StartNew
+                                (
+                                    () => JsonConvert
+                                            .DeserializeObject<T>(response.Result)
+                                )
+                                .Result;
+                }
             }
+            catch (Exception ex) 
+            { 
+                Console.WriteLine(ex);
+                throw new NotImplementedException();
+            }
+            
         }
 
         public static async Task<Out> PutCallAPI<Out, In>(string uri, In entity)

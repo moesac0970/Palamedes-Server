@@ -7,6 +7,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Models
     public class Art : EntityBase
     {
         public string Name { get; set; }
+        public string Artist { get; set; }
         public string Category { get; set; }
         public DateTime Created { get; set; }
         public string Description { get; set; }

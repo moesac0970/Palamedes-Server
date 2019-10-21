@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
+using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
 {
@@ -27,6 +29,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
             //        opts => opts.MapFrom(src => src.Ratings.Average(r => r.Score))
             //        )
             //    .ReverseMap();
+            CreateMap<ArtBasic, Art>().ReverseMap();
+            
         }
 
 

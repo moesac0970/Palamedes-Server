@@ -17,7 +17,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
             publicLinks = new List<MainNavLinkVm>
             {
                 new MainNavLinkVm {Area=null, Controller="Home", Action="Index", Text="Home"},
-                new MainNavLinkVm {Area=null, Controller="portofolio", Action="Index", Text="Contact"},
+                new MainNavLinkVm {Area=null, Controller="portofolio", Action="Index", Text="portofolio"},
                 new MainNavLinkVm {Area=null, Controller="store", Action="Index", Text="Store"},
                 new MainNavLinkVm {Area=null, Controller="login/logout", Action="Index", Text="Login"}
             };

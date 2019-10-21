@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
     [DbContext(typeof(ArtDataContext))]
-    [Migration("20191016131915_Second")]
-    partial class Second
+    [Migration("20191021100755_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Artist")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
@@ -57,8 +60,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         new
                         {
                             Id = 1,
+                            Artist = "pablito",
                             Category = "barock",
-                            Created = new DateTime(2019, 10, 16, 15, 19, 14, 342, DateTimeKind.Local).AddTicks(4382),
+                            Created = new DateTime(2019, 10, 21, 12, 7, 55, 260, DateTimeKind.Local).AddTicks(9321),
                             Description = "Een schilderij van een vogel.",
                             ImageName = "devogel.jpg",
                             Name = "De Nachtegaal",
@@ -68,8 +72,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         new
                         {
                             Id = 2,
+                            Artist = "pablito",
                             Category = "gothiek",
-                            Created = new DateTime(2019, 10, 16, 15, 19, 14, 348, DateTimeKind.Local).AddTicks(8998),
+                            Created = new DateTime(2019, 10, 21, 12, 7, 55, 265, DateTimeKind.Local).AddTicks(4661),
                             Description = "Een schilderij van een Vaas.",
                             ImageName = "devaas.jpg",
                             Name = "De Vaas",
@@ -79,8 +84,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         new
                         {
                             Id = 3,
+                            Artist = "pablito",
                             Category = "abstracte kunst",
-                            Created = new DateTime(2019, 10, 16, 15, 19, 14, 348, DateTimeKind.Local).AddTicks(9258),
+                            Created = new DateTime(2019, 10, 21, 12, 7, 55, 265, DateTimeKind.Local).AddTicks(4766),
                             Description = "Een schilderij van een Egel.",
                             ImageName = "deegel.jpg",
                             Name = "De Egel",
@@ -90,8 +96,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         new
                         {
                             Id = 4,
+                            Artist = "pablito",
                             Category = "Moderne Kunst",
-                            Created = new DateTime(2019, 10, 16, 15, 19, 14, 348, DateTimeKind.Local).AddTicks(9270),
+                            Created = new DateTime(2019, 10, 21, 12, 7, 55, 265, DateTimeKind.Local).AddTicks(4778),
                             Description = "Een schilderij van een trap.",
                             ImageName = "trap.jpg",
                             Name = "De Trap",
