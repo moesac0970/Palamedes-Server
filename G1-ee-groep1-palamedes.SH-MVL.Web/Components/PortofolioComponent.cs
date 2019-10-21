@@ -16,7 +16,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
 
         public PortofolioComponent()
         {
-            publicPortofolio = WebApiHelper.GetApiResult<List<ArtBasic>>("http://localhost:5000/api/arts/basic");
+            publicPortofolio = WebApiHelper.GetApiResult<List<ArtBasic>>("https://api.palamedes.be/arts/basic");
         }
 
         /// <summary>

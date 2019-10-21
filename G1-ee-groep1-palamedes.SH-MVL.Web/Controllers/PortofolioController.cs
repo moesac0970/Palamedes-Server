@@ -11,7 +11,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Controllers
 {
     public class PortofolioController : Controller
     {
-        string baseUri = "http://localhost:5000/api/arts";
+        string baseUri = "https://api.palamedes.be/arts/";
         public async Task<IActionResult> Index()
         {
             string uri = $"{baseUri}/basic";
