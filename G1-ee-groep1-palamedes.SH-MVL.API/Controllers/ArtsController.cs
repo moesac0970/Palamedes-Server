@@ -38,7 +38,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
             var artistAndPath = filename.Split(":");
             var image = Path.Combine(Directory.GetCurrentDirectory(),
                              "wwwroot", $"images/{artistAndPath[0]}", artistAndPath[1]);
-            return PhysicalFile(image, "image/jpeg");
+            return PhysicalFile(image, "Image/jpeg");
         }
     }
 }
