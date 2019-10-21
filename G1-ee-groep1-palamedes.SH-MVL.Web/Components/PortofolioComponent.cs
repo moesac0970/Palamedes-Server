@@ -1,4 +1,6 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.Web.ViewModels.Components;
+﻿using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
+using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
+using G1_ee_groep1_palamedes.SH_MVL.Web.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,31 +10,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
     [ViewComponent(Name = "Portofolio")]
     public class PortofolioComponent : ViewComponent
     {
-        private IEnumerable<PortofolioVm> publicPortofolio { get; set; }
-        private IEnumerable<PortofolioVm> userPortofolio { get; set; }
+        private IEnumerable<ArtBasic> publicPortofolio { get; set; }
+        //private IEnumerable<ArtBasic> userPortofolio { get; set; }
 
 
         public PortofolioComponent()
         {
-            publicPortofolio = new List<PortofolioVm> // todo: actions and controllers, area {public}
-            {
-                new PortofolioVm { Name = "dummy1", Artist ="pabloPicasso", Category="design"}, 
-                new PortofolioVm { Name = "dummy2", Artist ="pabloPicasso", Category="design"},
-                new PortofolioVm { Name = "dummy3", Artist ="pabloPicasso", Category="design"},
-                new PortofolioVm { Name = "dummy4", Artist ="pabloPicasso", Category="design"},
-                new PortofolioVm { Name = "dummy5", Artist ="pabloPicasso", Category="design"},
-                new PortofolioVm { Name = "dummy6", Artist ="pabloPicasso", Category="design"},
-            };
-
-            userPortofolio = new List<PortofolioVm> // todo: actions and controllers, area {user}
-            {
-                new PortofolioVm { Name = "dummy1", Artist ="pabloPicasso", Category="design"},
-                new PortofolioVm { Name = "dummy2", Artist ="pabloPicasso", Category="design"},
-                new PortofolioVm { Name = "dummy3", Artist ="pabloPicasso", Category="design"},
-                new PortofolioVm { Name = "dummy4", Artist ="pabloPicasso", Category="design"},
-                new PortofolioVm { Name = "dummy5", Artist ="pabloPicasso", Category="design"},
-                new PortofolioVm { Name = "dummy6", Artist ="pabloPicasso", Category="design"},
-            };
+            publicPortofolio = WebApiHelper.GetApiResult<List<ArtBasic>>("http://localhost:5000/api/arts/basic");
         }
 
         /// <summary>

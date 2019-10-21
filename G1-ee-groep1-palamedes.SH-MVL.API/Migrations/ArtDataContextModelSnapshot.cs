@@ -26,11 +26,14 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Artist")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ArtistId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -52,15 +55,18 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ArtistId");
+
                     b.ToTable("Arts");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Artist = "pablito",
-                            Category = "barock",
-                            Created = new DateTime(2019, 10, 21, 12, 7, 55, 260, DateTimeKind.Local).AddTicks(9321),
+                            ArtistId = 1,
+                            Category = 0,
+                            CategoryId = 1,
+                            Created = new DateTime(2019, 10, 21, 14, 50, 33, 325, DateTimeKind.Local).AddTicks(3568),
                             Description = "Een schilderij van een vogel.",
                             ImageName = "devogel.jpg",
                             Name = "De Nachtegaal",
@@ -70,9 +76,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         new
                         {
                             Id = 2,
-                            Artist = "pablito",
-                            Category = "gothiek",
-                            Created = new DateTime(2019, 10, 21, 12, 7, 55, 265, DateTimeKind.Local).AddTicks(4661),
+                            ArtistId = 1,
+                            Category = 0,
+                            CategoryId = 2,
+                            Created = new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1332),
                             Description = "Een schilderij van een Vaas.",
                             ImageName = "devaas.jpg",
                             Name = "De Vaas",
@@ -82,9 +89,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         new
                         {
                             Id = 3,
-                            Artist = "pablito",
-                            Category = "abstracte kunst",
-                            Created = new DateTime(2019, 10, 21, 12, 7, 55, 265, DateTimeKind.Local).AddTicks(4766),
+                            ArtistId = 1,
+                            Category = 0,
+                            CategoryId = 2,
+                            Created = new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1445),
                             Description = "Een schilderij van een Egel.",
                             ImageName = "deegel.jpg",
                             Name = "De Egel",
@@ -94,14 +102,67 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         new
                         {
                             Id = 4,
-                            Artist = "pablito",
-                            Category = "Moderne Kunst",
-                            Created = new DateTime(2019, 10, 21, 12, 7, 55, 265, DateTimeKind.Local).AddTicks(4778),
+                            ArtistId = 1,
+                            Category = 0,
+                            CategoryId = 2,
+                            Created = new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1453),
                             Description = "Een schilderij van een trap.",
                             ImageName = "trap.jpg",
                             Name = "De Trap",
                             Price = 150m,
                             Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ArtistId = 2,
+                            Category = 0,
+                            CategoryId = 0,
+                            Created = new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1457),
+                            Description = "steinen",
+                            ImageName = "jennyvangimst1site.jpg",
+                            Name = "Stenen",
+                            Price = 500m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("G1_ee_groep1_palamedes.SH_MVL.Lib.Models.Artists", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ArtistName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Dob")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Artists");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ArtistName = "Pablito",
+                            Dob = new DateTime(2019, 10, 21, 14, 50, 33, 332, DateTimeKind.Local).AddTicks(223),
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ArtistName = "jenny",
+                            Dob = new DateTime(2019, 10, 21, 14, 50, 33, 332, DateTimeKind.Local).AddTicks(1805),
+                            UserId = 5
                         });
                 });
 
@@ -173,41 +234,40 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             FirstName = "Leoplod",
                             LastName = "II",
                             TelNr = 48484848
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Dob = new DateTime(1960, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "manu09ice@gmail.com",
+                            FirstName = "Jenny",
+                            LastName = "VanGimst",
+                            TelNr = 491080115
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Dob = new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "random@mailinator.com",
+                            FirstName = "Pablito",
+                            LastName = "escobar",
+                            TelNr = 48484848
                         });
                 });
 
-            modelBuilder.Entity("G1_ee_groep1_palamedes.SH_MVL.Lib.Models.UserArt", b =>
+            modelBuilder.Entity("G1_ee_groep1_palamedes.SH_MVL.Lib.Models.Art", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ArtId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArtId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserArt");
-                });
-
-            modelBuilder.Entity("G1_ee_groep1_palamedes.SH_MVL.Lib.Models.UserArt", b =>
-                {
-                    b.HasOne("G1_ee_groep1_palamedes.SH_MVL.Lib.Models.Art", null)
-                        .WithMany("Users")
-                        .HasForeignKey("ArtId")
+                    b.HasOne("G1_ee_groep1_palamedes.SH_MVL.Lib.Models.Artists", "Artist")
+                        .WithMany()
+                        .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.HasOne("G1_ee_groep1_palamedes.SH_MVL.Lib.Models.User", null)
-                        .WithMany("Arts")
+            modelBuilder.Entity("G1_ee_groep1_palamedes.SH_MVL.Lib.Models.Artists", b =>
+                {
+                    b.HasOne("G1_ee_groep1_palamedes.SH_MVL.Lib.Models.User", "User")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

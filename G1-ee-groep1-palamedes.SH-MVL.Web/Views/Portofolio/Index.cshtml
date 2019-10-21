@@ -16,30 +16,16 @@
 
     <div class="portfolio">
         <div class="container-fluid">
-            <!--=================== masaonry portfolio start====================-->
+            <!--=================== portfolio start====================-->
             <div class="grid img-container justify-content-center no-gutters">
                 <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
 
 
 
+                @await Component.InvokeAsync("Portofolio")
 
-                @foreach (var item in Model)
-                {
-                    <div class="grid-item  branding architecture  col-sm-12 col-md-6">
-                        <div class="project_box_one">
-                            <img src="http://localhost:5000/api/arts/imagebyname/@(item.Name).jpg" alt="@item.Name" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>@item.Id -- by @item.Name -- @item.Artist</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-                <!--=================== masaonry portfolio end====================-->
+
+                <!--=================== portfolio end====================-->
             </div>
         </div>
     </div>
