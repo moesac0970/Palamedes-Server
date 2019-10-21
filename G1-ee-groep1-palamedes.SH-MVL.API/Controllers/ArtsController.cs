@@ -34,8 +34,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         [Route("ImageByName/{filename}")]
         public IActionResult ImageByFileName(string filename)
         {
+            var artistAndPath = filename.Split(":");
             var image = Path.Combine(Directory.GetCurrentDirectory(),
-                             "wwwroot", "images", filename);
+                             "wwwroot", $"images/{artistAndPath[0]}", artistAndPath[1]);
             return PhysicalFile(image, "image/jpeg");
         }
     }
