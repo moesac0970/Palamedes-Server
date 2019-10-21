@@ -25,6 +25,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 
 
         [HttpGet]
+        public override async Task<IActionResult> Get()
+        {
+            return Ok(await repository.ListAll());
+        }
+
+        [HttpGet]
         [Route("ImageByName/{filename}")]
         public IActionResult ImageByFileName(string filename)
         {

@@ -21,7 +21,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
 
         /// <summary>
         ///   TODO: portofolio components for only users
-        ///   TODO: component in andere vorm moest not users only
+        ///   TODO: list all portofolio items, list limited
         /// </summary>
 
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -90,23 +90,23 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
             migrationBuilder.InsertData(
                 table: "Artists",
                 columns: new[] { "Id", "ArtistName", "Dob", "UserId" },
-                values: new object[] { 2, "jenny", new DateTime(2019, 10, 21, 14, 50, 33, 332, DateTimeKind.Local).AddTicks(1805), 5 });
+                values: new object[] { 2, "jenny", new DateTime(2019, 10, 21, 16, 19, 45, 566, DateTimeKind.Local).AddTicks(2768), 5 });
 
             migrationBuilder.InsertData(
                 table: "Artists",
                 columns: new[] { "Id", "ArtistName", "Dob", "UserId" },
-                values: new object[] { 1, "Pablito", new DateTime(2019, 10, 21, 14, 50, 33, 332, DateTimeKind.Local).AddTicks(223), 6 });
+                values: new object[] { 1, "Pablito", new DateTime(2019, 10, 21, 16, 19, 45, 566, DateTimeKind.Local).AddTicks(1303), 6 });
 
             migrationBuilder.InsertData(
                 table: "Arts",
                 columns: new[] { "Id", "ArtistId", "Category", "CategoryId", "Created", "Description", "ImageName", "Name", "Price", "Updated" },
                 values: new object[,]
                 {
-                    { 5, 2, 0, 0, new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1457), "steinen", "jennyvangimst1site.jpg", "Stenen", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 1, 1, 0, 1, new DateTime(2019, 10, 21, 14, 50, 33, 325, DateTimeKind.Local).AddTicks(3568), "Een schilderij van een vogel.", "devogel.jpg", "De Nachtegaal", 300m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 1, 0, 2, new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1332), "Een schilderij van een Vaas.", "devaas.jpg", "De Vaas", 1m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, 1, 0, 2, new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1445), "Een schilderij van een Egel.", "deegel.jpg", "De Egel", 5m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, 1, 0, 2, new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1453), "Een schilderij van een trap.", "trap.jpg", "De Trap", 150m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 5, 2, 0, 0, new DateTime(2019, 10, 21, 16, 19, 45, 564, DateTimeKind.Local).AddTicks(3319), "steinen", "jennyvangimst1site.jpg", "Stenen", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 1, 1, 0, 1, new DateTime(2019, 10, 21, 16, 19, 45, 559, DateTimeKind.Local).AddTicks(7337), "Een schilderij van een vogel.", "devogel.jpg", "De Nachtegaal", 300m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 1, 0, 2, new DateTime(2019, 10, 21, 16, 19, 45, 564, DateTimeKind.Local).AddTicks(3194), "Een schilderij van een Vaas.", "devaas.jpg", "De Vaas", 1m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 1, 0, 2, new DateTime(2019, 10, 21, 16, 19, 45, 564, DateTimeKind.Local).AddTicks(3303), "Een schilderij van een Egel.", "deegel.jpg", "De Egel", 5m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 1, 0, 2, new DateTime(2019, 10, 21, 16, 19, 45, 564, DateTimeKind.Local).AddTicks(3311), "Een schilderij van een trap.", "trap.jpg", "De Trap", 150m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

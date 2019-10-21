@@ -29,8 +29,24 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
             //        opts => opts.MapFrom(src => src.Ratings.Average(r => r.Score))
             //        )
             //    .ReverseMap();
-            CreateMap<ArtBasic, Art>().ReverseMap();
+
+
+            CreateMap<Art, ArtBasic>()
+                .ForMember(
+                dest => dest.ArtistName,
+                opts => opts.MapFrom(
+                    src => $"{src.Artist.ArtistName}"))
+                .ReverseMap();
+
+            CreateMap<Art, ArtDetail>()
+                .ForMember(
+                dest => dest.ArtistName,
+                opts => opts.MapFrom(
+                    src => $"{src.Artist.ArtistName}"))
+                .ReverseMap();
             
+
+
         }
 
 

@@ -21,7 +21,20 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
         {
             return await db.Arts
                 .ProjectTo<ArtBasic>(mapper.ConfigurationProvider)
-                .OrderBy(b => b.Name)
+                .OrderBy(a => a.Name)
+                .ToListAsync();
+        }
+
+        public async Task<ArtDetail> ListDetail(int id)
+        {
+            return mapper.Map<ArtDetail>(await db.Arts
+                .Include(a => a.Artist)
+                .FirstOrDefaultAsync(a => a.ArtistId == id));
+        }
+        public async Task<List<Art>> ListAll()
+        {
+            return await db.Arts
+                .Include(a => a.Artist)
                 .ToListAsync();
         }
 

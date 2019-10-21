@@ -66,7 +66,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 1,
                             Category = 0,
                             CategoryId = 1,
-                            Created = new DateTime(2019, 10, 21, 14, 50, 33, 325, DateTimeKind.Local).AddTicks(3568),
+                            Created = new DateTime(2019, 10, 21, 16, 19, 45, 559, DateTimeKind.Local).AddTicks(7337),
                             Description = "Een schilderij van een vogel.",
                             ImageName = "devogel.jpg",
                             Name = "De Nachtegaal",
@@ -79,7 +79,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 1,
                             Category = 0,
                             CategoryId = 2,
-                            Created = new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1332),
+                            Created = new DateTime(2019, 10, 21, 16, 19, 45, 564, DateTimeKind.Local).AddTicks(3194),
                             Description = "Een schilderij van een Vaas.",
                             ImageName = "devaas.jpg",
                             Name = "De Vaas",
@@ -92,7 +92,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 1,
                             Category = 0,
                             CategoryId = 2,
-                            Created = new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1445),
+                            Created = new DateTime(2019, 10, 21, 16, 19, 45, 564, DateTimeKind.Local).AddTicks(3303),
                             Description = "Een schilderij van een Egel.",
                             ImageName = "deegel.jpg",
                             Name = "De Egel",
@@ -105,7 +105,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 1,
                             Category = 0,
                             CategoryId = 2,
-                            Created = new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1453),
+                            Created = new DateTime(2019, 10, 21, 16, 19, 45, 564, DateTimeKind.Local).AddTicks(3311),
                             Description = "Een schilderij van een trap.",
                             ImageName = "trap.jpg",
                             Name = "De Trap",
@@ -118,7 +118,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 2,
                             Category = 0,
                             CategoryId = 0,
-                            Created = new DateTime(2019, 10, 21, 14, 50, 33, 330, DateTimeKind.Local).AddTicks(1457),
+                            Created = new DateTime(2019, 10, 21, 16, 19, 45, 564, DateTimeKind.Local).AddTicks(3319),
                             Description = "steinen",
                             ImageName = "jennyvangimst1site.jpg",
                             Name = "Stenen",
@@ -154,14 +154,14 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 1,
                             ArtistName = "Pablito",
-                            Dob = new DateTime(2019, 10, 21, 14, 50, 33, 332, DateTimeKind.Local).AddTicks(223),
+                            Dob = new DateTime(2019, 10, 21, 16, 19, 45, 566, DateTimeKind.Local).AddTicks(1303),
                             UserId = 6
                         },
                         new
                         {
                             Id = 2,
                             ArtistName = "jenny",
-                            Dob = new DateTime(2019, 10, 21, 14, 50, 33, 332, DateTimeKind.Local).AddTicks(1805),
+                            Dob = new DateTime(2019, 10, 21, 16, 19, 45, 566, DateTimeKind.Local).AddTicks(2768),
                             UserId = 5
                         });
                 });
