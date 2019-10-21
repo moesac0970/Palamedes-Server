@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Helper
 {
-    public class WebApiHelper
+    public static class WebApiHelper
     {
         public static T GetApiResult<T>(string uri)
         {
@@ -16,7 +17,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Helper
                 return Task.Factory.StartNew
                             (
                                 () => JsonConvert
-                                      .DeserializeObject<T>(response.Result)
+                                        .DeserializeObject<T>(response.Result)
                             )
                             .Result;
             }
@@ -45,19 +46,44 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Helper
                 HttpResponseMessage response;
                 if (method == HttpMethod.Post)
                 {
-                    response = await httpClient.PostAsJsonAsync(uri, entity);
+                    response = await PostAsJsonAsync(httpClient, uri, entity);
                 }
                 else if (method == HttpMethod.Put)
                 {
-                    response = await httpClient.PutAsJsonAsync(uri, entity);
+                    response = await PutAsJsonAsync(httpClient, uri, entity);
                 }
                 else
                 {
                     response = await httpClient.DeleteAsync(uri);
                 }
-                result = await response.Content.ReadAsAsync<Out>();
+                result = await ReadAsJsonAsync<Out>(response.Content);
             }
             return result;
+
+        }
+        public static Task<HttpResponseMessage> PostAsJsonAsync<T>(this HttpClient httpClient, string url, T data)
+        {
+            var dataAsString = JsonConvert.SerializeObject(data);
+            var content = new StringContent(dataAsString);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            return httpClient.PostAsync(url, content);
+        }
+
+        public static Task<HttpResponseMessage> PutAsJsonAsync<T>(this HttpClient httpClient, string url, T data)
+        {
+            var dataAsString = JsonConvert.SerializeObject(data);
+            var content = new StringContent(dataAsString);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            return httpClient.PutAsync(url, content);
+        }
+
+        public static async Task<T> ReadAsJsonAsync<T>(this HttpContent content)
+        {
+            var dataAsString = await content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<T>(dataAsString);
         }
     }
 }
