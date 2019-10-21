@@ -37,8 +37,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
             // expects a filename in this format:    "artisname:filename" ==> artistname(not user name)
             var artistAndPath = filename.Split(":");
             var image = Path.Combine(Directory.GetCurrentDirectory(),
-                             "wwwroot", $"images/{artistAndPath[0]}", artistAndPath[1]);
-            return PhysicalFile(image, "Image/jpeg");
+                             "wwwroot", $"Images/{artistAndPath[0]}", artistAndPath[1]);
+            return PhysicalFile(image, "image/jpeg");
         }
     }
 }
