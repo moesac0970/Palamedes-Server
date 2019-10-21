@@ -38,7 +38,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
                 var usernameAndPass = usernameAndPassenc.Split(":");
 
                 //check in DB username and pass exist
-                if (usernameAndPass[0] == "Admin" && usernameAndPass[1] == "pass")
+                if (usernameAndPass[0] == "SEPPMVl" && usernameAndPass[1] == "palamedes")
                 {
                     var claimsdata = new[] { new Claim(ClaimTypes.Name, usernameAndPass[0]) };
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lkjqsdflkjsdfkljqsdfkljqsdlkfjslqdkfjlskdfjlskqdjfhlk"));

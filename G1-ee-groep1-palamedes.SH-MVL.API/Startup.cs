@@ -28,7 +28,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
             services.AddControllers();
             services.AddDbContext<ArtDataContext>(opt => opt.
                 UseSqlServer(Configuration.GetConnectionString("PalamedesArtDb")).EnableSensitiveDataLogging(true));
-            //services.AddScoped<ArtInMemoryRepository>();
 
             services.AddScoped<ArtRepository>();
             services.AddScoped<UserRepository>();
