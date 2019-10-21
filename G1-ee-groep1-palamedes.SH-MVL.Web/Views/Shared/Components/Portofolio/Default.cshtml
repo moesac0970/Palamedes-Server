@@ -1,0 +1,21 @@
+﻿@model IEnumerable<G1_ee_groep1_palamedes.SH_MVL.Lib.DTO.ArtBasic>
+
+
+@foreach (var item in Model)
+{
+    <div class="grid-item  branding architecture  col-sm-12 col-md-6">
+        <div class="project_box_one">
+            <img src="http://localhost:5000/api/arts/imagebyname/@item.ArtistName:@(item.Name).jpg" alt="@item.Name" />
+            <div class="product_info">
+                <div class="product_info_text">
+                    <div class="product_info_text_inner">
+                        <i class="ion ion-plus"></i>
+                        <h4> by @item.Name  @item.ArtistName</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- portofolio <a> item to add, area - controler - action ==> user -->

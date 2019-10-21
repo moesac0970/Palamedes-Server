@@ -2,7 +2,27 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+
+
+    <main role="main" class="pb-3">
+        <!--=================== put content if needed====================-->
+        <h1> welcome to palamedes you dumb fuck</h1>
+        <!--=================== put content if needed====================-->
+
+    </main>
+
+
+    <div class="portfolio">
+        <div class="container-fluid">
+            <!--=================== portfolio start====================-->
+            <div class="grid img-container justify-content-center no-gutters">
+                <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
+                @await Component.InvokeAsync("Portofolio")
+                <!--===================  portfolio end====================-->
+            </div>
+        </div>
+    </div>
+
 </div>

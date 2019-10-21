@@ -4,9 +4,12 @@ using System.Text;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Models
 {
-    public class UserArt : EntityBase
+    public class Artists : EntityBase
     {
-        public int ArtId { get; set; }
+        public string ArtistName { get; set; }
+        public DateTime Dob { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
+
     }
 }
