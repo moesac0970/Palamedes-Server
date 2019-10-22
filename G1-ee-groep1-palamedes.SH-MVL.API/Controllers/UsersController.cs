@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UsersController : ControllerCrudBase<User, UserRepository>
     {

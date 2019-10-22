@@ -34,10 +34,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         [Route("ImageByName/{filename}")]
         public IActionResult ImageByFileName(string filename)
         { 
-            // expects a filename in this format:    "artisname:filename" ==> artistname(not user name)
-            var artistAndPath = filename.Split(":");
-            var image = Path.Combine(Directory.GetCurrentDirectory(),
-                             "wwwroot", $"Images/{artistAndPath[0]}", artistAndPath[1]);
+            string[] artistAndPath = filename.ToLower().Split(":");
+            string image = Path.Combine(Directory.GetCurrentDirectory(),
+                             "wwwroot", $"img/{artistAndPath[0]}", artistAndPath[1]);
             return PhysicalFile(image, "image/jpeg");
         }
     }

@@ -31,7 +31,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
                 .Include(a => a.Artist)
                 .FirstOrDefaultAsync(a => a.ArtistId == id));
         }
-        public async Task<List<Art>> ListAll()
+        public new async Task<List<Art>> ListAll()
         {
             return await db.Arts
                 .Include(a => a.Artist)

@@ -9,10 +9,6 @@ using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {
-    /// <summary>
-    ///     Base class for all repositories
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
         protected readonly ArtDataContext db;
@@ -22,7 +18,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             db = context;
         }
 
-        // api/arts/{id}
+        //GET: arts/{id}
         public virtual async Task<T> GetById(int id)
         {
             return await db.Set<T>()
@@ -30,7 +26,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
         }
 
         // get an IQueryAble: to manipulate with deferred execution
-        // api/arts
+        // GET: arts
         public virtual IQueryable<T> GetAll()
         {
             // Entities won't be manipulated directly on this set --> faster with AsNoTracking()
@@ -55,7 +51,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return await GetFiltered(predicate).ToListAsync();
         }
 
-        //post api/arts
+        //POST: arts
         public async Task<T> Add(T entity)
         {
             db.Set<T>().Add(entity);
@@ -103,11 +99,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             var entity = await GetById(id);
             if (entity == null) return null;
             return await Delete(entity);
-        }
-
-        private async Task<bool> Exists(int id)
-        {
-            return await db.Set<T>().AnyAsync(e => e.Id == id);
         }
     }
 }

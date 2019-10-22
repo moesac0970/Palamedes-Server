@@ -1,4 +1,5 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
+using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using G1_ee_groep1_palamedes.SH_MVL.Web.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc;
@@ -10,26 +11,22 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
     [ViewComponent(Name = "Portofolio")]
     public class PortofolioComponent : ViewComponent
     {
-        private IEnumerable<ArtBasic> publicPortofolio { get; set; }
-        //private IEnumerable<ArtBasic> userPortofolio { get; set; }
-
+        private IEnumerable<ArtBasic> PublicPortofolio { get; set; }
 
         public PortofolioComponent()
         {
-            publicPortofolio = WebApiHelper.GetApiResult<List<ArtBasic>>("https://api.palamedes.be/arts/basic");
+            LoadPortofolioAsync().Wait();
         }
 
-        /// <summary>
-        ///   TODO: portofolio components for only users
-        ///   TODO: list all portofolio items, list limited
-        /// </summary>
-
+        public async Task LoadPortofolioAsync()
+        {
+            PublicPortofolio = await WebApiHelper.GetApiResultAsync<List<ArtBasic>>("https://api.palamedes.be/arts/basic");
+        }
 
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var portofolio = publicPortofolio;
-            return await Task.FromResult<IViewComponentResult>(View(portofolio));
+            return await Task.FromResult<IViewComponentResult>(View(PublicPortofolio));
         }
 
     }

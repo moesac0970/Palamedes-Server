@@ -9,27 +9,20 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Helper
 {
     public static class WebApiHelper
     {
-        public static T GetApiResult<T>(string uri)
+        public static async Task<T> GetApiResultAsync<T>(string uri)
         {
             try
             {
-                using (HttpClient httpClient = new HttpClient())
-                {
-                    Task<String> response = httpClient.GetStringAsync(uri);
-                    return Task.Factory.StartNew
-                                (
-                                    () => JsonConvert
-                                            .DeserializeObject<T>(response.Result)
-                                )
-                                .Result;
-                }
+                using HttpClient httpClient = new HttpClient();
+                string response = await httpClient.GetStringAsync(uri);
+                return JsonConvert.DeserializeObject<T>(response);
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex);
                 throw new NotImplementedException();
             }
-            
+
         }
 
         public static async Task<Out> PutCallAPI<Out, In>(string uri, In entity)
@@ -49,7 +42,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Helper
 
         private static async Task<Out> CallAPI<Out, In>(string uri, In entity, HttpMethod method)
         {
-            Out result = default(Out);
+            Out result = default;
             using (HttpClient httpClient = new HttpClient())
             {
                 HttpResponseMessage response;

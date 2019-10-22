@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API
 {
-    public class Program
+    static class Program
     {
         public static void Main(string[] args)
         {

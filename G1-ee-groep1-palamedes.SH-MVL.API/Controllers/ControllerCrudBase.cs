@@ -15,21 +15,21 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
             repository = r;
         }
 
-        // GET: api/T
+        // GET: T
         [HttpGet]
         public virtual async Task<IActionResult> Get()
         {
             return Ok(await repository.ListAll());
         }
 
-        // GET: api/T/2
+        // GET: T/2
         [HttpGet("{id}")]
         public virtual async Task<IActionResult> Get(int id)
         {
             return Ok(await repository.GetById(id));
         }
 
-        // PUT: api/T/5
+        // PUT: T/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromRoute] int id,
             [FromBody] T entity)
@@ -43,7 +43,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
             return Ok(updated);
         }
 
-        // POST api/T
+        // POST: T
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] T entity)
         {
@@ -52,7 +52,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
             return CreatedAtAction("Get", new { id = entity.Id }, entity);
         }
 
-        // DELETE: api/T/3
+        // DELETE: T/3
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

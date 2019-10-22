@@ -12,17 +12,10 @@ using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-        ArtDataContext db;
-        public AuthController(ArtDataContext context)
-        {
-               db = context;
-        }
-
-
         [HttpPost("token")]
         public IActionResult Token()
         {
@@ -55,8 +48,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
                 }
             }
             return BadRequest("wrong request");
-
-            // return View();
         }
     }
 }

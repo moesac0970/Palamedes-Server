@@ -11,11 +11,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Controllers
 {
     public class PortofolioController : Controller
     {
-        string baseUri = "https://api.palamedes.be/arts/";
+        readonly string baseUri = "https://api.palamedes.be/arts/";
         public async Task<IActionResult> Index()
         {
             string uri = $"{baseUri}/basic";
-            return View(WebApiHelper.GetApiResult<List<ArtBasic>>(uri));
+            return View(await WebApiHelper.GetApiResultAsync<List<ArtBasic>>(uri));
         }
     }
 }

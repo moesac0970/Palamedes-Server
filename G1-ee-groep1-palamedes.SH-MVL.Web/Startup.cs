@@ -37,17 +37,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            //if (env.IsDevelopment())
-            //{
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-            //}
-            //else
-            //{
-            //   app.UseExceptionHandler("/Home/Error");
-            //}
+            
+            // Enable Developer 
+            app.UseDeveloperExceptionPage();
+            app.UseDatabaseErrorPage();
+
             app.UseStaticFiles();
 
             app.UseRouting();
