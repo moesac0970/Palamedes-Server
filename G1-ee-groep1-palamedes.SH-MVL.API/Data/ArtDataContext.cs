@@ -32,9 +32,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
             );
 
             modelBuilder.Entity<User>().ToTable("Users").HasData(
-                new User { Id = 1, Dob = new DateTime(1980, 5, 20), Email = "random@mailinator.com", FirstName = "jos", LastName = "doenikni", TelNr = 48484848},
-                new User { Id = 2, Dob = new DateTime(1980, 5, 20), Email = "random@mailinator.com", FirstName = "carlos", LastName = "taco", TelNr = 48484848},
-                new User { Id = 3, Dob = new DateTime(1980, 5, 20), Email = "random@mailinator.com", FirstName = "donald", LastName = "cunk", TelNr = 48484848},
+                new User { Id = 1, Dob = new DateTime(1980, 5, 20), Email = "random@mailinator.com", FirstName = "jos", LastName = "doenikni", TelNr = 48484848 },
+                new User { Id = 2, Dob = new DateTime(1980, 5, 20), Email = "random@mailinator.com", FirstName = "carlos", LastName = "taco", TelNr = 48484848 },
+                new User { Id = 3, Dob = new DateTime(1980, 5, 20), Email = "random@mailinator.com", FirstName = "donald", LastName = "cunk", TelNr = 48484848 },
                 new User { Id = 4, Dob = new DateTime(1980, 5, 20), Email = "random@mailinator.com", FirstName = "Leoplod", LastName = "II", TelNr = 48484848 },
                 new User { Id = 5, Dob = new DateTime(1960, 5, 30), Email = "manu09ice@gmail.com", FirstName = "Jenny", LastName = "VanGimst", TelNr = 491080115 },
                 new User { Id = 6, Dob = new DateTime(1980, 5, 20), Email = "random@mailinator.com", FirstName = "Pablito", LastName = "escobar", TelNr = 48484848 }

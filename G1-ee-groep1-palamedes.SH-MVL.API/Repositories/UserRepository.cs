@@ -1,7 +1,6 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.API.Data;
 using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {

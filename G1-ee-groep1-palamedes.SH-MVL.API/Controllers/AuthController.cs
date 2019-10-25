@@ -1,14 +1,9 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.API.Data;
-using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
