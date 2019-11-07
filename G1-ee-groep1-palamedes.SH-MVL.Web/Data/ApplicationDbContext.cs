@@ -1,6 +1,7 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
+using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Data

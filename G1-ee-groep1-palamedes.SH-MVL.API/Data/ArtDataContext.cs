@@ -43,6 +43,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
                 new IdentityUser { Id = "1",  UserName = "manu", EmailConfirmed = false, PhoneNumberConfirmed = false, TwoFactorEnabled = true, LockoutEnabled = false, AccessFailedCount = 1 },
                 new IdentityUser { Id = "2", UserName = "VanGimst", EmailConfirmed = false, PhoneNumberConfirmed = false, TwoFactorEnabled = true, LockoutEnabled = false, AccessFailedCount = 1 });
 
+
             modelBuilder.Entity<Art>().Property("Price").HasColumnType("decimal(18,2)");
             
         }
