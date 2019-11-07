@@ -21,7 +21,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
         private readonly ILogger<LoginModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager,
+        public LoginModel(
+            SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager,
             IEmailSender emailSender)

@@ -1,21 +1,25 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.API.Data;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
+using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {
-    public class UserRepository : Repository<User>
+    public class UserRepository 
     {
 
-        public UserRepository(ArtDataContext context) : base(context)
+        private ArtDataContext<IdentityUser> db;
+        public UserRepository(ArtDataContext<IdentityUser> context)
         {
+            db = context;
         }
 
-        public virtual User GetByUserName(string username)
+        public async Task<IQueryable<IdentityUser>> GetUsers()
         {
-            return db.Users
-                .Where(u => u.UserName == username)
-                .FirstOrDefault();
+            var users = db.Users.ToList().AsQueryable();
+            return await Task.FromResult(users);
         }
     }
 }

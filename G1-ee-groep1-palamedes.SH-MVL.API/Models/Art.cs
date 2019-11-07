@@ -1,7 +1,6 @@
 ﻿using System;
 
-
-namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Models
+namespace G1_ee_groep1_palamedes.SH_MVL.API.Models
 {
     public class Art : EntityBase
     {
@@ -15,7 +14,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Models
         public string ImageName { get; set; }
 
         public int ArtistId { get; set; }
-        //public Artist Artist { get; set; }
+        public Artist Artist { get; set; }
 
     }
 }

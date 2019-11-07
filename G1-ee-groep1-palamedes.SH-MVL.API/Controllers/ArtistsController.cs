@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,19 +11,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class ArtistsController : ControllerCrudBase<Artist, ArtistsRepository>
     {
-        private UserRepository users;
-        public UsersController(UserRepository repo)
+        public ArtistsController(ArtistsRepository ArtRepository) : base(ArtRepository)
         {
-            users = repo;
-        }
 
-
-        [HttpGet]
-        public async Task<IActionResult> GetUsers()
-        {
-            return Ok(await users.GetUsers());
         }
     }
 }

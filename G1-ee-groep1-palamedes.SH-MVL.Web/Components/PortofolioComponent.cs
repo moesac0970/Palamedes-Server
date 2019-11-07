@@ -18,7 +18,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
 
         public async Task LoadPortofolioAsync()
         {
-            PublicPortofolio = await WebApiHelper.GetApiResultAsync<List<ArtBasic>>("https://api.palamedes.be/arts/basic");
+            PublicPortofolio = await WebApiHelper.GetApiResultAsync<List<ArtBasic>>("http://localhost:5000/arts/basic");
         }
 
 

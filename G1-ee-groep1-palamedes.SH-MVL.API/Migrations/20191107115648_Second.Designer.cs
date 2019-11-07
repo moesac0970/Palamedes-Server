@@ -5,14 +5,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
     [DbContext(typeof(ArtDataContext<IdentityUser>))]
-    partial class ArtDataContextModelSnapshot : ModelSnapshot
+    [Migration("20191107115648_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
