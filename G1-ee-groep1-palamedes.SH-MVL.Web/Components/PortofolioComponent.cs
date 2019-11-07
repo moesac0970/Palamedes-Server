@@ -1,7 +1,5 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
-using G1_ee_groep1_palamedes.SH_MVL.Web.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
