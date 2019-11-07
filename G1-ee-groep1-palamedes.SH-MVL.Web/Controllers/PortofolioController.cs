@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
+﻿using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Controllers
 {

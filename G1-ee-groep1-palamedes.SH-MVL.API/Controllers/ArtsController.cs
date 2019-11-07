@@ -1,5 +1,4 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.API.Data;
-using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
 using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
@@ -13,7 +12,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
     {
         public ArtsController(ArtRepository ArtRepository) : base(ArtRepository)
         {
-           
+
         }
 
         [HttpGet]
@@ -33,7 +32,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         [HttpGet]
         [Route("ImageByName/{filename}")]
         public IActionResult ImageByFileName(string filename)
-        { 
+        {
             string[] artistAndPath = filename.ToLower().Split(":");
             string image = Path.Combine(Directory.GetCurrentDirectory(),
                              "wwwroot", $"img/{artistAndPath[0]}", artistAndPath[1]);

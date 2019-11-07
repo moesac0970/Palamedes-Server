@@ -27,7 +27,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                 opts => opts.MapFrom(
                     src => $"{src.Artist.ArtistName}"))
                 .ReverseMap();
-            
+
 
         }
 
