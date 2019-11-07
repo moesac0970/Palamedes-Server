@@ -5,9 +5,12 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
@@ -80,32 +83,41 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                var uri = "http://localhost:5000/auth/token";
+                var webRequest = WebRequest.Create(uri);
+                webRequest.Headers["Authorization"] = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(Input.Email + ":" + Input.Password));
+                webRequest.Method = "POST";
+                _logger.LogInformation("User logged in.");
+                return LocalRedirect(returnUrl);
+            }
+            return Page();
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return Page();
-                }
-            }
+            //    var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+            //    if (result.Succeeded)
+            //    {
+            //        _logger.LogInformation("User logged in.");
+            //        return LocalRedirect(returnUrl);
+            //    }
+            //    if (result.RequiresTwoFactor)
+            //    {
+            //        return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+            //    }
+            //    if (result.IsLockedOut)
+            //    {
+            //        _logger.LogWarning("User account locked out.");
+            //        return RedirectToPage("./Lockout");
+            //    }
+            //    else
+            //    {
+            //        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            //        return Page();
+            //    }
+            //}
 
-            // If we got this far, something failed, redisplay form
-            return Page();
+            //// If we got this far, something failed, redisplay form
+            //return Page();
         }
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
