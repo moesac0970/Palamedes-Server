@@ -27,12 +27,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
                 // header begins with 'Basic', and after follows base64encoded logincredentials 
                 var credValue = header.ToString().Substring("Basic ".Length).Trim();
                 // logincredentials decoded from base64 and put into variable
-                var usernameAndPassenc = Encoding.UTF8.GetString(Convert.FromBase64String(credValue)); //admin:pass
+                var usernameAndPassHash = Encoding.UTF8.GetString(Convert.FromBase64String(credValue)); //admin:pass
                 // put into string array 
-                var usernameAndPass = usernameAndPassenc.Split(":");
-                var user = db.GetUserByIdAsync(usernameAndPassenc);
-                //check in DB username and pass exist
-                if (usernameAndPass[0] == "SEPPMVl" && usernameAndPass[1] == "palamedes")
+                var usernameAndPass = usernameAndPassHash.Split(":");
+                var user = db.GetUserByIdAsync(usernameAndPassHash);
+
+                if(user != null) 
                 {
                     var claimsdata = new[] { new Claim(ClaimTypes.Name, usernameAndPass[0]) };
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lkjqsdflkjsdfkljqsdfkljqsdlkfjslqdkfjlskdfjlskqdjfhlk"));

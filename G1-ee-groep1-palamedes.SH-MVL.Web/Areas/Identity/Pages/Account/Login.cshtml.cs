@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using G1_ee_groep1_palamedes.SH_MVL.Web.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -80,13 +81,18 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
+            HashingService hashservice = new HashingService();
 
             if (ModelState.IsValid)
             {
                 var uri = "http://localhost:5000/auth/token";
                 var webRequest = WebRequest.Create(uri);
-                webRequest.Headers["Authorization"] = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(Input.Email + ":" + Input.Password));
+                webRequest.Headers["Authorization"] = "Basic " 
+                                                    + Convert.ToBase64String(Encoding.Default.GetBytes(Input.Email 
+                                                    + ":" 
+                                                    + hashservice.Hasher(Input.Password)));
                 webRequest.Method = "POST";
+                WebResponse respons = webRequest.GetResponse();
                 _logger.LogInformation("User logged in.");
                 return LocalRedirect(returnUrl);
             }

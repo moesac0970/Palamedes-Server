@@ -26,8 +26,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
         {
             //todo split nameNpass find user in auth controller
             var usernameAndPass = nameNPass.Split(":");
+            var usernameorEmail = usernameAndPass[0];
+            var paswHash = usernameAndPass[1];
 
-            var user = db.Users.Where(u => u.Email == usernameAndPass[0]).LastOrDefault();
+            var user = db.Users
+                .Where(u => u.Email == usernameorEmail || u.UserName == usernameorEmail)
+                .Where(u => u.PasswordHash == paswHash)
+                .FirstOrDefault();
+
+
             return await Task.FromResult(user);
         }
     }
