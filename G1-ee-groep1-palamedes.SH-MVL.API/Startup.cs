@@ -33,7 +33,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
             services.AddScoped<ArtRepository>();
             services.AddScoped<ArtistsRepository>();
             services.AddScoped<UserRepository>();
-            //services.AddScoped<UserRepository>();
 
             //mapper configuration
             var config = new AutoMapper.MapperConfiguration(cfg =>
@@ -66,8 +65,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDeveloperExceptionPage();
-
-
 
             app.UseRouting();
 

@@ -16,10 +16,19 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             db = context;
         }
 
-        public async Task<IQueryable<IdentityUser>> GetUsers()
+        public async Task<IQueryable<IdentityUser>> GetUsersAsync()
         {
             var users = db.Users.ToList().AsQueryable();
             return await Task.FromResult(users);
+        }
+
+        public async Task<IdentityUser> GetUserByIdAsync(string nameNPass)
+        {
+            //todo split nameNpass find user in auth controller
+            var usernameAndPass = nameNPass.Split(":");
+
+            var user = db.Users.Where(u => u.Email == usernameAndPass[0]).LastOrDefault();
+            return await Task.FromResult(user);
         }
     }
 }

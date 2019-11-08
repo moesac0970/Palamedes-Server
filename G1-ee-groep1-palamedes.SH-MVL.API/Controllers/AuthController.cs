@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,6 +12,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly UserRepository db;
+        public AuthController(UserRepository context)
+        {
+            db = context;
+        }
         [HttpPost("token")]
         public IActionResult Token()
         {
@@ -24,7 +30,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
                 var usernameAndPassenc = Encoding.UTF8.GetString(Convert.FromBase64String(credValue)); //admin:pass
                 // put into string array 
                 var usernameAndPass = usernameAndPassenc.Split(":");
-
+                var user = db.GetUserByIdAsync(usernameAndPassenc);
                 //check in DB username and pass exist
                 if (usernameAndPass[0] == "SEPPMVl" && usernameAndPass[1] == "palamedes")
                 {

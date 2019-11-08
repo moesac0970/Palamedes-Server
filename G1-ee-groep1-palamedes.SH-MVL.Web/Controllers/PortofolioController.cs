@@ -11,7 +11,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Controllers
         readonly string baseUri = "https://api.palamedes.be/arts/";
         public async Task<IActionResult> Index()
         {
-            string uri = $"{baseUri}/basic";
+            string uri = $"{baseUri}basic";
             return View(await WebApiHelper.GetApiResultAsync<List<ArtBasic>>(uri));
         }
     }

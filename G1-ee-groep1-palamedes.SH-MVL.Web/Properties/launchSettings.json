@@ -1,14 +1,28 @@
-﻿{
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/G1-ee-groep1-palamedes.SH-MVL.Web",
+      "sslPort": 0
+    },
+    "iisExpress": {
+      "applicationUrl": "https://localhost:44325/",
+      "sslPort": 44325
+    }
+  },
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "G1_ee_groep1_palamedes.SH_MVL.Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5001",
-      "launchUrl": "http://localhost:5001/",
+      "launchUrl": "https://localhost:5001/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "nativeDebugging": false,
+      "applicationUrl": "https://localhost:5001",
+      "sslPort": 5001
     }
   }
 }
