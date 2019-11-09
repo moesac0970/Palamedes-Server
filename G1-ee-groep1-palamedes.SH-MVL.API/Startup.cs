@@ -33,6 +33,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
             services.AddScoped<ArtRepository>();
             services.AddScoped<ArtistsRepository>();
             services.AddScoped<UserRepository>();
+            services.AddScoped<AuthRepository>();
 
             //mapper configuration
             var config = new AutoMapper.MapperConfiguration(cfg =>

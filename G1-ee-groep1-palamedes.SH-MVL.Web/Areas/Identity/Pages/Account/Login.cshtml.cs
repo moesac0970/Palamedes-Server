@@ -98,7 +98,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                 webRequest.Method = "POST";
 
                 // repsons from auth controller containing the bearer token 
-                var respons = webRequest.GetResponse();
+                var respons = await webRequest.GetResponseAsync();
                 var responsstream = respons.GetResponseStream();
                 var reader = new StreamReader(responsstream);
                 var bearerToken = reader.ReadToEnd();

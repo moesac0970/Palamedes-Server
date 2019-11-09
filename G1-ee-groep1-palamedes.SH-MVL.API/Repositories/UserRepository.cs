@@ -22,7 +22,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return await Task.FromResult(users);
         }
 
-        public IdentityUser GetUserByIdAsync(string nameNPass)
+        public IdentityUser GetUserByNameAsync(string nameNPass)
         {
             //todo split nameNpass find user in auth controller
             var usernameAndPass = nameNPass.Split(":");
@@ -34,8 +34,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
                 .Where(u => u.PasswordHash == paswHash)
                 .FirstOrDefault();
 
-
             return user;
+        }
+
+        public async Task<IdentityUser> UpdateUser(IdentityUser user) 
+        {
+            var oldUser = db.Users.Where(u => u.UserName == user.UserName).FirstOrDefault();
+            db.Users.Remove(oldUser);
+            db.Users.Add(user);
+            return await Task.FromResult(user);
         }
     }
 }

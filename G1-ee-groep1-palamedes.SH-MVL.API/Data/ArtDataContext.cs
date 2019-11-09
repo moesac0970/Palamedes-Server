@@ -16,6 +16,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
 
         public DbSet<Art> Arts { get; set; }
         public DbSet<Artist> Artists { get; set; }
+        public DbSet<AuthHistory> AuthHistories { get; set; }
        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,7 +49,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
 
 
             modelBuilder.Entity<Art>().Property("Price").HasColumnType("decimal(18,2)");
-            
+
+            // entity authistory heeft geen relaties met de db
+            modelBuilder.Entity<AuthHistory>().HasNoKey();
         }
     }
 }

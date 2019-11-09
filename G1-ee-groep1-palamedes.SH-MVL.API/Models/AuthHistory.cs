@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Models
 {
-    public class Auth
+    public class AuthHistory
     {
-        [Range(0,500)]
         public string Token { get; set; } 
-         
+        public string UserName { get; set; }
     }
 }
