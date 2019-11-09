@@ -16,6 +16,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
 
         public DbSet<Art> Arts { get; set; }
         public DbSet<Artist> Artists { get; set; }
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

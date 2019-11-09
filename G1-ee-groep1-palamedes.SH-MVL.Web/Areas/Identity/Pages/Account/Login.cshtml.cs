@@ -1,6 +1,7 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.Web.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -94,12 +96,26 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                                                     + ":" 
                                                     + hashservice.Hasher(Input.Password)));
                 webRequest.Method = "POST";
-                WebResponse respons = webRequest.GetResponse();
-                var respons2 = await client.PostAsync
 
-                var content = respons2.Content.ToString();
-               
-                    _logger.LogInformation("User logged in.");
+                // repsons from auth controller containing the bearer token 
+                var respons = webRequest.GetResponse();
+                var responsstream = respons.GetResponseStream();
+                var reader = new StreamReader(responsstream);
+                var bearerToken = reader.ReadToEnd();
+
+                // todo domain date on cookie from the beaertoken
+                var cookieOptions = new CookieOptions
+                {
+                    Expires = DateTimeOffset.Now.AddDays(1).AddMinutes(-5),
+                    HttpOnly = false,
+                    Secure = true
+                };
+
+                //
+                HttpContext.Response.Cookies.Append("bearerToken", bearerToken, cookieOptions);
+
+
+                _logger.LogInformation("User logged in.");
 
                 return LocalRedirect(returnUrl);
             }

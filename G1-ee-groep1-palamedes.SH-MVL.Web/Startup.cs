@@ -21,7 +21,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web
         {
             services.AddDbContext<ApplicationDbContext<IdentityUser>>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("PalamedesArtDb")));
             
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext<IdentityUser>>();
