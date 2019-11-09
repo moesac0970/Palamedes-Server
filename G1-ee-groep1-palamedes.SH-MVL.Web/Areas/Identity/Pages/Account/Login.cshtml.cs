@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -80,6 +81,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            HttpClient client = new HttpClient();
             returnUrl = returnUrl ?? Url.Content("~/");
             HashingService hashservice = new HashingService();
 
@@ -93,7 +95,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                                                     + hashservice.Hasher(Input.Password)));
                 webRequest.Method = "POST";
                 WebResponse respons = webRequest.GetResponse();
-                _logger.LogInformation("User logged in.");
+                var respons2 = await client.PostAsync
+
+                var content = respons2.Content.ToString();
+               
+                    _logger.LogInformation("User logged in.");
+
                 return LocalRedirect(returnUrl);
             }
             return Page();

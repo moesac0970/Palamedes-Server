@@ -9,6 +9,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Services
 {
     public class HashingService
     {
+        /// <summary>
+        /// service for hasing which accepts a string and returns a hashed(md5) string @sepp
+        /// </summary>
+        /// <param name="pasw"></param>
+        /// <returns></returns>
         public string Hasher(string pasw)
         {
             // create md5 hasher
