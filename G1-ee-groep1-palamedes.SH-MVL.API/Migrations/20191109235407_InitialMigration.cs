@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
-    public partial class InitOne : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,6 +19,17 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AuthHistory",
+                columns: table => new
+                {
+                    Token = table.Column<string>(nullable: true),
+                    UserName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
                 });
 
             migrationBuilder.CreateTable(
@@ -203,38 +214,38 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 1, "a0293a07-ca0b-4492-9dea-aec0a3c54043", "de__manu09@hotmail.com", false, false, null, null, null, "675d13fc79dc2b90de05b11b36ec388a", null, false, "e13315b9-2bd4-4992-8603-b0428d3b9907", true, "manu" });
+                values: new object[] { "1", 1, "3190b7e5-c05f-42f1-83eb-cec3295be090", "de__manu09@hotmail.com", false, false, null, null, null, "675d13fc79dc2b90de05b11b36ec388a", null, false, "d0dae5e2-4106-4161-baa3-c145aeec8606", true, "manu" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "2", 1, "3c38d5f9-71ea-46d2-9562-f609f24d0b62", "random@mailinator.com", false, false, null, null, null, "754f4789adeac685009905e3a5b9c6ef", null, false, "54b2971e-8464-4e9c-a913-dd9f947b3772", true, "VanGimst" });
+                values: new object[] { "2", 1, "045eba1a-c1cd-4076-86f8-719a77c9ba7e", "random@mailinator.com", false, false, null, null, null, "754f4789adeac685009905e3a5b9c6ef", null, false, "0d51506d-a28f-4256-84f5-a079b7fc8649", true, "VanGimst" });
 
             migrationBuilder.InsertData(
                 table: "Artists",
                 columns: new[] { "Id", "ArtistName", "Dob", "UserId" },
-                values: new object[] { 1, "Pablito", new DateTime(2019, 11, 8, 16, 9, 23, 202, DateTimeKind.Local).AddTicks(3775), "1" });
+                values: new object[] { 1, "Pablito", new DateTime(2019, 11, 10, 0, 54, 6, 612, DateTimeKind.Local).AddTicks(4439), "1" });
 
             migrationBuilder.InsertData(
                 table: "Artists",
                 columns: new[] { "Id", "ArtistName", "Dob", "UserId" },
-                values: new object[] { 2, "Jenny", new DateTime(2019, 11, 8, 16, 9, 23, 202, DateTimeKind.Local).AddTicks(4969), "2" });
+                values: new object[] { 2, "Jenny", new DateTime(2019, 11, 10, 0, 54, 6, 612, DateTimeKind.Local).AddTicks(5407), "2" });
 
             migrationBuilder.InsertData(
                 table: "Arts",
                 columns: new[] { "Id", "ArtistId", "Category", "CategoryId", "Created", "Description", "ImageName", "Name", "Price", "Updated" },
                 values: new object[,]
                 {
-                    { 1, 1, 0, 1, new DateTime(2019, 11, 8, 16, 9, 23, 197, DateTimeKind.Local).AddTicks(427), "Een schilderij van een vogel.", "vogel.jpg", "Nachtegaal", 300m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 1, 0, 2, new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(216), "Een schilderij van een Vaas.", "vaas.jpg", "Vaas", 1m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, 1, 0, 2, new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(322), "Een schilderij van een Egel.", "egel.jpg", "Egel", 5m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, 1, 0, 2, new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(329), "Een schilderij van een trap.", "trap.jpg", "Trap", 150m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 5, 2, 0, 0, new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(333), "messen", "messen.jpg", "Messen", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 6, 2, 0, 0, new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(333), "steinen", "stenen.jpg", "Stenen", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 7, 2, 0, 0, new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(337), "steinen", "abstract.jpg", "Abstract", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 8, 2, 0, 0, new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(341), "steinen", "sloten.jpg", "Sloten", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 9, 2, 0, 0, new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(344), "steinen", "boor.jpg", "Boor", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 10, 2, 0, 0, new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(348), "steinen", "circle.jpg", "Circle", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, 1, 0, 1, new DateTime(2019, 11, 10, 0, 54, 6, 608, DateTimeKind.Local).AddTicks(8713), "Een schilderij van een vogel.", "vogel.jpg", "Nachtegaal", 300m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 1, 0, 2, new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2910), "Een schilderij van een Vaas.", "vaas.jpg", "Vaas", 1m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 1, 0, 2, new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2977), "Een schilderij van een Egel.", "egel.jpg", "Egel", 5m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 1, 0, 2, new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2984), "Een schilderij van een trap.", "trap.jpg", "Trap", 150m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, 2, 0, 0, new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2987), "messen", "messen.jpg", "Messen", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, 2, 0, 0, new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2991), "steinen", "stenen.jpg", "Stenen", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7, 2, 0, 0, new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2994), "steinen", "abstract.jpg", "Abstract", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 8, 2, 0, 0, new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2997), "steinen", "sloten.jpg", "Sloten", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 9, 2, 0, 0, new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(3041), "steinen", "boor.jpg", "Boor", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 10, 2, 0, 0, new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(3045), "steinen", "circle.jpg", "Circle", 500m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -306,6 +317,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "AuthHistory");
 
             migrationBuilder.DropTable(
                 name: "Artists");

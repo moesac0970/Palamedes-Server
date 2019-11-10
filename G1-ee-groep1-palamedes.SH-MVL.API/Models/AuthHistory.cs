@@ -8,6 +8,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Models
 {
     public class AuthHistory
     {
+        [Key]
         public string Token { get; set; } 
         public string UserName { get; set; }
     }

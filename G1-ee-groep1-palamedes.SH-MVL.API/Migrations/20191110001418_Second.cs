@@ -3,222 +3,242 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
-    public partial class Authmodels : Migration
+    public partial class Second : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AuthHistories",
-                columns: table => new
-                {
-                    Token = table.Column<string>(nullable: true),
-                    UserName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                });
+            migrationBuilder.AlterColumn<string>(
+                name: "Token",
+                table: "AuthHistory",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_AuthHistory",
+                table: "AuthHistory",
+                column: "Token");
 
             migrationBuilder.UpdateData(
                 table: "Artists",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "Dob",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 836, DateTimeKind.Local).AddTicks(9000));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 503, DateTimeKind.Local).AddTicks(7948));
 
             migrationBuilder.UpdateData(
                 table: "Artists",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "Dob",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 837, DateTimeKind.Local).AddTicks(131));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 503, DateTimeKind.Local).AddTicks(8964));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "Created",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 831, DateTimeKind.Local).AddTicks(6384));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 500, DateTimeKind.Local).AddTicks(171));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "Created",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 835, DateTimeKind.Local).AddTicks(4096));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 502, DateTimeKind.Local).AddTicks(5423));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 3,
                 column: "Created",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 835, DateTimeKind.Local).AddTicks(4200));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 502, DateTimeKind.Local).AddTicks(5494));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 4,
                 column: "Created",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 835, DateTimeKind.Local).AddTicks(4207));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 502, DateTimeKind.Local).AddTicks(5500));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 5,
                 column: "Created",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 835, DateTimeKind.Local).AddTicks(4211));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 502, DateTimeKind.Local).AddTicks(5504));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 6,
                 column: "Created",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 835, DateTimeKind.Local).AddTicks(4215));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 502, DateTimeKind.Local).AddTicks(5507));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 7,
                 column: "Created",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 835, DateTimeKind.Local).AddTicks(4219));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 502, DateTimeKind.Local).AddTicks(5510));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 8,
                 column: "Created",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 835, DateTimeKind.Local).AddTicks(4223));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 502, DateTimeKind.Local).AddTicks(5513));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 9,
                 column: "Created",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 835, DateTimeKind.Local).AddTicks(4227));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 502, DateTimeKind.Local).AddTicks(5517));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 10,
                 column: "Created",
-                value: new DateTime(2019, 11, 9, 18, 54, 22, 835, DateTimeKind.Local).AddTicks(4231));
+                value: new DateTime(2019, 11, 10, 1, 14, 18, 502, DateTimeKind.Local).AddTicks(5520));
+
+            migrationBuilder.InsertData(
+                table: "AuthHistory",
+                columns: new[] { "Token", "UserName" },
+                values: new object[] { "slmkqfùlqdsmlfqmdlkfmqsldkmlsfd.dspfkqsmùsfkdlùmlqsdfkmùsld.ùqsmldgfsùdflk", "VanGimst" });
 
             migrationBuilder.UpdateData(
                 table: "Users",
                 keyColumn: "Id",
                 keyValue: "1",
                 columns: new[] { "ConcurrencyStamp", "SecurityStamp" },
-                values: new object[] { "4b607cb0-4cd3-4c64-9267-71eb2e431e27", "259da4b0-852e-4d72-95e1-80850a18c170" });
+                values: new object[] { "754d59f1-3f81-40d6-abd8-8fd2a1c73bfb", "81580c47-d0e9-4f0f-a5c7-66676a9371a4" });
 
             migrationBuilder.UpdateData(
                 table: "Users",
                 keyColumn: "Id",
                 keyValue: "2",
                 columns: new[] { "ConcurrencyStamp", "SecurityStamp" },
-                values: new object[] { "a86962b2-a33e-4a05-9d45-bf16c0ed1d94", "394bd66c-cf5b-4a8d-969b-3525f52aa703" });
+                values: new object[] { "33e50651-2f1f-42b9-8ea8-f24f823db9eb", "afc93260-79ea-4d91-854d-ef2a8e5e3aca" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AuthHistories");
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_AuthHistory",
+                table: "AuthHistory");
+
+            migrationBuilder.DeleteData(
+                table: "AuthHistory",
+                keyColumn: "Token",
+                keyValue: "slmkqfùlqdsmlfqmdlkfmqsldkmlsfd.dspfkqsmùsfkdlùmlqsdfkmùsld.ùqsmldgfsùdflk");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Token",
+                table: "AuthHistory",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string));
 
             migrationBuilder.UpdateData(
                 table: "Artists",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "Dob",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 202, DateTimeKind.Local).AddTicks(3775));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 612, DateTimeKind.Local).AddTicks(4439));
 
             migrationBuilder.UpdateData(
                 table: "Artists",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "Dob",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 202, DateTimeKind.Local).AddTicks(4969));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 612, DateTimeKind.Local).AddTicks(5407));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "Created",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 197, DateTimeKind.Local).AddTicks(427));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 608, DateTimeKind.Local).AddTicks(8713));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "Created",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(216));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2910));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 3,
                 column: "Created",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(322));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2977));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 4,
                 column: "Created",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(329));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2984));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 5,
                 column: "Created",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(333));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2987));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 6,
                 column: "Created",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(333));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2991));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 7,
                 column: "Created",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(337));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2994));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 8,
                 column: "Created",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(341));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(2997));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 9,
                 column: "Created",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(344));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(3041));
 
             migrationBuilder.UpdateData(
                 table: "Arts",
                 keyColumn: "Id",
                 keyValue: 10,
                 column: "Created",
-                value: new DateTime(2019, 11, 8, 16, 9, 23, 201, DateTimeKind.Local).AddTicks(348));
+                value: new DateTime(2019, 11, 10, 0, 54, 6, 611, DateTimeKind.Local).AddTicks(3045));
 
             migrationBuilder.UpdateData(
                 table: "Users",
                 keyColumn: "Id",
                 keyValue: "1",
                 columns: new[] { "ConcurrencyStamp", "SecurityStamp" },
-                values: new object[] { "a0293a07-ca0b-4492-9dea-aec0a3c54043", "e13315b9-2bd4-4992-8603-b0428d3b9907" });
+                values: new object[] { "3190b7e5-c05f-42f1-83eb-cec3295be090", "d0dae5e2-4106-4161-baa3-c145aeec8606" });
 
             migrationBuilder.UpdateData(
                 table: "Users",
                 keyColumn: "Id",
                 keyValue: "2",
                 columns: new[] { "ConcurrencyStamp", "SecurityStamp" },
-                values: new object[] { "3c38d5f9-71ea-46d2-9562-f609f24d0b62", "54b2971e-8464-4e9c-a913-dd9f947b3772" });
+                values: new object[] { "045eba1a-c1cd-4076-86f8-719a77c9ba7e", "0d51506d-a28f-4256-84f5-a079b7fc8649" });
         }
     }
 }

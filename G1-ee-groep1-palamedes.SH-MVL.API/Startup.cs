@@ -42,7 +42,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
             });
             var mapper = config.CreateMapper();
             services.AddSingleton(mapper);
-
+            
             // authentication service jwt bearer token
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
@@ -66,8 +66,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDeveloperExceptionPage();
-
             app.UseRouting();
+
+
 
             // global cors policy
             app.UseCors(x => x
