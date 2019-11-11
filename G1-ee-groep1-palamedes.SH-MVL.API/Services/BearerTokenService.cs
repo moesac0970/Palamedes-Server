@@ -12,13 +12,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
     public class BearerTokenService
     {
         private readonly UserRepository db;
-        private AuthRepository auth;
 
-        public BearerTokenService(UserRepository context, AuthRepository _auth)
+        public BearerTokenService(UserRepository context)
         {
-            db = context;
-            auth = _auth;
-           
+            db = context;           
         }
         public async Task<string> GenerateBearerToken(HttpRequest request)
         {
@@ -48,7 +45,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                     //update user id with bearer token 
                     user.Id = tokenString;
                     await db.UpdateUser(user);
-                    await auth.CreateUserHistory(user);
 
                     return tokenString;
                 }

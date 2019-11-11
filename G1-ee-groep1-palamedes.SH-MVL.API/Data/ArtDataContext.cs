@@ -16,7 +16,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
 
         public DbSet<Art> Arts { get; set; }
         public DbSet<Artist> Artists { get; set; }
-        public DbSet<AuthHistory> AuthHistories { get; set; }
        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,8 +46,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
                 new IdentityUser { Id = "1", Email="de__manu09@hotmail.com", PasswordHash= "675d13fc79dc2b90de05b11b36ec388a", UserName = "manu", EmailConfirmed = false, PhoneNumberConfirmed = false, TwoFactorEnabled = true, LockoutEnabled = false, AccessFailedCount = 1 },
                 new IdentityUser { Id = "2", UserName = "VanGimst", PasswordHash= "754f4789adeac685009905e3a5b9c6ef", Email ="random@mailinator.com", EmailConfirmed = false, PhoneNumberConfirmed = false, TwoFactorEnabled = true, LockoutEnabled = false, AccessFailedCount = 1 });
 
-            modelBuilder.Entity<AuthHistory>().ToTable("AuthHistory").HasData(
-                new AuthHistory { Token = "slmkqfùlqdsmlfqmdlkfmqsldkmlsfd.dspfkqsmùsfkdlùmlqsdfkmùsld.ùqsmldgfsùdflk", UserName = "VanGimst" }) ;
+          
 
             modelBuilder.Entity<Art>().Property("Price").HasColumnType("decimal(18,2)");
 
