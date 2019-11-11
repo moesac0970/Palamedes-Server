@@ -22,7 +22,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            return Ok(await users.GetUsers());
+            return Ok(await users.GetUsersAsync());
         }
     }
 }

@@ -3,9 +3,22 @@
 
 @foreach (var navlink in Model)
 {
-    <li class="nav-item @(Html.Raw(navlink.IsActive ? "active" : ""))">
-        <a class="nav-link" asp-action="@navlink.Action"
-           asp-controller="@navlink.Controller"
-           asp-area="@navlink.Area">@navlink.Text</a>
-    </li>
+    if (navlink.Area != "Identity")
+    {
+        <li class="nav-item @(Html.Raw(navlink.IsActive ? "active" : ""))">
+            <a class="nav-link" asp-action="@navlink.Action"
+               asp-controller="@navlink.Controller"
+               asp-area="@navlink.Area">
+                @navlink.Text
+            </a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item @(Html.Raw(navlink.IsActive ? "active" : ""))">
+            <a class="nav-link" asp-area="@navlink.Area" asp-page="/@navlink.Controller/@navlink.Action">
+                @navlink.Text
+            </a>
+        </li>
+    }
 }
