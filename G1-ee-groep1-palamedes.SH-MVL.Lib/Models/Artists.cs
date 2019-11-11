@@ -7,6 +7,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Models
     {
         [DataType(DataType.Text)]
         [StringLength(30, MinimumLength = 2)]
+        [Display(Name = "Artist name")]
         public string ArtistName { get; set; }
         
         [DataType(DataType.Date)]

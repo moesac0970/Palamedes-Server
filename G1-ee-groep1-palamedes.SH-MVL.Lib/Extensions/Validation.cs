@@ -53,5 +53,14 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Extensions
             Regex regex = new Regex(@"\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$");
             return regex.IsMatch(s);
         }
+
+        /// <summary>Checks whether the supplied string contains HTML tags</summary>
+        /// <param name="s">String to validate</param>
+        /// <returns>Returns true when the supplied string contains HTML tags</returns>
+        public static bool ContainsHtmlTags(this string s)
+        {
+            Regex regex = new Regex(@"<([\w]+).*>(.*?)<\/\1>");
+            return regex.IsMatch(s);
+        }
     }
 }
