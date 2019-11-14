@@ -24,5 +24,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         {
             return Ok(await users.GetUsersAsync());
         }
+
+        [HttpGet("User/{BearerToken}")]
+        public async Task<IActionResult> GetuserByBearerToken(string BearerToken)
+        {
+            return Ok(await users.GetUserByBearerAsync(BearerToken));
+        }
     }
 }

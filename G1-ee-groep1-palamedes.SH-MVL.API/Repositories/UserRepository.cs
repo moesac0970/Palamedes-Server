@@ -1,5 +1,6 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.API.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,5 +45,17 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             db.Users.Add(user);
             return await Task.FromResult(user);
         }
+
+        public async Task<IdentityUser> GetUserByBearerAsync(string bearer)
+        {
+            //get user by bearer with include
+            var userBearer = await db.BearerHistories
+                    .Include(b => b.User)
+                    .Where(b => b.BearerToken == bearer)
+                    .FirstOrDefaultAsync();
+            var user = userBearer.User;
+            return user;
+        }
+
     }
 }

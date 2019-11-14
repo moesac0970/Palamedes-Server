@@ -16,7 +16,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
 
         public DbSet<Art> Arts { get; set; }
         public DbSet<Artist> Artists { get; set; }
-       
+        public DbSet<BearerHistory> BearerHistories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,11 +42,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
             // paswords for users unhashed (md5 hashed) @sepp
             // 1 = 1234Pasw
             // 2 = GeneralReaper666
-            modelBuilder.Entity<IdentityUser>().ToTable("Users").HasData(
+            modelBuilder.Entity<IdentityUser>().ToTable("AspNetUsers").HasData(
                 new IdentityUser { Id = "1", Email="de__manu09@hotmail.com", PasswordHash= "675d13fc79dc2b90de05b11b36ec388a", UserName = "manu", EmailConfirmed = false, PhoneNumberConfirmed = false, TwoFactorEnabled = true, LockoutEnabled = false, AccessFailedCount = 1 },
                 new IdentityUser { Id = "2", UserName = "VanGimst", PasswordHash= "754f4789adeac685009905e3a5b9c6ef", Email ="random@mailinator.com", EmailConfirmed = false, PhoneNumberConfirmed = false, TwoFactorEnabled = true, LockoutEnabled = false, AccessFailedCount = 1 });
 
-          
+            modelBuilder.Entity<BearerHistory>().ToTable("BearerHistories").HasData(
+                new { Id = 1, BearerToken = "qsdfsdfùqsdlfùqsdmlfùmlsdf", UserId = "1" });
+
 
             modelBuilder.Entity<Art>().Property("Price").HasColumnType("decimal(18,2)");
 

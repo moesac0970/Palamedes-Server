@@ -1,5 +1,6 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -12,10 +13,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
     public class BearerTokenService
     {
         private readonly UserRepository db;
+        private BearerHistoryRepository BearerRepo;
 
-        public BearerTokenService(UserRepository context)
+        public BearerTokenService(UserRepository context, BearerHistoryRepository bearerHistoryRepository)
         {
-            db = context;           
+            db = context;
+            BearerRepo = bearerHistoryRepository;
         }
         public async Task<string> GenerateBearerToken(HttpRequest request)
         {
@@ -42,9 +45,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                         );
                     var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
-                    //update user id with bearer token 
-                    user.Id = tokenString;
-                    await db.UpdateUser(user);
+                    //Update BearerHistory DB
+                    await BearerRepo.CreateBearerHistory(tokenString, user);
+
 
                     return tokenString;
                 }

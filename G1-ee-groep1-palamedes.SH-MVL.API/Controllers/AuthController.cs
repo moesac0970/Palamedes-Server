@@ -15,9 +15,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserRepository db;
-        public AuthController(UserRepository context)
+        private BearerHistoryRepository BearerRepo;
+        public AuthController(UserRepository context, BearerHistoryRepository bearerHistoryRepository)
         {
             db = context;
+            BearerRepo = bearerHistoryRepository;
 
         }
 
@@ -25,9 +27,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         public async Task<IActionResult> Token()
         {
             //todo: simplify constructor
-            BearerTokenService generator = new BearerTokenService(db);
+            BearerTokenService generator = new BearerTokenService(db, BearerRepo);
             var token = await generator.GenerateBearerToken(Request);
-            
+
             if(token != "not valid user" || token != "wrong request")
             {
                 return Ok(token);

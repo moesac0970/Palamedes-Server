@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -89,11 +90,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var uri = "http://localhost:5000/auth/token";
-                var webRequest = WebRequest.Create(uri);
-                webRequest.Headers["Authorization"] = "Basic " 
-                                                    + Convert.ToBase64String(Encoding.Default.GetBytes(Input.Email 
-                                                    + ":" 
+                var uri = "http://localhost:5000";
+                var webRequest = WebRequest.Create(uri + "/auth/token");
+                webRequest.Headers["Authorization"] = "Basic "
+                                                    + Convert.ToBase64String(Encoding.Default.GetBytes(Input.Email
+                                                    + ":"
                                                     + hashservice.Hasher(Input.Password)));
                 webRequest.Method = "POST";
 
@@ -111,13 +112,24 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                     Secure = true
                 };
 
-                //
-                HttpContext.Response.Cookies.Append("bearerToken", bearerToken, cookieOptions);
+                // add bearer cookie
+                //HttpContext.Response.Cookies.Append("bearerToken", bearerToken, cookieOptions);
 
+                // get idenity user
+                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                 
+                 await _signInManager.SignInAsync(user, isPersistent: false);
 
+                
+                    Console.WriteLine("Yes");
+                
+               
                 _logger.LogInformation("User logged in.");
 
                 return LocalRedirect(returnUrl);
+                
+
+                
             }
             return Page();
 
