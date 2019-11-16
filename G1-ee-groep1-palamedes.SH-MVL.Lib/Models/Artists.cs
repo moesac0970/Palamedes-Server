@@ -15,7 +15,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Models
         public DateTime Dob { get; set; }
         
         public int UserId { get; set; }
-        
+
+        [Display(Name = "Linked account")]
         public User User { get; set; }
     }
 }
