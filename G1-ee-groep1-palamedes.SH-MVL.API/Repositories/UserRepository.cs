@@ -23,16 +23,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return await Task.FromResult(users);
         }
 
-        public IdentityUser GetUserByNameAsync(string nameNPass)
+        public IdentityUser GetUserByNameAsync(string UserName)
         {
-            //todo split nameNpass find user in auth controller
-            var usernameAndPass = nameNPass.Split(":");
-            var usernameorEmail = usernameAndPass[0];
-            var paswHash = usernameAndPass[1];
-
             var user = db.Users
-                .Where(u => u.Email == usernameorEmail || u.UserName == usernameorEmail)
-                .Where(u => u.PasswordHash == paswHash)
+                .Where(u => u.Email == UserName || u.UserName == UserName)
                 .FirstOrDefault();
 
             return user;
@@ -56,6 +50,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             var user = userBearer.User;
             return user;
         }
+
 
     }
 }

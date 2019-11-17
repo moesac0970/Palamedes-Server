@@ -28,9 +28,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                 // header begins with 'Basic', and after follows base64encoded logincredentials 
                 var credValue = header.ToString().Substring("Basic ".Length).Trim();
                 // logincredentials decoded from base64 and put into variable
-                var usernameAndPassHash = Encoding.UTF8.GetString(Convert.FromBase64String(credValue)); //admin:pass
+                var username = Encoding.UTF8.GetString(Convert.FromBase64String(credValue)); //admin:pass
                 // put into string array 
-                var user = db.GetUserByNameAsync(usernameAndPassHash);
+                var user = db.GetUserByNameAsync(username);
                 if (user != null)
                 {
                     var claimsdata = new[] { new Claim(ClaimTypes.Name, user.UserName) };

@@ -28,7 +28,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly IEmailSender _emailSender;
-
+        private PasswordHasher<IdentityUser> _passwordHasher;
         public LoginModel(
             SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
@@ -39,6 +39,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _passwordHasher = new PasswordHasher<IdentityUser>();
         }
 
         [BindProperty]
@@ -86,49 +87,47 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
         {
             HttpClient client = new HttpClient();
             returnUrl = returnUrl ?? Url.Content("~/");
-            HashingService hashservice = new HashingService();
+            var uri = "http://localhost:5000";
 
             if (ModelState.IsValid)
             {
-                var uri = "http://localhost:5000";
-                var webRequest = WebRequest.Create(uri + "/auth/token");
-                webRequest.Headers["Authorization"] = "Basic "
-                                                    + Convert.ToBase64String(Encoding.Default.GetBytes(Input.Email
-                                                    + ":"
-                                                    + hashservice.Hasher(Input.Password)));
-                webRequest.Method = "POST";
-
-                // repsons from auth controller containing the bearer token 
-                var respons = await webRequest.GetResponseAsync();
-                var responsstream = respons.GetResponseStream();
-                var reader = new StreamReader(responsstream);
-                var bearerToken = reader.ReadToEnd();
-
-                // todo domain date on cookie from the beaertoken
-                var cookieOptions = new CookieOptions
-                {
-                    Expires = DateTimeOffset.Now.AddDays(1).AddMinutes(-5),
-                    HttpOnly = false,
-                    Secure = true
-                };
-
-                // add bearer cookie
-                //HttpContext.Response.Cookies.Append("bearerToken", bearerToken, cookieOptions);
-
-                // get idenity user
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
-                 
-                 await _signInManager.SignInAsync(user, isPersistent: false);
 
-                
-                    Console.WriteLine("Yes");
-                
-               
-                _logger.LogInformation("User logged in.");
+                // if can signin user 
+                var signIn = await _signInManager.CanSignInAsync(user);
+                if (signIn)
+                {
+                    var webRequest = WebRequest.Create(uri + "/auth/token");
+                    webRequest.Headers["Authorization"] = "Basic "
+                                                        + Convert.ToBase64String(Encoding.Default.GetBytes(Input.Email
+                                                        ));
+                    webRequest.Method = "POST";
 
-                return LocalRedirect(returnUrl);
-                
+                    // repsons from auth controller containing the bearer token 
+                    var respons = await webRequest.GetResponseAsync();
+                    var responsstream = respons.GetResponseStream();
+                    var reader = new StreamReader(responsstream);
+                    var bearerToken = reader.ReadToEnd();
 
+                    // todo domain date on cookie from the beaertoken
+                    var cookieOptions = new CookieOptions
+                    {
+                        Expires = DateTimeOffset.Now.AddDays(1).AddMinutes(-5),
+                        HttpOnly = false,
+                        Secure = true
+                    };
+
+                    // add bearer cookie
+                    //HttpContext.Response.Cookies.Append("bearerToken", bearerToken, cookieOptions);
+                    
+                    //signin user with the signinManager
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation("User logged in.");
+
+                    return LocalRedirect(returnUrl);
+                }
+                // this is to far returns page if didn't succeed
+                return Page();
                 
             }
             return Page();
