@@ -108,21 +108,26 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                     var responsstream = respons.GetResponseStream();
                     var reader = new StreamReader(responsstream);
                     var bearerToken = reader.ReadToEnd();
-
-                    // todo domain date on cookie from the beaertoken
-                    var cookieOptions = new CookieOptions
+                    if(bearerToken != "not valid user")
                     {
-                        Expires = DateTimeOffset.Now.AddDays(1).AddMinutes(-5),
-                        HttpOnly = false,
-                        Secure = true
-                    };
+                        // set cookieoptions, and save cookie on client, and signin user with the signinmanager
+                        // todo domain date on cookie from the beaertoken
+                        var cookieOptions = new CookieOptions
+                        {
+                            Expires = DateTimeOffset.Now.AddDays(1).AddMinutes(-5),
+                            HttpOnly = false,
+                            Secure = true
+                        };
+                        HttpContext.Response.Cookies.Append("bearerToken", bearerToken, cookieOptions);
 
-                    // add bearer cookie
-                    //HttpContext.Response.Cookies.Append("bearerToken", bearerToken, cookieOptions);
-                    
-                    //signin user with the signinManager
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User logged in.");
+                        //signin user with the signinManager
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        _logger.LogInformation("User logged in.");
+                    }
+                    else
+                    {
+                        return Page();
+                    }
 
                     return LocalRedirect(returnUrl);
                 }
@@ -131,33 +136,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                 
             }
             return Page();
-
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-            //    var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-            //    if (result.Succeeded)
-            //    {
-            //        _logger.LogInformation("User logged in.");
-            //        return LocalRedirect(returnUrl);
-            //    }
-            //    if (result.RequiresTwoFactor)
-            //    {
-            //        return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-            //    }
-            //    if (result.IsLockedOut)
-            //    {
-            //        _logger.LogWarning("User account locked out.");
-            //        return RedirectToPage("./Lockout");
-            //    }
-            //    else
-            //    {
-            //        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            //        return Page();
-            //    }
-            //}
-
-            //// If we got this far, something failed, redisplay form
-            //return Page();
         }
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
