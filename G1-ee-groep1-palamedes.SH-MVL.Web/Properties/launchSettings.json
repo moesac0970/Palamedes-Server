@@ -16,7 +16,7 @@
     "G1_ee_groep1_palamedes.SH_MVL.Web": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:5001/",
+      "launchUrl": "https://localhost:44325/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

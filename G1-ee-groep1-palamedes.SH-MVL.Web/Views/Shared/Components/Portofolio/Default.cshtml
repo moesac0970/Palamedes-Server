@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<G1_ee_groep1_palamedes.SH_MVL.Lib.DTO.ArtBasic>
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 
 
 @foreach (var item in Model)
 {
     <div class="grid-item  branding architecture  col-sm-12 col-md-6">
         <div class="project_box_one">
-            <img src="https://api.palamedes.be/arts/imagebyname/@item.ArtistName.ToLower():@(item.Name.ToLower()).jpg" alt="@item.Name" />
+            <img src="@Configuration.GetSection("Data")["ApiBaseUri"]arts/imagebyname/@item.ArtistName.ToLower():@(item.Name.ToLower()).jpg" alt="@item.Name" />
             <div class="product_info">
                 <div class="product_info_text">
                     <div class="product_info_text_inner">

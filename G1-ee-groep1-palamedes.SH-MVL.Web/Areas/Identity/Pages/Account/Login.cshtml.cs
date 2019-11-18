@@ -18,6 +18,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
 {
@@ -29,17 +30,23 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
         private readonly ILogger<LoginModel> _logger;
         private readonly IEmailSender _emailSender;
         private PasswordHasher<IdentityUser> _passwordHasher;
+        private IConfiguration Configuration { get; }
+        private string baseUri;
+
         public LoginModel(
             SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _passwordHasher = new PasswordHasher<IdentityUser>();
+            Configuration = configuration;
+            baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
         }
 
         [BindProperty]
@@ -87,7 +94,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
         {
             HttpClient client = new HttpClient();
             returnUrl = returnUrl ?? Url.Content("~/");
-            var uri = "http://localhost:5000";
+            var uri = baseUri;
 
             if (ModelState.IsValid)
             {

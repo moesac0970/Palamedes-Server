@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -15,6 +16,22 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Helper
             {
                 using HttpClient httpClient = new HttpClient();
                 string response = await httpClient.GetStringAsync(uri);
+                return JsonConvert.DeserializeObject<T>(response);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw new NotImplementedException();
+            }
+
+        }
+
+        public static T GetApiResult<T>(string uri)
+        {
+            try
+            {
+                using WebClient webClient = new WebClient();
+                string response = webClient.DownloadString(uri);
                 return JsonConvert.DeserializeObject<T>(response);
             }
             catch (Exception ex)
