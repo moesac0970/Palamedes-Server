@@ -37,7 +37,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web
 
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("RequireMemberRole", policy => policy.RequireRole("Member"));
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("RequireManagerRole", policy => policy.RequireRole("Manager"));
             });
         }
 
