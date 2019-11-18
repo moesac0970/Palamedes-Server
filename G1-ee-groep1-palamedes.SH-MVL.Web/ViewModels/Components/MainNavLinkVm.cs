@@ -19,7 +19,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.ViewModels.Components
         [DataType(DataType.Text)]
         [StringLength(30, MinimumLength = 2)]
         public string Action { get; set; }
-        
+
         public bool IsActive { get; set; }
+        public bool IsLoggedIn { get; set; }
     }
 }

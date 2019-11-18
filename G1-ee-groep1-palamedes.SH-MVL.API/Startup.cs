@@ -4,6 +4,7 @@ using G1_ee_groep1_palamedes.SH_MVL.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,11 +26,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<ArtDataContext>(opt => opt.
+            services.AddDbContext<ArtDataContext<IdentityUser>>(opt => opt.
                 UseSqlServer(Configuration.GetConnectionString("PalamedesArtDb")).EnableSensitiveDataLogging(true));
 
+            services.AddScoped<ArtDataContext<IdentityUser>>();
             services.AddScoped<ArtRepository>();
+            services.AddScoped<ArtistsRepository>();
             services.AddScoped<UserRepository>();
+            services.AddScoped<BearerHistoryRepository>();
+
 
             //mapper configuration
             var config = new AutoMapper.MapperConfiguration(cfg =>
@@ -38,7 +43,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
             });
             var mapper = config.CreateMapper();
             services.AddSingleton(mapper);
-
+            
             // authentication service jwt bearer token
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
@@ -62,10 +67,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDeveloperExceptionPage();
-
-
-
             app.UseRouting();
+
+
 
             // global cors policy
             app.UseCors(x => x

@@ -1,5 +1,6 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.API.Data;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
+using G1_ee_groep1_palamedes.SH_MVL.API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
-        protected readonly ArtDataContext db;
+        public ArtDataContext<IdentityUser> db;
 
-        public Repository(ArtDataContext context)
+        public Repository(ArtDataContext<IdentityUser> context)
         {
             db = context;
         }

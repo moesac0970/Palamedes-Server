@@ -3,24 +3,27 @@ using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using System;
+using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
 {
     [ViewComponent(Name = "Portofolio")]
     public class PortofolioComponent : ViewComponent
     {
+        public IConfiguration Configuration { get; }
+        public string baseUri;
         private IEnumerable<ArtBasic> PublicPortofolio { get; set; }
 
-        public PortofolioComponent()
+        public PortofolioComponent(IConfiguration configuration)
         {
-            LoadPortofolioAsync().Wait();
-        }
+            Configuration = configuration;
+            baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
 
-        public async Task LoadPortofolioAsync()
-        {
-            PublicPortofolio = await WebApiHelper.GetApiResultAsync<List<ArtBasic>>("https://api.palamedes.be/arts/basic");
+            PublicPortofolio = WebApiHelper.GetApiResult<List<ArtBasic>>(baseUri + "arts/basic");
         }
-
 
         public async Task<IViewComponentResult> InvokeAsync()
         {

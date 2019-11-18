@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
 {
@@ -13,7 +13,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
 
         public AutoMapperProfileConfiguration(string profileName) : base(profileName)
         {
-
             CreateMap<Art, ArtBasic>()
                 .ForMember(
                 dest => dest.ArtistName,

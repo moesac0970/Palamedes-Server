@@ -5,12 +5,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Models
 {
     public class Art : EntityBase
     {
-        
+
         [Display(Name = "Name")]
         [DataType(DataType.Text)]
         [StringLength(30, MinimumLength = 3)]
         public string Name { get; set; }
-        
+
         public int CategoryId { get; set; }
 
         [Display(Name = "Category")]
@@ -41,6 +41,5 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Models
 
         [Display(Name = "Made by")]
         public Artists Artist { get; set; }
-
     }
 }

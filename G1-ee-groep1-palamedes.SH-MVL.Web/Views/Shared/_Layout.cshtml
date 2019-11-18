@@ -52,6 +52,7 @@
                 <!--logo end-->
                 <!--main menu -->
                 <div class="side_menu_section">
+                    <partial name="_LoginPartial" />
                     <ul class="menu_nav">
                         @await Component.InvokeAsync("MainNavigation")
                     </ul>
@@ -90,7 +91,7 @@
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             <p class="copyright">
                                 Copyright &copy;
-                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a rel="colorlib" href="https://colorlib.com" target="_blank">Colorlib</a>
                             </p>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </div>
@@ -102,12 +103,12 @@
             <!--=================== side menu end====================-->
             <!--=================== content body ====================-->
 
-                @RenderBody()
+            @RenderBody()
 
             <!--=================== content body end ====================-->
 
+        </div>
     </div>
-</div>
 
 
     <!-- jQuery -->

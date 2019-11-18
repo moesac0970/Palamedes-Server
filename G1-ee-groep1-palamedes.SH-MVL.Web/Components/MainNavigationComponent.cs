@@ -18,8 +18,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
             {
                 new MainNavLinkVm {Area=null, Controller="Home", Action="Index", Text="Home"},
                 new MainNavLinkVm {Area=null, Controller="portofolio", Action="Index", Text="portofolio"},
+                new MainNavLinkVm {Area="Identity", Controller="Portofolio", Action="Portfolio", Text="my portofolio" , IsLoggedIn=true},
                 new MainNavLinkVm {Area=null, Controller="store", Action="Index", Text="Store"},
-                new MainNavLinkVm {Area=null, Controller="login/logout", Action="Index", Text="Login"}
+                new MainNavLinkVm {Area="Identity",  Controller="Account", Action="Login", Text="Login" },
+                new MainNavLinkVm {Area="Identity", Controller="Account", Action="Register", Text="Register" },
+                new MainNavLinkVm {Area="Identity", Controller="Account", Action="Logout", Text="Logout", IsLoggedIn=true}
             };
 
             adminLinks = new List<MainNavLinkVm>
