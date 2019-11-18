@@ -93,9 +93,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
 
+                // try signin with the signinmanager
+                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+
                 // if can signin user 
-                var signIn = await _signInManager.CanSignInAsync(user);
-                if (signIn)
+                if (result.Succeeded)
                 {
                     var webRequest = WebRequest.Create(uri + "/auth/token");
                     webRequest.Headers["Authorization"] = "Basic "
@@ -120,8 +122,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                         };
                         HttpContext.Response.Cookies.Append("bearerToken", bearerToken, cookieOptions);
 
-                        //signin user with the signinManager
-                        await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation("User logged in.");
                     }
                     else
