@@ -7,5 +7,6 @@
         public string Controller { get; set; }
         public string Action { get; set; }
         public bool IsActive { get; set; }
+        public bool IsLoggedIn { get; set; }
     }
 }

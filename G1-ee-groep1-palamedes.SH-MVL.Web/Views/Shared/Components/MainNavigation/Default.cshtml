@@ -4,8 +4,8 @@
 @model IEnumerable<G1_ee_groep1_palamedes.SH_MVL.Web.ViewModels.Components.MainNavLinkVm>
 
 
-@foreach(var navlink in Model) 
-{ 
+@foreach (var navlink in Model)
+{
     if (navlink.Area != "Identity")
     {
         <li class="nav-item @(Html.Raw(navlink.IsActive ? "active" : ""))">
@@ -18,12 +18,15 @@
     }
     else
     {
-        @if (SignInManager.IsSignedIn(User) && navlink.Action == "Login")
+        @if ((SignInManager.IsSignedIn(User) == false) && (navlink.IsLoggedIn != true))
         {
-        <p>
-        </p>  
+            <li class="nav-item @(Html.Raw(navlink.IsActive ? "active" : ""))">
+                <a class="nav-link" asp-area="@navlink.Area" asp-page="/@navlink.Controller/@navlink.Action">
+                    @navlink.Text
+                </a>
+            </li>
         }
-        else
+        @if ((SignInManager.IsSignedIn(User) == true) && (navlink.IsLoggedIn == true))
         {
             <li class="nav-item @(Html.Raw(navlink.IsActive ? "active" : ""))">
                 <a class="nav-link" asp-area="@navlink.Area" asp-page="/@navlink.Controller/@navlink.Action">
