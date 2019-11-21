@@ -30,11 +30,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
         {
             return mapper.Map<ArtDetail>(await db.Arts
                 .Include(a => a.Artist)
-                .FirstOrDefaultAsync(a => a.ArtistId == id)) ;
+                .FirstOrDefaultAsync(a => a.ArtistId == id));
         }
         public new async Task<List<Art>> ListAll()
         {
             return await db.Arts
+                .ProjectTo<Art>(mapper.ConfigurationProvider)
                 .Include(a => a.Artist)
                 .ToListAsync();
         }

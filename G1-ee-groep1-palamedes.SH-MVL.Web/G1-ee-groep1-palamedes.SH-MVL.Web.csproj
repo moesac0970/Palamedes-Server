@@ -23,6 +23,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\G1-ee-groep1-palamedes.SH-MVL.API\G1-ee-groep1-palamedes.SH-MVL.API.csproj" />
     <ProjectReference Include="..\G1-ee-groep1-palamedes.SH-MVL.Lib\G1-ee-groep1-palamedes.SH-MVL.Lib.csproj" />
   </ItemGroup>
 

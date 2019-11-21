@@ -2,6 +2,7 @@
 using G1_ee_groep1_palamedes.SH_MVL.API.Data;
 using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,23 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
     {
         public ArtistsRepository(ArtDataContext<IdentityUser> context, IMapper mapper) : base(context, mapper)
         {
+        }
+
+        //GET: artists/{id}
+        public override async Task<Artist> GetById(int id)
+        {
+            return await db.Artists
+                .Include(a => a.User)
+                .Where(a => a.Id == id)
+                .FirstAsync();
+        }
+
+        //GET: artists
+        public override async Task<IEnumerable<Artist>> ListAll()
+        {
+            return await db.Artists
+                .Include(a => a.User)
+                .ToListAsync();
         }
     }
 }
