@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using G1_ee_groep1_palamedes.SH_MVL.API.Data;
+using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
+
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +14,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {
     public class ArtRepository : MappingRepository<Art>
     {
-
-        public ArtRepository(ArtDataContext context, IMapper mapper) : base(context, mapper)
+        public ArtRepository(ArtDataContext<IdentityUser> context, IMapper mapper) : base(context, mapper)
         {
         }
 
@@ -29,7 +30,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
         {
             return mapper.Map<ArtDetail>(await db.Arts
                 .Include(a => a.Artist)
-                .FirstOrDefaultAsync(a => a.ArtistId == id));
+                .FirstOrDefaultAsync(a => a.ArtistId == id)) ;
         }
         public new async Task<List<Art>> ListAll()
         {

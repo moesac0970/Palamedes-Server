@@ -1,20 +1,34 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     [ApiController]
-    public class UsersController : ControllerCrudBase<User, UserRepository>
+    public class UsersController : ControllerBase
     {
-
-        public UsersController(UserRepository UserRepository) : base(UserRepository)
+        private UserRepository users;
+        public UsersController(UserRepository repo)
         {
-
+            users = repo;
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> GetUsers()
+        {
+            return Ok(await users.GetUsersAsync());
+        }
+
+        [HttpGet("User/{BearerToken}")]
+        public async Task<IActionResult> GetuserByBearerToken(string BearerToken)
+        {
+            return Ok(await users.GetUserByBearerAsync(BearerToken));
+        }
     }
 }

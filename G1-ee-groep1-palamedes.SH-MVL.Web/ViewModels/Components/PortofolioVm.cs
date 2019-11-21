@@ -16,8 +16,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.ViewModels.Components
         [DataType(DataType.Text)]
         [StringLength(20, MinimumLength = 3)]
         public string Category { get; set; }
-        
-        public Artists Artist { get; set; }
+
+        public ArtistsPortofolioVm Artist { get; set; }
 
         [DataType(DataType.Text)]
         [StringLength(10)]

@@ -1,5 +1,6 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
-using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
+
+using G1_ee_groep1_palamedes.SH_MVL.API.Models;
+using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Threading.Tasks;
