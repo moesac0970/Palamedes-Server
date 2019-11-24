@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
     [DbContext(typeof(ArtDataContext<IdentityUser>))]
-    [Migration("20191113173031_InitOne")]
-    partial class InitOne
+    [Migration("20191124174630_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +69,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 1,
                             Category = 0,
                             CategoryId = 1,
-                            Created = new DateTime(2019, 11, 13, 18, 30, 30, 773, DateTimeKind.Local).AddTicks(6229),
+                            Created = new DateTime(2019, 11, 24, 18, 46, 29, 681, DateTimeKind.Local).AddTicks(8362),
                             Description = "Een schilderij van een vogel.",
                             ImageName = "vogel.jpg",
                             Name = "Nachtegaal",
@@ -82,7 +82,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 1,
                             Category = 0,
                             CategoryId = 2,
-                            Created = new DateTime(2019, 11, 13, 18, 30, 30, 780, DateTimeKind.Local).AddTicks(5244),
+                            Created = new DateTime(2019, 11, 24, 18, 46, 29, 691, DateTimeKind.Local).AddTicks(3792),
                             Description = "Een schilderij van een Vaas.",
                             ImageName = "vaas.jpg",
                             Name = "Vaas",
@@ -95,7 +95,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 1,
                             Category = 0,
                             CategoryId = 2,
-                            Created = new DateTime(2019, 11, 13, 18, 30, 30, 780, DateTimeKind.Local).AddTicks(5380),
+                            Created = new DateTime(2019, 11, 24, 18, 46, 29, 691, DateTimeKind.Local).AddTicks(4002),
                             Description = "Een schilderij van een Egel.",
                             ImageName = "egel.jpg",
                             Name = "Egel",
@@ -108,7 +108,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 1,
                             Category = 0,
                             CategoryId = 2,
-                            Created = new DateTime(2019, 11, 13, 18, 30, 30, 780, DateTimeKind.Local).AddTicks(5391),
+                            Created = new DateTime(2019, 11, 24, 18, 46, 29, 691, DateTimeKind.Local).AddTicks(4023),
                             Description = "Een schilderij van een trap.",
                             ImageName = "trap.jpg",
                             Name = "Trap",
@@ -121,7 +121,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 2,
                             Category = 0,
                             CategoryId = 0,
-                            Created = new DateTime(2019, 11, 13, 18, 30, 30, 780, DateTimeKind.Local).AddTicks(5395),
+                            Created = new DateTime(2019, 11, 24, 18, 46, 29, 691, DateTimeKind.Local).AddTicks(4034),
                             Description = "messen",
                             ImageName = "messen.jpg",
                             Name = "Messen",
@@ -134,7 +134,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 2,
                             Category = 0,
                             CategoryId = 0,
-                            Created = new DateTime(2019, 11, 13, 18, 30, 30, 780, DateTimeKind.Local).AddTicks(5402),
+                            Created = new DateTime(2019, 11, 24, 18, 46, 29, 691, DateTimeKind.Local).AddTicks(4045),
                             Description = "steinen",
                             ImageName = "stenen.jpg",
                             Name = "Stenen",
@@ -147,7 +147,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 2,
                             Category = 0,
                             CategoryId = 0,
-                            Created = new DateTime(2019, 11, 13, 18, 30, 30, 780, DateTimeKind.Local).AddTicks(5406),
+                            Created = new DateTime(2019, 11, 24, 18, 46, 29, 691, DateTimeKind.Local).AddTicks(4055),
                             Description = "steinen",
                             ImageName = "abstract.jpg",
                             Name = "Abstract",
@@ -160,7 +160,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 2,
                             Category = 0,
                             CategoryId = 0,
-                            Created = new DateTime(2019, 11, 13, 18, 30, 30, 780, DateTimeKind.Local).AddTicks(5414),
+                            Created = new DateTime(2019, 11, 24, 18, 46, 29, 691, DateTimeKind.Local).AddTicks(4066),
                             Description = "steinen",
                             ImageName = "sloten.jpg",
                             Name = "Sloten",
@@ -173,7 +173,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 2,
                             Category = 0,
                             CategoryId = 0,
-                            Created = new DateTime(2019, 11, 13, 18, 30, 30, 780, DateTimeKind.Local).AddTicks(5417),
+                            Created = new DateTime(2019, 11, 24, 18, 46, 29, 691, DateTimeKind.Local).AddTicks(4077),
                             Description = "steinen",
                             ImageName = "boor.jpg",
                             Name = "Boor",
@@ -186,7 +186,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             ArtistId = 2,
                             Category = 0,
                             CategoryId = 0,
-                            Created = new DateTime(2019, 11, 13, 18, 30, 30, 780, DateTimeKind.Local).AddTicks(5421),
+                            Created = new DateTime(2019, 11, 24, 18, 46, 29, 691, DateTimeKind.Local).AddTicks(4087),
                             Description = "steinen",
                             ImageName = "circle.jpg",
                             Name = "Circle",
@@ -222,14 +222,14 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 1,
                             ArtistName = "Pablito",
-                            Dob = new DateTime(2019, 11, 13, 18, 30, 30, 782, DateTimeKind.Local).AddTicks(6543),
+                            Dob = new DateTime(2019, 11, 24, 18, 46, 29, 694, DateTimeKind.Local).AddTicks(1786),
                             UserId = "1"
                         },
                         new
                         {
                             Id = 2,
                             ArtistName = "Jenny",
-                            Dob = new DateTime(2019, 11, 13, 18, 30, 30, 782, DateTimeKind.Local).AddTicks(8420),
+                            Dob = new DateTime(2019, 11, 24, 18, 46, 29, 694, DateTimeKind.Local).AddTicks(3959),
                             UserId = "2"
                         });
                 });
@@ -382,13 +382,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 1,
-                            ConcurrencyStamp = "72ddcaf4-3af9-4b65-9f9c-8b6d9369e8bf",
+                            ConcurrencyStamp = "3baa4b6f-7f10-48b7-98a7-39dc8862ce6e",
                             Email = "de__manu09@hotmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "675d13fc79dc2b90de05b11b36ec388a",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ce470b18-02d9-4789-92ab-cf390a86bfa7",
+                            SecurityStamp = "6b2311d0-22f7-4479-a760-243afb48b0e4",
                             TwoFactorEnabled = true,
                             UserName = "manu"
                         },
@@ -396,13 +396,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 1,
-                            ConcurrencyStamp = "fbaf61a2-c07d-4541-a0d1-170f037599c1",
+                            ConcurrencyStamp = "13aa533e-4bb5-41ab-a6dd-2eeb806ed904",
                             Email = "random@mailinator.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "754f4789adeac685009905e3a5b9c6ef",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2b1a7f8a-e8ba-4790-ad8a-5a781ea56634",
+                            SecurityStamp = "c04e7ba5-4ac3-4f65-95d7-166714735b7d",
                             TwoFactorEnabled = true,
                             UserName = "VanGimst"
                         });

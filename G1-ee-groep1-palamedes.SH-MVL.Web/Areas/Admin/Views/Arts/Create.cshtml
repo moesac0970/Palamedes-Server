@@ -1,4 +1,4 @@
-﻿@model G1_ee_groep1_palamedes.SH_MVL.Lib.Models.Art
+﻿@model G1_ee_groep1_palamedes.SH_MVL.API.Models.Art
 
 @{
     ViewData["Title"] = "Create";
@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control"></textarea>
+                <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -67,3 +67,4 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+

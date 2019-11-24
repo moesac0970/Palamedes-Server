@@ -1,4 +1,6 @@
-﻿using System;
+﻿//[Bind("SecurityStamp,PhoneNumberConfirmed,PhoneNumber,PasswordHash,NormalizedUserName,NormalizedEmail,LockoutEnd,LockoutEnabled,Id,EmailConfirmed,Email,ConcurrencyStamp,AccessFailedCount,TwoFactorEnabled,UserName")]
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,7 +37,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Arts/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string? id)
         {
             if (id == null)
             {
@@ -61,7 +63,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // POST: Admin/Arts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,Dob,Email,TelNr,UserName,HashPasw,Id")] User user)
+        public async Task<IActionResult> Create([Bind("SecurityStamp,PhoneNumberConfirmed,PhoneNumber,PasswordHash,NormalizedUserName,NormalizedEmail,LockoutEnd,LockoutEnabled,Id,EmailConfirmed,Email,ConcurrencyStamp,AccessFailedCount,TwoFactorEnabled,UserName")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +74,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Arts/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string? id)
         {
             if (id == null)
             {
@@ -90,7 +92,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // POST: Admin/Arts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,Dob,Email,TelNr,UserName,HashPasw,Id")] User user)
+        public async Task<IActionResult> Edit(string id, [Bind("SecurityStamp,PhoneNumberConfirmed,PhoneNumber,PasswordHash,NormalizedUserName,NormalizedEmail,LockoutEnd,LockoutEnabled,Id,EmailConfirmed,Email,ConcurrencyStamp,AccessFailedCount,TwoFactorEnabled,UserName")] User user)
         {
             if (id != user.Id)
             {
@@ -126,7 +128,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // POST: Admin/Arts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             await WebApiHelper.DelCallAPI<User>($"{baseUri}/{id}");
 

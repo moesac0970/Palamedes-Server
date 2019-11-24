@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Data;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
-using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {

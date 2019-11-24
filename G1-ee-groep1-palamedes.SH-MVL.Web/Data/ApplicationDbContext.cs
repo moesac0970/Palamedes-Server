@@ -1,4 +1,4 @@
-using G1_ee_groep1_palamedes.SH_MVL.API.Models;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
@@ -21,6 +21,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Data
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<G1_ee_groep1_palamedes.SH_MVL.API.Models.Artist> Artist { get; set; }
+
+        public DbSet<G1_ee_groep1_palamedes.SH_MVL.API.Models.Art> Art { get; set; }
+
+        public DbSet<G1_ee_groep1_palamedes.SH_MVL.API.Models.User> User { get; set; }
     }
 }
 

@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using G1_ee_groep1_palamedes.SH_MVL.API.Models;
+using G1_ee_groep1_palamedes.SH_MVL.Web.Data;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
-using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {
@@ -60,7 +61,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // POST: Admin/Artists/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ArtistName,Dob,UserId,Id")] Artist artists)
+        public async Task<IActionResult> Create([Bind("ArtistName,Dob,Id")] Artist artists)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +90,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // POST: Admin/Artists/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ArtistName,Dob,UserId,Id")] Artist artists)
+        public async Task<IActionResult> Edit(int id, [Bind("ArtistName,Dob,Id")] Artist artists)
         {
             if (id != artists.Id)
             {
