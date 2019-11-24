@@ -1,4 +1,4 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.DTO;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

@@ -90,7 +90,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // POST: Admin/Arts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("FirstName,LastName,Dob,Email,TelNr,UserName,HashPasw,Id")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,Dob,Email,TelNr,UserName,HashPasw,Id")] User user)
         {
             if (id != user.Id)
             {

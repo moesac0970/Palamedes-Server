@@ -1,4 +1,4 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.ViewModels.Components
