@@ -18,20 +18,48 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
     {
         private IConfiguration Configuration { get; }
         private string baseUri;
+        private string artistUri;
         HttpClient httpClient = new HttpClient();
 
         public ArtsController(IConfiguration configuration)
         {
             Configuration = configuration;
             baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
+            artistUri = $"{baseUri}artists";
             baseUri += "arts";
+        }
+
+        private async Task<Art> JoinArtist(Art art)
+        {
+            Artist artist = await WebApiHelper.GetApiResultAsync<Artist>($"{artistUri}/{art.ArtistId}");
+            art.Artist = artist;
+            return art;
+        }
+
+        private async Task<IEnumerable<Art>> JoinArtist(IEnumerable<Art> arts)
+        {
+            IEnumerable<Artist> artists = await WebApiHelper.GetApiResultAsync<List<Artist>>(artistUri);
+
+            foreach (Art art in arts)
+            {
+                foreach (Artist artist in artists)
+                {
+                    if (art.ArtistId == artist.Id)
+                    {
+
+                        art.Artist = artist;
+                    }
+                }
+            }
+
+            return arts;
         }
 
         // GET: Admin/Arts
         public async Task<IActionResult> Index()
         {
             IEnumerable<Art> arts = await WebApiHelper.GetApiResultAsync<List<Art>>(baseUri);
-            return View(arts);
+            return View(await JoinArtist(arts));
         }
 
         // GET: Admin/Arts/Details/5
@@ -49,7 +77,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(art);
+            return View(await JoinArtist(art));
         }
 
         // GET: Admin/Arts/Create
@@ -68,7 +96,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
                 await WebApiHelper.PostAsJsonAsync(httpClient, baseUri, art);
                 return RedirectToAction(nameof(Index));
             }
-            return View(art);
+            return View(await JoinArtist(art));
         }
 
         // GET: Admin/Arts/Edit/5
@@ -84,7 +112,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(art);
+            return View(await JoinArtist(art));
         }
 
         // POST: Admin/Arts/Edit/5
@@ -103,7 +131,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
                 await WebApiHelper.PutAsJsonAsync(httpClient, $"{baseUri}/{id}", art);
                 return RedirectToAction(nameof(Index));
             }
-            return View(art);
+            return View(await JoinArtist(art));
         }
 
         // GET: Admin/Arts/Delete/5
@@ -120,7 +148,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(art);
+            return View(await JoinArtist(art));
         }
 
         // POST: Admin/Arts/Delete/5
