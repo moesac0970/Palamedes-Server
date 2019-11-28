@@ -32,10 +32,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
                 .Include(a => a.Artist)
                 .FirstOrDefaultAsync(a => a.ArtistId == id));
         }
-        public new async Task<List<Art>> ListAll()
+        public override async Task<IEnumerable<Art>> ListAll()
         {
             return await db.Arts
-                .ProjectTo<Art>(mapper.ConfigurationProvider)
                 .Include(a => a.Artist)
                 .ToListAsync();
         }
