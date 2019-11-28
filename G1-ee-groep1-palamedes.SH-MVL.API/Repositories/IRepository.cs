@@ -9,13 +9,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
 {
     interface IRepository<T> where T : EntityBase
     {
-        Task<T> GetById(int id);
+        Task<T> GetById(long id);
         IQueryable<T> GetAll();
         Task<IEnumerable<T>> ListAll();
         IQueryable<T> GetFiltered(Expression<Func<T, bool>> predicate);
         Task<T> Add(T entity);
         Task<T> Delete(T entity);
-        Task<T> Delete(int id);
+        Task<T> Delete(long id);
         Task<T> Update(T entity);
     }
 }

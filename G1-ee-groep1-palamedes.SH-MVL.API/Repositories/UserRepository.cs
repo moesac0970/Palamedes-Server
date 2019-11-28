@@ -11,8 +11,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
     public class UserRepository 
     {
 
-        private ArtDataContext<IdentityUser> db;
-        public UserRepository(ArtDataContext<IdentityUser> context)
+        private DataContext<IdentityUser> db;
+        public UserRepository(DataContext<IdentityUser> context)
         {
             db = context;
         }

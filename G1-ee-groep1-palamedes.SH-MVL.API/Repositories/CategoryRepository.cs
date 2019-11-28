@@ -12,7 +12,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
     public class CategoryRepository : MappingRepository<Category>
     {
 
-        public CategoryRepository(ArtDataContext<IdentityUser> context, IMapper mapper) : base(context, mapper)
+        public CategoryRepository(DataContext<IdentityUser> context, IMapper mapper) : base(context, mapper)
         {
         }
 

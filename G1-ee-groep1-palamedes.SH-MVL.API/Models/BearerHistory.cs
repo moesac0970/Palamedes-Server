@@ -13,6 +13,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Models
 
         // relations
         public IdentityUser User { get; set; }
+        public string UserId { get; set; }
 
     }
 }

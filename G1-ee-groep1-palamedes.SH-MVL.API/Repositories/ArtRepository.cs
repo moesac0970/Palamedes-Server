@@ -14,7 +14,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {
     public class ArtRepository : MappingRepository<Art>
     {
-        public ArtRepository(ArtDataContext<IdentityUser> context, IMapper mapper) : base(context, mapper)
+        public ArtRepository(DataContext<IdentityUser> context, IMapper mapper) : base(context, mapper)
         {
         }
 
@@ -26,7 +26,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
                 .ToListAsync();
         }
 
-        public async Task<ArtDetail> ListDetail(int id)
+        public async Task<ArtDetail> ListDetail(long id)
         {
             return mapper.Map<ArtDetail>(await db.Arts
                 .Include(a => a.Artist).Include(b => b.Category)
@@ -35,8 +35,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
         public new async Task<List<Art>> ListAll()
         {
             return await db.Arts
-                .ProjectTo<Art>(mapper.ConfigurationProvider)
-                .Include(a => a.Artist)
+               // .Include(a => a.Artist)
                 .Include(b => b.Category)
                 .ToListAsync();
         }

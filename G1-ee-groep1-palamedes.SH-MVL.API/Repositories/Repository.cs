@@ -12,15 +12,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
-        public ArtDataContext<IdentityUser> db;
+        public DataContext<IdentityUser> db;
 
-        public Repository(ArtDataContext<IdentityUser> context)
+        public Repository(DataContext<IdentityUser> context)
         {
             db = context;
         }
 
         //GET: arts/{id}
-        public virtual async Task<T> GetById(int id)
+        public virtual async Task<T> GetById(long id)
         {
             return await db.Set<T>()
                 .FindAsync(id);
@@ -95,7 +95,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return entity;
         }
 
-        public virtual async Task<T> Delete(int id)
+        public virtual async Task<T> Delete(long id)
         {
             var entity = await GetById(id);
             if (entity == null) return null;

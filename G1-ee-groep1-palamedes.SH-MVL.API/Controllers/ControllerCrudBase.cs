@@ -24,14 +24,14 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 
         // GET: T/2
         [HttpGet("{id}")]
-        public virtual async Task<IActionResult> Get(int id)
+        public virtual async Task<IActionResult> Get(long id)
         {
             return Ok(await repository.GetById(id));
         }
 
         // PUT: T/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromRoute] int id,
+        public async Task<IActionResult> Put([FromRoute] long id,
             [FromBody] T entity)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -54,7 +54,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 
         // DELETE: T/3
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] long id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var deleted = await repository.Delete(id);

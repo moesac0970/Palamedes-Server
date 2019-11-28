@@ -3,11 +3,5 @@
     public class Category : EntityBase
     {
         public string Name { get; set; }
-        //Schilderkunst,
-        //Fotografie,
-        //Grafiek,
-        //Beeldhouwkunst,
-        //ModerneMedia,
-        //Filmkunst
     }
 }
