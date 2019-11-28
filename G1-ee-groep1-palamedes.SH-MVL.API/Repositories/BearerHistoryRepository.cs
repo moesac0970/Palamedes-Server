@@ -11,9 +11,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {
     public class BearerHistoryRepository
     {
-        public ArtDataContext<IdentityUser> db;
+        public DataContext<IdentityUser> db;
 
-        public BearerHistoryRepository(ArtDataContext<IdentityUser> context)
+        public BearerHistoryRepository(DataContext<IdentityUser> context)
         {
             db = context;
         }

@@ -12,7 +12,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
     public class MappingRepository<T> : Repository<T> where T : EntityBase
     {
         protected readonly IMapper mapper;
-        public MappingRepository(ArtDataContext<IdentityUser> context, IMapper mapper) : base(context)
+        public MappingRepository(DataContext<IdentityUser> context, IMapper mapper) : base(context)
         {
             this.mapper = mapper;
         }

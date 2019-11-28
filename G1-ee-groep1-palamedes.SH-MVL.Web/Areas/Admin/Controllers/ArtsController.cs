@@ -19,6 +19,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         private IConfiguration Configuration { get; }
         private string baseUri;
         private string artistUri;
+        private string categoryUri;
         HttpClient httpClient = new HttpClient();
 
         public ArtsController(IConfiguration configuration)
@@ -26,6 +27,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
             Configuration = configuration;
             baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
             artistUri = $"{baseUri}artists";
+            categoryUri = $"{baseUri}categories";
             baseUri += "arts";
         }
 

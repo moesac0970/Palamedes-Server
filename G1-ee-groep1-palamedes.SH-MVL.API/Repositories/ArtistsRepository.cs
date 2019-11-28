@@ -12,12 +12,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {
     public class ArtistsRepository : MappingRepository<Artist>
     {
-        public ArtistsRepository(ArtDataContext<IdentityUser> context, IMapper mapper) : base(context, mapper)
+        public ArtistsRepository(DataContext<IdentityUser> context, IMapper mapper) : base(context, mapper)
         {
         }
 
         //GET: artists/{id}
-        public override async Task<Artist> GetById(int id)
+        public override async Task<Artist> GetById(long id)
         {
             return await db.Artists
                 .Include(a => a.User)
