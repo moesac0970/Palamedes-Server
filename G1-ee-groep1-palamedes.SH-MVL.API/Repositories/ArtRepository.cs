@@ -29,7 +29,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
         public async Task<ArtDetail> ListDetail(int id)
         {
             return mapper.Map<ArtDetail>(await db.Arts
-                .Include(a => a.Artist)
+                .Include(a => a.Artist).Include(b => b.Category)
                 .FirstOrDefaultAsync(a => a.ArtistId == id));
         }
         public new async Task<List<Art>> ListAll()
@@ -37,6 +37,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return await db.Arts
                 .ProjectTo<Art>(mapper.ConfigurationProvider)
                 .Include(a => a.Artist)
+                .Include(b => b.Category)
                 .ToListAsync();
         }
 

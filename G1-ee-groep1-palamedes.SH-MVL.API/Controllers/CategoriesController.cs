@@ -4,17 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class ArtistsController : ControllerCrudBase<Artist, ArtistsRepository>
+    public class CategoriesController : ControllerCrudBase<Category, CategoryRepository>
     {
-        public ArtistsController(ArtistsRepository ArtRepository) : base(ArtRepository)
+
+        public CategoriesController(CategoryRepository CategoryRepository) : base(CategoryRepository)
         {
+
         }
+
     }
 }

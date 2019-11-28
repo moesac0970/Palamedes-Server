@@ -10,7 +10,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Models
         public DateTime Created { get; set; }
         public string Description { get; set; }
         public DateTime Updated { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string ImageName { get; set; }
 
         public int ArtistId { get; set; }
