@@ -35,7 +35,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
         public override async Task<IEnumerable<Art>> ListAll()
         {
             return await db.Arts
-                .Include(a => a.Artist)
+                .Include(a => a.Artist).Include(b => b.Category)
                 .ToListAsync();
         }
 
