@@ -106,7 +106,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                 // if can signin user 
                 if (result.Succeeded)
                 {
-                    var webRequest = WebRequest.Create(uri + "/auth/token");
+                    var webRequest = WebRequest.Create(uri + "auth/token");
                     webRequest.Headers["Authorization"] = "Basic "
                                                         + Convert.ToBase64String(Encoding.Default.GetBytes(Input.Email
                                                         ));

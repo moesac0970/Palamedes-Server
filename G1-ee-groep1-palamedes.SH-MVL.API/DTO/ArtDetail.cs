@@ -13,5 +13,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.DTO
         public DateTime Updated { get; set; }
         public DateTime Created { get; set; }
         public string ImageName { get; set; }
+        public Artist Artist { get; set; }
     }
 }
