@@ -36,6 +36,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Helper
             }
             catch (Exception ex)
             {
+#warning  Implement feature
                 Console.WriteLine(ex);
                 throw new NotImplementedException();
             }
