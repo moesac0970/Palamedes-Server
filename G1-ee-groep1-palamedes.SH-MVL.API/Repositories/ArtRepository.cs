@@ -35,9 +35,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
         public override async Task<IEnumerable<Art>> ListAll()
         {
             return await db.Arts
-                .Include(a => a.Artist).Include(b => b.Category)
+                .Include(a => a.Artist).Include(a => a.Category)
                 .ToListAsync();
         }
 
+        public override async Task<Art> GetById(long id)
+        {
+            return await db.Arts
+                .Include(a => a.Artist).Include(a => a.Category)
+                .FirstOrDefaultAsync(a => a.Id == id);
+        }
     }
 }

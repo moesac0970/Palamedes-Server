@@ -10,6 +10,7 @@ using G1_ee_groep1_palamedes.SH_MVL.Web.Data;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
+using G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.ViewModels;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {
@@ -22,6 +23,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         private string categoryUri;
         HttpClient httpClient = new HttpClient();
 
+        private IEnumerable<Art> arts;
+        private IEnumerable<Category> categories;
+        private IEnumerable<Artist> artists;
+
         public ArtsController(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,126 +36,125 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
             baseUri += "arts";
         }
 
-        private async Task<Art> JoinArtist(Art art)
+        public async void UpdateValues()
         {
-            Artist artist = await WebApiHelper.GetApiResultAsync<Artist>($"{artistUri}/{art.ArtistId}");
-            art.Artist = artist;
-            return art;
-        }
-
-        private async Task<IEnumerable<Art>> JoinArtist(IEnumerable<Art> arts)
-        {
-            IEnumerable<Artist> artists = await WebApiHelper.GetApiResultAsync<List<Artist>>(artistUri);
-
-            foreach (Art art in arts)
-            {
-                foreach (Artist artist in artists)
-                {
-                    if (art.ArtistId == artist.Id)
-                    {
-
-                        art.Artist = artist;
-                    }
-                }
-            }
-
-            return arts;
-        }
-
+            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(baseUri);
+            categories = await WebApiHelper.GetApiResultAsync<IEnumerable<Category>>(categoryUri);
+            artists = await WebApiHelper.GetApiResultAsync<IEnumerable<Artist>>(artistUri);
+        } 
+        
         // GET: Admin/Arts
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Art> arts = await WebApiHelper.GetApiResultAsync<List<Art>>(baseUri);
-            return View(await JoinArtist(arts));
+            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(baseUri);
+            return View(arts);
         }
 
         // GET: Admin/Arts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            Art art = await WebApiHelper.GetApiResultAsync<Art>($"{baseUri}/{id}");
+            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(baseUri);
+            Art art = arts.FirstOrDefault(a => a.Id == id);
 
-            if (art == null)
-            {
-                return NotFound();
-            }
-
-            return View(await JoinArtist(art));
+            if (art == null) return NotFound();
+            return View(art);
         }
 
         // GET: Admin/Arts/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            ArtEditVm viewmodel = new ArtEditVm();
+            Art art = new Art();
+
+            viewmodel.Art = art;
+            
+            categories = await WebApiHelper.GetApiResultAsync<IEnumerable<Category>>(categoryUri);
+            viewmodel.CategoriesList = categories.Select(c => c.Name);
+
+            artists = await WebApiHelper.GetApiResultAsync<IEnumerable<Artist>>(artistUri);
+            viewmodel.ArtistsList = artists.Select(a => a.ArtistName);
+
+            return View(viewmodel);
         }
 
         // POST: Admin/Arts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,CategoryId,Category,Created,Description,Updated,Price,ImageName,ArtistId,Id")] Art art)
+        public async Task<IActionResult> Create(ArtEditVm viewmodel)
         {
             if (ModelState.IsValid)
             {
+                Art art = viewmodel.Art;
+                artists = await WebApiHelper.GetApiResultAsync<IEnumerable<Artist>>(artistUri);
+                categories = await WebApiHelper.GetApiResultAsync<IEnumerable<Category>>(categoryUri);
+
+                art.CategoryId = categories.Where(c => c.Name == art.Category.Name).Select(c => c.Id).First();
+                art.ArtistId = artists.Where(a => a.ArtistName == art.Artist.ArtistName).Select(c => c.Id).First();
+
                 await WebApiHelper.PostAsJsonAsync(httpClient, baseUri, art);
-                return RedirectToAction(nameof(Index));
             }
-            return View(await JoinArtist(art));
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Admin/Arts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            ArtEditVm viewmodel = new ArtEditVm();
 
-            Art art = await WebApiHelper.GetApiResultAsync<Art>($"{baseUri}/{id}");
-            if (art == null)
-            {
-                return NotFound();
-            }
-            return View(await JoinArtist(art));
+            if (id == null) return NotFound();
+
+            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(baseUri);
+            Art art = arts.FirstOrDefault(a => a.Id == id);
+
+            if (art == null) return NotFound();
+
+            viewmodel.Art = art;
+            
+            categories = await WebApiHelper.GetApiResultAsync<IEnumerable<Category>>(categoryUri);
+            viewmodel.CategoriesList = categories.Select(c => c.Name);
+            
+            artists = await WebApiHelper.GetApiResultAsync<IEnumerable<Artist>>(artistUri);
+            viewmodel.ArtistsList = artists.Select(a => a.ArtistName);
+            
+            return View(viewmodel);
         }
 
         // POST: Admin/Arts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,CategoryId,Category,Created,Description,Updated,Price,ImageName,ArtistId,Id")] Art art)
+        public async Task<IActionResult> Edit(int id, ArtEditVm viewmodel)
         {
-            if (id != art.Id)
-            {
-                return NotFound();
-            }
+            Art art = new Art();
+            if (id != viewmodel.Art.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
+                art = viewmodel.Art;
+                artists = await WebApiHelper.GetApiResultAsync<IEnumerable<Artist>>(artistUri);
+                categories = await WebApiHelper.GetApiResultAsync<IEnumerable<Category>>(categoryUri);
+                
+                art.CategoryId = categories.Where(c => c.Name == art.Category.Name).Select(c => c.Id).First();
+                art.Category = categories.FirstOrDefault(c => c.Name == art.Category.Name);
+                art.ArtistId = artists.Where(a => a.ArtistName == art.Artist.ArtistName).Select(c => c.Id).First();
+                art.Artist = artists.FirstOrDefault(a => a.ArtistName == art.Artist.ArtistName);
 
                 await WebApiHelper.PutAsJsonAsync(httpClient, $"{baseUri}/{id}", art);
                 return RedirectToAction(nameof(Index));
             }
-            return View(await JoinArtist(art));
+            return View(art);
         }
 
         // GET: Admin/Arts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             Art art = await WebApiHelper.GetApiResultAsync<Art>($"{baseUri}/{id}");
-            if (art == null)
-            {
-                return NotFound();
-            }
-
-            return View(await JoinArtist(art));
+            
+            if (art == null) return NotFound();
+            return View(art);
         }
 
         // POST: Admin/Arts/Delete/5
@@ -172,7 +176,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
             }
 
             ModelState.AddModelError(string.Empty, "Server error try after some time.");
-            return View();
+            return View("Index");
         }
     }
 }
