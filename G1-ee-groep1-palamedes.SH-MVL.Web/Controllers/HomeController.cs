@@ -12,6 +12,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Controllers
             return View();
         }
 
+        [Route("/privacy")]
         public IActionResult Privacy()
         {
             return View();
@@ -21,6 +22,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Route("/IndexVue")]
+        public IActionResult IndexVue() 
+        { 
+            return View();
         }
     }
 }
