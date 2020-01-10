@@ -10,6 +10,7 @@ using G1_ee_groep1_palamedes.SH_MVL.Web.Data;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.ViewModels;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
@@ -19,8 +20,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
     {
         private IConfiguration Configuration { get; }
         private string baseUri;
+        private string artUri;
         private string artistUri;
         private string categoryUri;
+        private string token;
         HttpClient httpClient = new HttpClient();
 
         private IEnumerable<Art> arts;
@@ -32,21 +35,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
             Configuration = configuration;
             baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
             artistUri = $"{baseUri}artists";
-            categoryUri = $"{baseUri}categories";
-            baseUri += "arts";
+            categoryUri += $"{baseUri}categories";
+            artUri += $"{baseUri}arts";
         }
 
-        public async void UpdateValues()
-        {
-            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(baseUri);
-            categories = await WebApiHelper.GetApiResultAsync<IEnumerable<Category>>(categoryUri);
-            artists = await WebApiHelper.GetApiResultAsync<IEnumerable<Artist>>(artistUri);
-        } 
         
         // GET: Admin/Arts
         public async Task<IActionResult> Index()
         {
-            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(baseUri);
+            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(artUri);
             return View(arts);
         }
 
@@ -55,7 +52,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         {
             if (id == null) return NotFound();
 
-            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(baseUri);
+            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(artUri);
             Art art = arts.FirstOrDefault(a => a.Id == id);
 
             if (art == null) return NotFound();
@@ -93,7 +90,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
                 art.CategoryId = categories.Where(c => c.Name == art.Category.Name).Select(c => c.Id).First();
                 art.ArtistId = artists.Where(a => a.ArtistName == art.Artist.ArtistName).Select(c => c.Id).First();
 
-                await WebApiHelper.PostAsJsonAsync(httpClient, baseUri, art);
+                token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+                await WebApiHelper.PostAsJsonAsync(httpClient, artUri, art);
             }
             return RedirectToAction(nameof(Index));
         }
@@ -105,7 +104,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 
             if (id == null) return NotFound();
 
-            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(baseUri);
+            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(artUri);
             Art art = arts.FirstOrDefault(a => a.Id == id);
 
             if (art == null) return NotFound();
@@ -131,16 +130,21 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                art = viewmodel.Art;
                 artists = await WebApiHelper.GetApiResultAsync<IEnumerable<Artist>>(artistUri);
                 categories = await WebApiHelper.GetApiResultAsync<IEnumerable<Category>>(categoryUri);
                 
+                art = viewmodel.Art;
+                
                 art.CategoryId = categories.Where(c => c.Name == art.Category.Name).Select(c => c.Id).First();
                 art.Category = categories.FirstOrDefault(c => c.Name == art.Category.Name);
+                
                 art.ArtistId = artists.Where(a => a.ArtistName == art.Artist.ArtistName).Select(c => c.Id).First();
                 art.Artist = artists.FirstOrDefault(a => a.ArtistName == art.Artist.ArtistName);
 
-                await WebApiHelper.PutAsJsonAsync(httpClient, $"{baseUri}/{id}", art);
+                token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+                await WebApiHelper.PutAsJsonAsync(httpClient, $"{artUri}/{id}", art);
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(art);
@@ -151,7 +155,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         {
             if (id == null) return NotFound();
 
-            Art art = await WebApiHelper.GetApiResultAsync<Art>($"{baseUri}/{id}");
+            Art art = await WebApiHelper.GetApiResultAsync<Art>($"{artUri}/{id}");
             
             if (art == null) return NotFound();
             return View(art);
@@ -162,11 +166,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await WebApiHelper.DelCallAPI<Art>($"{baseUri}/{id}");
+            token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+            await WebApiHelper.DelCallAPI<Art>(httpClient, $"{artUri}/{id}");
 
             try
             {
-                Art art = await WebApiHelper.GetApiResultAsync<Art>($"{baseUri}/{id}");
+                Art art = await WebApiHelper.GetApiResultAsync<Art>($"{artUri}/{id}");
 
             }
             catch (Exception ex)
