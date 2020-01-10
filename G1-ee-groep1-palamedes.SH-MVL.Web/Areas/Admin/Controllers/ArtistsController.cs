@@ -27,9 +27,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
             Configuration = configuration;
             baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
             baseUri += "artists";
-
-            token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
         }
 
         // GET: Admin/Artists
@@ -70,7 +67,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
                 await WebApiHelper.PostAsJsonAsync(httpClient, baseUri, artists);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(artists);
@@ -104,8 +104,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-
+                token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
                 await WebApiHelper.PutAsJsonAsync(httpClient, $"{baseUri}/{id}", artists);
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(artists);
@@ -133,6 +135,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
             await WebApiHelper.DelCallAPI<Artist>(httpClient, $"{baseUri}/{id}");
 
             try
