@@ -176,7 +176,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
             }
 
             ModelState.AddModelError(string.Empty, "Server error try after some time.");
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }

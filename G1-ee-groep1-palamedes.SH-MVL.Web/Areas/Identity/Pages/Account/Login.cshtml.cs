@@ -128,7 +128,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                             Secure = true
                         };
                         HttpContext.Response.Cookies.Append("bearerToken", bearerToken, cookieOptions);
-
+                        
                         _logger.LogInformation("User logged in.");
                     }
                     else

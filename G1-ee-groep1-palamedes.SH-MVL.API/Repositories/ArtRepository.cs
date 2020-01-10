@@ -45,5 +45,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
                 .Include(a => a.Artist).Include(a => a.Category)
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
+
+        public async Task<List<Art>> GetByArtist(Artist artist)
+        {
+            return await db.Arts
+                .Where(a => a.Artist == artist)
+                .ToListAsync();
+        }
     }
 }

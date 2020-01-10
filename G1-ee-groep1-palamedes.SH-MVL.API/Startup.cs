@@ -58,6 +58,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lkjqsdflkjsdfkljqsdfkljqsdlkfjslqdkfjlskdfjlskqdjfhlk"))
                 };
             });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireMemberRole", policy => policy.RequireRole("Member"));
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("RequireManagerRole", policy => policy.RequireRole("Manager"));
+            });
 
             services.AddMvc();
 

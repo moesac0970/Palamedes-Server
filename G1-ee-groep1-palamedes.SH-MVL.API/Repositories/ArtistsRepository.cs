@@ -32,5 +32,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
                 .Include(a => a.User)
                 .ToListAsync();
         }
+
+        public Artist GetByUserId(string id)
+        {
+            return db.Artists
+                .Where(a => a.UserId == id)
+                .FirstOrDefault();
+        }
     }
 }
