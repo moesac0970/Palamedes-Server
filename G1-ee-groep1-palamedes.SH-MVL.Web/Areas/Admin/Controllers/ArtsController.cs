@@ -11,6 +11,7 @@ using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {
@@ -46,6 +47,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // GET: Admin/Arts
         public async Task<IActionResult> Index()
         {
+
+            string cookie = this.ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+            Console.WriteLine(cookie);
+
             arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(baseUri);
             return View(arts);
         }

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
@@ -30,6 +31,24 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
                 .FirstOrDefault();
 
             return user;
+        }
+
+        public async Task<List<IdentityRole<string>>> GetRolesById(string id)
+        {
+            var claims = await db.UserRoles
+                                .Where(ur => ur.UserId == id)
+                                .ToListAsync();
+
+            List<IdentityRole<string>> roles = new List<IdentityRole<string>>();
+            foreach(var claim in claims)
+            {
+                roles.Add(db.Roles
+                            .Where(r => r.Id == claim.RoleId)
+                            .FirstOrDefault());
+            }
+
+            return roles;
+
         }
 
         public async Task<IdentityUser> UpdateUser(IdentityUser user) 
