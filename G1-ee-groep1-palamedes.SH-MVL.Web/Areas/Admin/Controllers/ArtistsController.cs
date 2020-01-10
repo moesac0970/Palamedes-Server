@@ -10,6 +10,7 @@ using G1_ee_groep1_palamedes.SH_MVL.Web.Data;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {
@@ -18,6 +19,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
     {
         private IConfiguration Configuration { get; }
         private string baseUri;
+        private string token;
         HttpClient httpClient = new HttpClient();
 
         public ArtistsController(IConfiguration configuration)
@@ -65,7 +67,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
                 await WebApiHelper.PostAsJsonAsync(httpClient, baseUri, artists);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(artists);
@@ -99,8 +104,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-
+                token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
                 await WebApiHelper.PutAsJsonAsync(httpClient, $"{baseUri}/{id}", artists);
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(artists);
@@ -128,7 +135,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await WebApiHelper.DelCallAPI<Artist>($"{baseUri}/{id}");
+            token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+            await WebApiHelper.DelCallAPI<Artist>(httpClient, $"{baseUri}/{id}");
 
             try
             {

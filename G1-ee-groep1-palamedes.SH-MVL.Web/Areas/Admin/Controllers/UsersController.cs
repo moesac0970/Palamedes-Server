@@ -12,6 +12,7 @@ using G1_ee_groep1_palamedes.SH_MVL.Web.Data;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {
@@ -22,12 +23,14 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         private IConfiguration Configuration { get; }
         private string baseUri;
         HttpClient httpClient = new HttpClient();
+        private string token;
 
         public UserController(IConfiguration configuration)
         {
             Configuration = configuration;
             baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
             baseUri += "users";
+
         }
 
         // GET: Admin/Arts
@@ -68,7 +71,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
                 await WebApiHelper.PostAsJsonAsync(httpClient, baseUri, user);
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -102,8 +108,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-
+                token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
                 await WebApiHelper.PutAsJsonAsync(httpClient, $"{baseUri}/{id}", user);
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -131,7 +139,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            await WebApiHelper.DelCallAPI<User>($"{baseUri}/{id}");
+            token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+            await WebApiHelper.DelCallAPI<User>(httpClient, $"{baseUri}/{id}");
 
             try
             {

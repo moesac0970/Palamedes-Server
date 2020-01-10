@@ -20,13 +20,14 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                     src => $"{src.Artist.ArtistName}"))
                 .ReverseMap();
 
-
             CreateMap<Art, Art>()
                 .ForMember(dest => dest.ArtistId, opts => opts.MapFrom(src => $"{src.Artist.Id}"))
                 .ForMember(dest => dest.CategoryId, opts => opts.MapFrom(src => $"{src.Category.Id}"))
                 .ReverseMap();
 
-
+            CreateMap<Artist, Artist>()
+                .ForMember(dest => dest.UserId, opts => opts.MapFrom(src => $"{src.User.Id}"))
+                .ReverseMap();
 
         }
 
