@@ -44,7 +44,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
             });
             var mapper = config.CreateMapper();
             services.AddSingleton(mapper);
-            
+
             // authentication service jwt bearer token
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {

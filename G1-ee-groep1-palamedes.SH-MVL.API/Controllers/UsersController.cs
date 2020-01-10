@@ -28,7 +28,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 
 
         [HttpGet]
-        [Authorize]
+        [Authorize("RequireAdminRole")]
         public async Task<IActionResult> GetUsers()
         {
             return Ok(await users.GetUsersAsync());

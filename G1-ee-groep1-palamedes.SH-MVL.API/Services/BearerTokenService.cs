@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,14 +17,19 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
     {
         private readonly UserRepository db;
         private BearerHistoryRepository BearerRepo;
+        private UserManager<IdentityUser> usermnr;
 
-        public BearerTokenService(UserRepository context, BearerHistoryRepository bearerHistoryRepository)
+        public BearerTokenService(UserRepository context, BearerHistoryRepository bearerHistoryRepository, UserManager<IdentityUser> userManager)
         {
             db = context;
             BearerRepo = bearerHistoryRepository;
+            usermnr = userManager;
         }
         public async Task<string> GenerateBearerToken(HttpRequest request)
         {
+
+
+
             var header = request.Headers["Authorization"];
             if (header.ToString().StartsWith("Basic"))
             {
@@ -31,9 +39,22 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                 var username = Encoding.UTF8.GetString(Convert.FromBase64String(credValue)); //admin:pass
                 // put into string array 
                 var user = db.GetUserByNameAsync(username);
+
+               
                 if (user != null)
                 {
-                    var claimsdata = new[] { new Claim(ClaimTypes.Name, user.UserName) };
+                    var roles = await db.GetRolesById(user.Id);
+
+                    var claimsdata = new List<Claim>
+                    { 
+                        new Claim(ClaimTypes.Name, user.UserName)
+                    };
+
+                    foreach(var role in roles)
+                    {
+                        claimsdata.Add(new Claim(ClaimTypes.Role, role.Name));
+                    }
+
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lkjqsdflkjsdfkljqsdfkljqsdlkfjslqdkfjlskdfjlskqdjfhlk"));
                     var signInCred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
                     var token = new JwtSecurityToken(

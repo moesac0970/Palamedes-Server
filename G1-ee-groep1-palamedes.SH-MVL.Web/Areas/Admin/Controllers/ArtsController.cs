@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {
@@ -43,6 +44,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // GET: Admin/Arts
         public async Task<IActionResult> Index()
         {
+
             arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(artUri);
             return View(arts);
         }
