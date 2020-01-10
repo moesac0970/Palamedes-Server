@@ -1,4 +1,4 @@
-﻿@model IEnumerable<G1_ee_groep1_palamedes.SH_MVL.API.Models.User>
+﻿@model IEnumerable<IdentityUser>
 
 @{
     ViewData["Title"] = "Index";
@@ -104,9 +104,9 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" asp-area="Admin">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" asp-area="Admin">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" asp-area="Admin">Delete</a>
             </td>
         </tr>
 }

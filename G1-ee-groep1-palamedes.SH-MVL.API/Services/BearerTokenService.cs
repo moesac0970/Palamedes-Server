@@ -46,7 +46,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                     var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
                     //Update BearerHistory DB
-                    await BearerRepo.CreateBearerHistory(tokenString, user);
+                    //await BearerRepo.CreateBearerHistory(tokenString, user);
 
 
                     return tokenString;

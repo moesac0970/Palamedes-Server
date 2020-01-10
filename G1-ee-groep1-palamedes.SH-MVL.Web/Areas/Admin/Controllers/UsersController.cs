@@ -1,6 +1,4 @@
-﻿//[Bind("SecurityStamp,PhoneNumberConfirmed,PhoneNumber,PasswordHash,NormalizedUserName,NormalizedEmail,LockoutEnd,LockoutEnabled,Id,EmailConfirmed,Email,ConcurrencyStamp,AccessFailedCount,TwoFactorEnabled,UserName")]
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,30 +11,26 @@ using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     #nullable enable
-    public class UserController : Controller
+    public class UsersController : Controller
     {
-        private IConfiguration Configuration { get; }
-        private string baseUri;
-        HttpClient httpClient = new HttpClient();
-        private string token;
+        private UserManager<IdentityUser> UserManager;
 
-        public UserController(IConfiguration configuration)
+        public UsersController(UserManager<IdentityUser> UserManager)
         {
-            Configuration = configuration;
-            baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
-            baseUri += "users";
-
+            this.UserManager = UserManager;
         }
 
         // GET: Admin/Arts
         public async Task<IActionResult> Index()
         {
-            IEnumerable<User> users = await WebApiHelper.GetApiResultAsync<List<User>>(baseUri);
+            IEnumerable<IdentityUser> users = await UserManager.Users.ToListAsync();
             return View(users);
         }
 
@@ -48,7 +42,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            User user = await WebApiHelper.GetApiResultAsync<User>($"{baseUri}/{id}");
+            IdentityUser user = await UserManager.Users.FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
             {
@@ -61,56 +55,25 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // GET: Admin/Arts/Create
         public IActionResult Create()
         {
-            return View();
+            UserVm viewmodel = new UserVm();
+            IdentityUser user = new IdentityUser();
+
+            viewmodel.User = user;
+            
+            return View(viewmodel);
         }
 
         // POST: Admin/Arts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SecurityStamp,PhoneNumberConfirmed,PhoneNumber,PasswordHash,NormalizedUserName,NormalizedEmail,LockoutEnd,LockoutEnabled,Id,EmailConfirmed,Email,ConcurrencyStamp,AccessFailedCount,TwoFactorEnabled,UserName")] User user)
+        public async Task<IActionResult> Create(UserVm viewmodel)
         {
+            IdentityUser user = new IdentityUser();
             if (ModelState.IsValid)
             {
-                token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
-                await WebApiHelper.PostAsJsonAsync(httpClient, baseUri, user);
-                
-                return RedirectToAction(nameof(Index));
-            }
-            return View(user);
-        }
+                user = viewmodel.User;
 
-        // GET: Admin/Arts/Edit/5
-        public async Task<IActionResult> Edit(string? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            User user = await WebApiHelper.GetApiResultAsync<User>($"{baseUri}/{id}");
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return View(user);
-        }
-
-        // POST: Admin/Arts/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("SecurityStamp,PhoneNumberConfirmed,PhoneNumber,PasswordHash,NormalizedUserName,NormalizedEmail,LockoutEnd,LockoutEnabled,Id,EmailConfirmed,Email,ConcurrencyStamp,AccessFailedCount,TwoFactorEnabled,UserName")] User user)
-        {
-            if (id != user.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
-                await WebApiHelper.PutAsJsonAsync(httpClient, $"{baseUri}/{id}", user);
+                await UserManager.CreateAsync(user, viewmodel.Password);
                 
                 return RedirectToAction(nameof(Index));
             }
@@ -125,7 +88,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            User user = await WebApiHelper.GetApiResultAsync<User>($"{baseUri}/{id}");
+            IdentityUser user = await UserManager.Users.FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
             {
                 return NotFound();
@@ -139,13 +102,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
-            await WebApiHelper.DelCallAPI<User>(httpClient, $"{baseUri}/{id}");
+            IdentityUser user = await UserManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            await UserManager.DeleteAsync(user);
 
             try
             {
-                User user = await WebApiHelper.GetApiResultAsync<User>($"{baseUri}/{id}");
+                user = await UserManager.Users.FirstOrDefaultAsync(u => u.Id == id);
 
             }
             catch (Exception ex)
@@ -155,7 +117,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
             }
 
             ModelState.AddModelError(string.Empty, "Server error try after some time.");
-            return View();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

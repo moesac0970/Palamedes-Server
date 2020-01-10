@@ -46,11 +46,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
                 new IdentityUser { Id = "2", UserName = "VanGimst", PasswordHash = "754f4789adeac685009905e3a5b9c6ef", Email = "random@mailinator.com", EmailConfirmed = false, PhoneNumberConfirmed = false, TwoFactorEnabled = true, LockoutEnabled = false, AccessFailedCount = 1 },
                 new IdentityUser { Id = "3", UserName = "bob", PasswordHash = "2acba7f51acfd4fd5102ad090fc612ee", Email = "bob@gmail.com", EmailConfirmed = true, PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 }
                 );
-
-            modelBuilder.Entity<BearerHistory>().ToTable("BearerHistories").HasData(
-                new { Id = 1L, BearerToken = "qsdfsdfùqsdlfùqsdmlfùmlsdf", UserId = "1" },
-                new { Id = 2L, BearerToken = "qsdfsdfùqsdlfùqsdmlfùmlsdf", UserId = "3" }
-                );
         }
     }
 }
