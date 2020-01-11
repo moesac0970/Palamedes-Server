@@ -54,12 +54,12 @@
     <script>
         var apiURL = 'http://localhost:5000/Users/userid/@id';
         var cookieArray = document.cookie.split("bearerToken=");
-        var tokenString = oockyArray[1];
+        var tokenString = cookieArray[1];
 
         var app = new Vue({
             el: '#app', data:
             {
-                message: 'Loading art...', arts: null,
+                message: 'Loading art ....', arts: null,
             }, created: function () {
                 var self = this; self.fetchArts();
             }, methods: {
@@ -69,11 +69,16 @@
                         {
                             method: 'GET',
                             headers: {
-                                'bearer ': tokenString
+                                'bearer': tokenString
                             }
                         }).then(res => res.json()).then(function (arts) {
-                        self.arts = arts;
-                        self.message = 'Overview';
+                            self.arts = arts;
+                            if (self.arts.length == 0) {
+                                self.message = "sorry couldn't find any";
+                            }
+                            else {
+                                self.message = 'Overview of the art pieces';
+                            }
                     }).catch(err => console.error('Fout: ' + err));
                 },
             }
