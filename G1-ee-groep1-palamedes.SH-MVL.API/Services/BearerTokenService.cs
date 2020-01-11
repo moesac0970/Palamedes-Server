@@ -1,8 +1,8 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -31,22 +31,35 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                 var username = Encoding.UTF8.GetString(Convert.FromBase64String(credValue)); //admin:pass
                 // put into string array 
                 var user = db.GetUserByNameAsync(username);
+
+
                 if (user != null)
                 {
-                    var claimsdata = new[] { new Claim(ClaimTypes.Name, user.UserName) };
+                    var roles = await db.GetRolesById(user.Id);
+
+                    var claimsdata = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, user.UserName)
+                    };
+
+                    foreach (var role in roles)
+                    {
+                        claimsdata.Add(new Claim(ClaimTypes.Role, role.Name));
+                    }
+
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lkjqsdflkjsdfkljqsdfkljqsdlkfjslqdkfjlskdfjlskqdjfhlk"));
                     var signInCred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
                     var token = new JwtSecurityToken(
                          issuer: "palamedes.be",
                          audience: "palamedes.be",
-                         expires: DateTime.Now.AddMinutes(1),
+                         expires: DateTime.Now.AddDays(1),
                          claims: claimsdata,
                          signingCredentials: signInCred
                         );
                     var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
                     //Update BearerHistory DB
-                    await BearerRepo.CreateBearerHistory(tokenString, user);
+                    //await BearerRepo.CreateBearerHistory(tokenString, user);
 
 
                     return tokenString;
@@ -56,6 +69,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
             return "wrong request";
         }
 
-         
+
     }
 }

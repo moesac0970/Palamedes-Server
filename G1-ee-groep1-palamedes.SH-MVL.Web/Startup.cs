@@ -62,11 +62,17 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                   "admin",
+                   "admin",
+                   "Admin/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "default", "{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapRazorPages();
             });
+
+
         }
     }
 }

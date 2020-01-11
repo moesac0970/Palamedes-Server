@@ -26,13 +26,14 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<ArtDataContext<IdentityUser>>(opt => opt.
+            services.AddDbContext<DataContext<IdentityUser>>(opt => opt.
                 UseSqlServer(Configuration.GetConnectionString("PalamedesArtDb")).EnableSensitiveDataLogging(true));
 
-            services.AddScoped<ArtDataContext<IdentityUser>>();
+            services.AddScoped<DataContext<IdentityUser>>();
             services.AddScoped<ArtRepository>();
             services.AddScoped<ArtistsRepository>();
             services.AddScoped<UserRepository>();
+            services.AddScoped<CategoryRepository>();
             services.AddScoped<BearerHistoryRepository>();
 
 
@@ -43,7 +44,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
             });
             var mapper = config.CreateMapper();
             services.AddSingleton(mapper);
-            
+
             // authentication service jwt bearer token
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
@@ -56,6 +57,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API
                     ValidAudience = "palamedes.be",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lkjqsdflkjsdfkljqsdfkljqsdlkfjslqdkfjlskdfjlskqdjfhlk"))
                 };
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireMemberRole", policy => policy.RequireRole("Member"));
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("RequireManagerRole", policy => policy.RequireRole("Manager"));
             });
 
             services.AddMvc();

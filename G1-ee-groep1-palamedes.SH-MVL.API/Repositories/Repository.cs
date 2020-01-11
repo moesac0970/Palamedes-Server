@@ -12,15 +12,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
-        public ArtDataContext<IdentityUser> db;
+        public DataContext<IdentityUser> db;
 
-        public Repository(ArtDataContext<IdentityUser> context)
+        public Repository(DataContext<IdentityUser> context)
         {
             db = context;
         }
 
         //GET: arts/{id}
-        public virtual async Task<T> GetById(int id)
+        public virtual async Task<T> GetById(long id)
         {
             return await db.Set<T>()
                 .FindAsync(id);
@@ -35,7 +35,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
         }
 
 
-        public async Task<IEnumerable<T>> ListAll()
+        public virtual async Task<IEnumerable<T>> ListAll()
         {
             return await GetAll().ToListAsync();
         }
@@ -47,13 +47,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
                    .Where(predicate).AsNoTracking();
         }
 
-        public async virtual Task<IEnumerable<T>> ListFiltered(Expression<Func<T, bool>> predicate)
+        public virtual async Task<IEnumerable<T>> ListFiltered(Expression<Func<T, bool>> predicate)
         {
             return await GetFiltered(predicate).ToListAsync();
         }
 
         //POST: arts
-        public async Task<T> Add(T entity)
+        public virtual async Task<T> Add(T entity)
         {
             db.Set<T>().Add(entity);
             try
@@ -67,7 +67,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return entity;
         }
 
-        public async Task<T> Update(T entity)
+        public virtual async Task<T> Update(T entity)
         {
             db.Entry(entity).State = EntityState.Modified;
             try
@@ -81,7 +81,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return entity;
         }
 
-        public async Task<T> Delete(T entity)
+        public virtual async Task<T> Delete(T entity)
         {
             db.Set<T>().Remove(entity);
             try
@@ -95,7 +95,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return entity;
         }
 
-        public async Task<T> Delete(int id)
+        public virtual async Task<T> Delete(long id)
         {
             var entity = await GetById(id);
             if (entity == null) return null;

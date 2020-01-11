@@ -36,6 +36,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Helper
             }
             catch (Exception ex)
             {
+#warning  Implement feature
                 Console.WriteLine(ex);
                 throw new NotImplementedException();
             }
@@ -52,7 +53,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Helper
             return await CallAPI<Out, In>(uri, entity, HttpMethod.Post);
         }
 
-        public static async Task<Out> DelCallAPI<Out>(string uri)
+        public static async Task<Out> DelCallAPI<Out>(this HttpClient httpClient, string uri)
         {
             return await CallAPI<Out, object>(uri, null, HttpMethod.Delete);
         }

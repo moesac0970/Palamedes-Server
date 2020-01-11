@@ -19,23 +19,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        public async Task OnGet()
+        public async Task<IActionResult> OnGet()
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
 
-        }
+            return LocalRedirect("/");
 
-        public async Task<IActionResult> OnPost(string returnUrl = null)
-        {
-            if (returnUrl != null)
-            {
-                return LocalRedirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToPage();
-            }
         }
     }
 }

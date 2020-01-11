@@ -1,18 +1,17 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.API.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
 {
-    public class UserRepository 
+    public class UserRepository
     {
 
-        private ArtDataContext<IdentityUser> db;
-        public UserRepository(ArtDataContext<IdentityUser> context)
+        private readonly DataContext<IdentityUser> db;
+        public UserRepository(DataContext<IdentityUser> context)
         {
             db = context;
         }
@@ -32,7 +31,25 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return user;
         }
 
-        public async Task<IdentityUser> UpdateUser(IdentityUser user) 
+        public async Task<List<IdentityRole<string>>> GetRolesById(string id)
+        {
+            var claims = await db.UserRoles
+                                .Where(ur => ur.UserId == id)
+                                .ToListAsync();
+
+            List<IdentityRole<string>> roles = new List<IdentityRole<string>>();
+            foreach (var claim in claims)
+            {
+                roles.Add(db.Roles
+                            .Where(r => r.Id == claim.RoleId)
+                            .FirstOrDefault());
+            }
+
+            return roles;
+
+        }
+
+        public async Task<IdentityUser> UpdateUser(IdentityUser user)
         {
             var oldUser = db.Users.Where(u => u.UserName == user.UserName).FirstOrDefault();
             db.Users.Remove(oldUser);

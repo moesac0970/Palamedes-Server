@@ -1,7 +1,7 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.Lib.Models;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using System;
 
-namespace G1_ee_groep1_palamedes.SH_MVL.Lib.DTO
+namespace G1_ee_groep1_palamedes.SH_MVL.API.DTO
 {
     public class ArtDetail
     {
@@ -13,5 +13,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Lib.DTO
         public DateTime Updated { get; set; }
         public DateTime Created { get; set; }
         public string ImageName { get; set; }
+        public Artist Artist { get; set; }
     }
 }

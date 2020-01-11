@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
@@ -12,23 +11,45 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private UserRepository users;
-        public UsersController(UserRepository repo)
+        private readonly UserRepository users;
+        //#todo get user with art or artists 
+        private readonly ArtRepository arts;
+        private readonly ArtistsRepository artists;
+        public UsersController(UserRepository repo, ArtistsRepository _artists, ArtRepository _arts)
         {
             users = repo;
+            arts = _arts;
+            artists = _artists;
         }
 
 
         [HttpGet]
+        [Authorize("RequireAdminRole")]
         public async Task<IActionResult> GetUsers()
         {
             return Ok(await users.GetUsersAsync());
         }
 
-        [HttpGet("User/{BearerToken}")]
-        public async Task<IActionResult> GetuserByBearerToken(string BearerToken)
+        [HttpGet]
+        [Route("userid/{id}")]
+        public async Task<IActionResult> GetArtByUserId(string id)
         {
-            return Ok(await users.GetUserByBearerAsync(BearerToken));
+            Artist artist = artists.GetByUserId(id);
+            List<Art> artistArts = await arts.GetByArtist(artist);
+
+            return Ok(artistArts);
         }
+
+
+        //good to have?
+
+        //[HttpGet]
+        //[Route("Users/{BearerToken}")]
+        //public async Task<IActionResult> GetuserByBearerToken(string BearerToken)
+        //{
+        //    return Ok(await users.GetUserByBearerAsync(BearerToken));
+        //}
+
+
     }
 }

@@ -1,9 +1,9 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.Lib.DTO;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.DTO;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Controllers
 {
