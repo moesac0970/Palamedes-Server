@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using G1_ee_groep1_palamedes.SH_MVL.API.Models;
-using G1_ee_groep1_palamedes.SH_MVL.Web.Data;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {
@@ -107,7 +103,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
                 token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
                 await WebApiHelper.PutAsJsonAsync(httpClient, $"{baseUri}/{id}", artists);
-                
+
                 return RedirectToAction(nameof(Index));
             }
             return View(artists);

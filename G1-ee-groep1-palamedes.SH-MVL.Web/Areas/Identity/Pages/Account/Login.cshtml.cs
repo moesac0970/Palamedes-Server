@@ -1,11 +1,11 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.Web.Services;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -14,11 +14,9 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
 {
@@ -29,9 +27,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly IEmailSender _emailSender;
-        private PasswordHasher<IdentityUser> _passwordHasher;
         private IConfiguration Configuration { get; }
-        private string baseUri;
+        private string BaseUri { get; set; }
 
         public LoginModel(
             SignInManager<IdentityUser> signInManager,
@@ -44,9 +41,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
-            _passwordHasher = new PasswordHasher<IdentityUser>();
             Configuration = configuration;
-            baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
+            BaseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
         }
 
         [BindProperty]
@@ -80,7 +76,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -92,14 +88,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            HttpClient client = new HttpClient();
-            returnUrl = returnUrl ?? Url.Content("~/");
-            var uri = baseUri;
+            returnUrl ??= Url.Content("~/");
+            var uri = BaseUri;
 
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
-
+                //var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 // try signin with the signinmanager
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
 
@@ -117,7 +111,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                     var responsstream = respons.GetResponseStream();
                     var reader = new StreamReader(responsstream);
                     var bearerToken = reader.ReadToEnd();
-                    if(bearerToken != "not valid user")
+                    if (bearerToken != "not valid user")
                     {
                         // set cookieoptions, and save cookie on client, and signin user with the signinmanager
                         // todo domain date on cookie from the beaertoken
@@ -128,7 +122,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                             Secure = true
                         };
                         HttpContext.Response.Cookies.Append("bearerToken", bearerToken, cookieOptions);
-                        
+
                         _logger.LogInformation("User logged in.");
                     }
                     else
@@ -140,7 +134,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
                 }
                 // this is to far returns page if didn't succeed
                 return Page();
-                
+
             }
             return Page();
         }
@@ -163,7 +157,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account
             var callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
-                values: new { userId = userId, code = code },
+                values: new { userId, code },
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 Input.Email,

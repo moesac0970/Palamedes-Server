@@ -8,13 +8,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
     [ViewComponent(Name = "MainNavigation")]
     public class MainNavigationComponent : ViewComponent
     {
-        private IEnumerable<MainNavLinkVm> publicLinks { get; set; }
-        private IEnumerable<MainNavLinkVm> adminLinks { get; set; }
+        private IEnumerable<MainNavLinkVm> PublicLinks { get; set; }
+        private IEnumerable<MainNavLinkVm> AdminLinks { get; set; }
 
 
         public MainNavigationComponent()
         {
-            publicLinks = new List<MainNavLinkVm>
+            PublicLinks = new List<MainNavLinkVm>
             {
                 new MainNavLinkVm {Area=null, Controller="Home", Action="Index", Text="Home"},
                 new MainNavLinkVm {Area=null, Controller="portofolio", Action="Index", Text="portofolio"},
@@ -25,7 +25,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
                 new MainNavLinkVm {Area="Identity", Controller="Account", Action="Logout", Text="Logout", IsLoggedIn=true}
             };
 
-            adminLinks = new List<MainNavLinkVm>
+            AdminLinks = new List<MainNavLinkVm>
             {
                 new MainNavLinkVm {Area="Admin", Controller="Home", Action="Index", Text="Start"},
                 new MainNavLinkVm {Area="Admin", Controller="Home", Action="Index", Text="Contact"},
@@ -40,8 +40,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Components
 
         public async Task<IViewComponentResult> InvokeAsync(bool showAdmin)
         {
-            var navLinks = publicLinks;
-            if (showAdmin) navLinks = adminLinks;
+            var navLinks = PublicLinks;
+            if (showAdmin) navLinks = AdminLinks;
             foreach (var link in navLinks)
             {
                 if (this.RouteData.Values["area"]?.ToString().ToLower() == link.Area?.ToLower() &&

@@ -1,12 +1,9 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.IO;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,19 +14,14 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
     {
         private readonly UserRepository db;
         private BearerHistoryRepository BearerRepo;
-        private UserManager<IdentityUser> usermnr;
 
-        public BearerTokenService(UserRepository context, BearerHistoryRepository bearerHistoryRepository, UserManager<IdentityUser> userManager)
+        public BearerTokenService(UserRepository context, BearerHistoryRepository bearerHistoryRepository)
         {
             db = context;
             BearerRepo = bearerHistoryRepository;
-            usermnr = userManager;
         }
         public async Task<string> GenerateBearerToken(HttpRequest request)
         {
-
-
-
             var header = request.Headers["Authorization"];
             if (header.ToString().StartsWith("Basic"))
             {
@@ -40,17 +32,17 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                 // put into string array 
                 var user = db.GetUserByNameAsync(username);
 
-               
+
                 if (user != null)
                 {
                     var roles = await db.GetRolesById(user.Id);
 
                     var claimsdata = new List<Claim>
-                    { 
+                    {
                         new Claim(ClaimTypes.Name, user.UserName)
                     };
 
-                    foreach(var role in roles)
+                    foreach (var role in roles)
                     {
                         claimsdata.Add(new Claim(ClaimTypes.Role, role.Name));
                     }
@@ -60,7 +52,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                     var token = new JwtSecurityToken(
                          issuer: "palamedes.be",
                          audience: "palamedes.be",
-                         expires: null,
+                         expires: DateTime.Now.AddDays(1),
                          claims: claimsdata,
                          signingCredentials: signInCred
                         );
@@ -77,6 +69,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
             return "wrong request";
         }
 
-         
+
     }
 }

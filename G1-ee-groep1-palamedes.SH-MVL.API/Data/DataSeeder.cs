@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
 {
@@ -39,7 +36,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
                 new { Id = 2L, ArtistName = "Jenny", Dob = DateTime.Now, UserId = "2" }
             );
 
-            #warning Do not store passwords in plain text.  
+#warning Do not store passwords in plain text.  
             // 0 = 1234Pasw, 1 = GeneralReaper666, 2 = bob123
             modelBuilder.Entity<IdentityUser>().ToTable("AspNetUsers").HasData(
                 new IdentityUser { Id = "1", Email = "de__manu09@hotmail.com", PasswordHash = "675d13fc79dc2b90de05b11b36ec388a", UserName = "manu", EmailConfirmed = false, PhoneNumberConfirmed = false, TwoFactorEnabled = true, LockoutEnabled = false, AccessFailedCount = 1 },

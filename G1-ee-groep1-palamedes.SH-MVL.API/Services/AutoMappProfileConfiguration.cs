@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using G1_ee_groep1_palamedes.SH_MVL.API.DTO;
+using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
 {

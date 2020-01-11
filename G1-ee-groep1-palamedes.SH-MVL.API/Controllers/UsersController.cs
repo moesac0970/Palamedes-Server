@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using G1_ee_groep1_palamedes.SH_MVL.API.Models;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
     public class UsersController : ControllerBase
     {
-        private UserRepository users;
+        private readonly UserRepository users;
         //#todo get user with art or artists 
-        private ArtRepository arts;
-        private ArtistsRepository artists;
+        private readonly ArtRepository arts;
+        private readonly ArtistsRepository artists;
         public UsersController(UserRepository repo, ArtistsRepository _artists, ArtRepository _arts)
         {
             users = repo;

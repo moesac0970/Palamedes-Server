@@ -25,8 +25,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Controllers
         }
 
         [Route("/IndexVue")]
-        public IActionResult IndexVue() 
-        { 
+        public IActionResult IndexVue()
+        {
             return View();
         }
     }

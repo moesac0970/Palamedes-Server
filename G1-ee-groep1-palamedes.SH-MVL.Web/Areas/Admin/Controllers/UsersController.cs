@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using G1_ee_groep1_palamedes.SH_MVL.API.Models;
-using G1_ee_groep1_palamedes.SH_MVL.Web.Data;
-using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
-using Microsoft.Extensions.Configuration;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.ViewModels;
+﻿using G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    #nullable enable
+#nullable enable
     public class UsersController : Controller
     {
         private UserManager<IdentityUser> UserManager;
@@ -59,7 +51,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
             IdentityUser user = new IdentityUser();
 
             viewmodel.User = user;
-            
+
             return View(viewmodel);
         }
 
@@ -74,7 +66,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
                 user = viewmodel.User;
 
                 await UserManager.CreateAsync(user, viewmodel.Password);
-                
+
                 return RedirectToAction(nameof(Index));
             }
             return View(user);

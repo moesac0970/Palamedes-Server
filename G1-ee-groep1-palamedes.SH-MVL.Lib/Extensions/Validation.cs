@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Extensions
 {
@@ -40,7 +37,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Lib.Extensions
             // Must match a valid domain name
             // Could contain a port specification
             // Could contain digit, letter, dots, hyphens, forward slashes, multiple times
-            
+
             Regex regex = new Regex(@"^(http|https):[\/]{2}([a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,4})(:[0-9]+)?\/?([a-zA-Z0-9\-\._\?\,\'\/\\\+&amp;%\$#\=~]*)");
             return regex.IsMatch(s);
         }
