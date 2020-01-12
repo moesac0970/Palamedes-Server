@@ -1,5 +1,6 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using G1_ee_groep1_palamedes.SH_MVL.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -31,6 +32,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         }
 
         // PUT: T/5
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromRoute] long id,
             [FromBody] T entity)
@@ -45,6 +47,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         }
 
         // POST: T
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] T entity)
         {
@@ -54,6 +57,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         }
 
         // DELETE: T/3
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] long id)
         {

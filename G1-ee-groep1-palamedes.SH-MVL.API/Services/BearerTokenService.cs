@@ -52,7 +52,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Services
                     var token = new JwtSecurityToken(
                          issuer: "palamedes.be",
                          audience: "palamedes.be",
-                         expires: DateTime.Now.AddDays(1),
+                         expires: DateTime.Now.AddDays(300),
                          claims: claimsdata,
                          signingCredentials: signInCred
                         );
