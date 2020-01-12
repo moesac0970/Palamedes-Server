@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.Models;
+using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
@@ -11,11 +14,18 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private IConfiguration config;
+        string baseUri;
+        public string Checked = "";
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager,
+            IConfiguration configuration)
         {
+            config = configuration;
+            baseUri = config.GetSection("Data").GetSection("ApiBaseUri").Value;
+            baseUri += "users/artistbyuserid";
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -27,6 +37,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account.Manage
 
         [BindProperty]
         public InputModel Input { get; set; }
+
+        private Artist Artist;
 
         public class InputModel
         {
@@ -52,6 +64,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetAsync()
         {
+            Artist = await WebApiHelper.GetApiResultAsync<Artist>($"{baseUri}/{_userManager.GetUserId(User)}");
+            if(Artist != null)
+            {
+                Checked = "checked";
+            }
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -86,8 +103,9 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account.Manage
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
             }
+            Artist = await WebApiHelper.GetApiResultAsync<Artist>($"{baseUri}/{_userManager.GetUserId(User)}");
 
-            if (Input.BecomeArtist)
+            if (Input.BecomeArtist && Artist == null)
             {
                 
                 await _signInManager.RefreshSignInAsync(user);

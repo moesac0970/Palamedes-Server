@@ -31,13 +31,22 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         }
 
         [HttpGet]
-        [Route("userid/{id}")]
+        [Route("artbyuserid/{id}")]
         public async Task<IActionResult> GetArtByUserId(string id)
         {
             Artist artist = artists.GetByUserId(id);
             List<Art> artistArts = await arts.GetByArtist(artist);
 
             return Ok(artistArts);
+        }
+
+        [HttpGet]
+        [Route("artistbyuserid/{id}")]
+        public IActionResult GetArtistByUserId(string id)
+        {
+            Artist artist = artists.GetByUserId(id);
+
+            return Ok(artist);
         }
 
         [HttpGet]

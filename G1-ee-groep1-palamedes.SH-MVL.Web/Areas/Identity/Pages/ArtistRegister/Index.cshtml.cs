@@ -42,21 +42,23 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.ArtistRegister
         {
             if (ModelState.IsValid)
             {
+
                 Artist PostArtist = new Artist();
                 PostArtist.ArtistName = artist.ArtistName;
                 var user = await _userManager.FindByNameAsync(_signInManager.Context.User.Identity.Name);
                 PostArtist.UserId = user.Id;
 
                 string token = HttpContext.Request.Cookies["bearerToken"];
-                
+
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+
                 await WebApiHelper.PostAsJsonAsync(httpClient, baseUri, PostArtist);
 
-                LocalRedirect("~/");
-            }
-            LocalRedirect("~/");
+                LocalRedirect("home/index");
 
-            
+            }
+            LocalRedirect("home/index");
+
 
         }
     }

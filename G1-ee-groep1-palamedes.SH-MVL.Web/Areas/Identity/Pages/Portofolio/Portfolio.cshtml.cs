@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Portofolio
@@ -12,11 +13,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Portofolio
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         public string ID;
-
-        public PortfolioModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public string apiUri;
+        IConfiguration config;
+        public PortfolioModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            config = configuration;
+            apiUri = config.GetSection("Data").GetSection("ApiBaseUri").Value;
+            apiUri += "artbyuserid/";
         }
 
         public async Task OnGet()
