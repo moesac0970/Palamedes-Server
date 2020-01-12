@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class EmptySeederMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

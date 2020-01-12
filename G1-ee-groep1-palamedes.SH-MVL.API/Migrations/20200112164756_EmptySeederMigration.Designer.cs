@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
     [DbContext(typeof(DataContext<IdentityUser>))]
-    [Migration("20200111205744_artdataMigration")]
-    partial class artdataMigration
+    [Migration("20200112164756_EmptySeederMigration")]
+    partial class EmptySeederMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

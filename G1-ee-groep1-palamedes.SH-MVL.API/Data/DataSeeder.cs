@@ -32,12 +32,10 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
            );
 
             modelBuilder.Entity<Artist>().ToTable("Artists").HasData(
-                new { Id = 1L, ArtistName = "Pablito", Dob = DateTime.Now, UserId = "0d757db8-b82a-4ac8-b978-4aee6b9db522" },
-                new { Id = 2L, ArtistName = "Jenny", Dob = DateTime.Now, UserId = "2d678045-37b5-467e-898e-64a5ab581d03" },
-                new { Id = 3L, ArtistName = "Johnny", Dob = DateTime.Now, UserId = "91424e08-a19f-40d8-a8a8-d45e84336579" }
+                new { Id = 1L, ArtistName = "Pablito", Dob = DateTime.Now, UserId = "4abf7808-a9da-4d44-8de2-56c4e63871a4" },
+                new { Id = 2L, ArtistName = "Jenny", Dob = DateTime.Now, UserId = "4d14d68d-f101-49de-9e21-c8b1bbe3101b" },
+                new { Id = 3L, ArtistName = "Johnny", Dob = DateTime.Now, UserId = "f4cabddc-4b81-4a94-bdd4-a5ad3a06034c" }
                 );
-
-
         }
     }
 }

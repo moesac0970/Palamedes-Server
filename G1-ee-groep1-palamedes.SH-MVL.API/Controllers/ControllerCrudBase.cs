@@ -19,7 +19,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         [HttpGet]
         public virtual async Task<IActionResult> Get()
         {
-            var cumquat = await repository.ListAll();
             return Ok(await repository.ListAll());
         }
 

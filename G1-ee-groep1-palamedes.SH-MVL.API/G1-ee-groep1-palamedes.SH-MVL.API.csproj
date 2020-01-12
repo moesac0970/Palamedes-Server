@@ -30,4 +30,10 @@
     <ProjectReference Include="..\G1-ee-groep1-palamedes.SH-MVL.Lib\G1-ee-groep1-palamedes.SH-MVL.Lib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1development_1json__JsonSchema="http://json.schemastore.org/appsettings" /></VisualStudio></ProjectExtensions>
+
 </Project>
