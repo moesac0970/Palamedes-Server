@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
     [DbContext(typeof(DataContext<IdentityUser>))]
-    [Migration("20200112164756_EmptySeederMigration")]
-    partial class EmptySeederMigration
+    [Migration("20200112192401_SeededMigration")]
+    partial class SeededMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,6 +60,128 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Arts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            ArtistId = 1L,
+                            CategoryId = 1L,
+                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 791, DateTimeKind.Local).AddTicks(8502),
+                            Description = "Dit is een nachtegaal",
+                            ImageName = "vogel.jpg",
+                            Name = "Nachtegaal",
+                            Price = 3759.99m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            ArtistId = 1L,
+                            CategoryId = 2L,
+                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9420),
+                            Description = "dat was dit een",
+                            ImageName = "vaas.jpg",
+                            Name = "Vaas",
+                            Price = 6739.93m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            ArtistId = 1L,
+                            CategoryId = 3L,
+                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9486),
+                            Description = "dit egel een was",
+                            ImageName = "egel.jpg",
+                            Name = "Egel",
+                            Price = 6044.74m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            ArtistId = 1L,
+                            CategoryId = 4L,
+                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9492),
+                            Description = "dit is trap een",
+                            ImageName = "trap.jpg",
+                            Name = "Trap",
+                            Price = 1236.66m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            ArtistId = 2L,
+                            CategoryId = 5L,
+                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9495),
+                            Description = "messen dit is een ",
+                            ImageName = "messen.jpg",
+                            Name = "Messen",
+                            Price = 9765.12m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            ArtistId = 2L,
+                            CategoryId = 4L,
+                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9499),
+                            Description = "een is stenen dit",
+                            ImageName = "stenen.jpg",
+                            Name = "Stenen",
+                            Price = 2343.85m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            ArtistId = 2L,
+                            CategoryId = 2L,
+                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9502),
+                            Description = "abstract dit een zijn",
+                            ImageName = "abstract.jpg",
+                            Name = "Abstract",
+                            Price = 9778.59m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            ArtistId = 3L,
+                            CategoryId = 3L,
+                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9505),
+                            Description = "is sloten een dit",
+                            ImageName = "sloten.jpg",
+                            Name = "Sloten",
+                            Price = 3305.63m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            ArtistId = 3L,
+                            CategoryId = 1L,
+                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9508),
+                            Description = "een boor dit is",
+                            ImageName = "boor.jpg",
+                            Name = "Boor",
+                            Price = 8432.34m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            ArtistId = 3L,
+                            CategoryId = 2L,
+                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9511),
+                            Description = "circle dat geweest een",
+                            ImageName = "circle.jpg",
+                            Name = "Circle",
+                            Price = 5943.54m,
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("G1_ee_groep1_palamedes.SH_MVL.API.Models.Artist", b =>
@@ -83,6 +205,29 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Artists");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            ArtistName = "Pablito",
+                            Dob = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9808),
+                            UserId = "08cfe1f7-1a38-4496-a0a0-8ac3eed83cb8"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            ArtistName = "Jenny",
+                            Dob = new DateTime(2020, 1, 12, 20, 24, 0, 795, DateTimeKind.Local).AddTicks(622),
+                            UserId = "17003ca5-dbfb-4a0e-ac3b-096d96cb4a39"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            ArtistName = "Johnny",
+                            Dob = new DateTime(2020, 1, 12, 20, 24, 0, 795, DateTimeKind.Local).AddTicks(652),
+                            UserId = "3b1f2430-42e7-465f-b90c-830eea5da333"
+                        });
                 });
 
             modelBuilder.Entity("G1_ee_groep1_palamedes.SH_MVL.API.Models.BearerHistory", b =>
@@ -118,6 +263,38 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Schilderkunst"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "Fotografie"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Name = "Grafiek"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Name = "Beeldhouwkunst"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Name = "ModerneMedia"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Name = "Filmkunst"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

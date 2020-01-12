@@ -1,9 +1,15 @@
-﻿using G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.ViewModels;
+﻿using G1_ee_groep1_palamedes.SH_MVL.API.Models;
+using G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.ViewModels;
+using G1_ee_groep1_palamedes.SH_MVL.Web.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
@@ -12,11 +18,18 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 #nullable enable
     public class UsersController : Controller
     {
+        private IConfiguration Configuration;
         private UserManager<IdentityUser> UserManager;
+        private HttpClient httpClient = new HttpClient();
+        private string token;
+        private string artistUri;
 
-        public UsersController(UserManager<IdentityUser> UserManager)
+        public UsersController(UserManager<IdentityUser> UserManager, IConfiguration configuration)
         {
             this.UserManager = UserManager;
+            Configuration = configuration;
+            string baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
+            artistUri = $"{baseUri}artists";
         }
 
         // GET: Admin/Arts
@@ -96,6 +109,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             IdentityUser user = await UserManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            IEnumerable<Artist> artists = await WebApiHelper.GetApiResultAsync<List<Artist>>(artistUri);
+            long artistId = artists.FirstOrDefault(a => a.UserId == id).Id;
+            token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+            await WebApiHelper.DelCallAPI<Artist>(httpClient, $"{artistUri}/{artistId}");
+
             await UserManager.DeleteAsync(user);
 
             try
