@@ -33,6 +33,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            public bool BecomeArtist { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
@@ -85,6 +87,12 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            if (Input.BecomeArtist)
+            {
+                
+                await _signInManager.RefreshSignInAsync(user);
+                return LocalRedirect("/identity/artistregister/index");
+            }
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

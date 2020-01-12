@@ -11,14 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
     [DbContext(typeof(DataContext<IdentityUser>))]
-    [Migration("20191128121007_PalamedesMigration")]
-    partial class PalamedesMigration
+    [Migration("20200111205744_artdataMigration")]
+    partial class artdataMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0")
+                .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -60,128 +60,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Arts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            ArtistId = 1L,
-                            CategoryId = 1L,
-                            Created = new DateTime(2019, 11, 28, 13, 10, 7, 299, DateTimeKind.Local).AddTicks(4206),
-                            Description = "Dit is een nachtegaal",
-                            ImageName = "vogel.jpg",
-                            Name = "Nachtegaal",
-                            Price = 3759.99m,
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            ArtistId = 1L,
-                            CategoryId = 2L,
-                            Created = new DateTime(2019, 11, 28, 13, 10, 7, 302, DateTimeKind.Local).AddTicks(9556),
-                            Description = "dat was dit een",
-                            ImageName = "vaas.jpg",
-                            Name = "Vaas",
-                            Price = 6739.93m,
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            ArtistId = 1L,
-                            CategoryId = 3L,
-                            Created = new DateTime(2019, 11, 28, 13, 10, 7, 302, DateTimeKind.Local).AddTicks(9625),
-                            Description = "dit egel een was",
-                            ImageName = "egel.jpg",
-                            Name = "Egel",
-                            Price = 6044.74m,
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 4L,
-                            ArtistId = 1L,
-                            CategoryId = 4L,
-                            Created = new DateTime(2019, 11, 28, 13, 10, 7, 302, DateTimeKind.Local).AddTicks(9632),
-                            Description = "dit is trap een",
-                            ImageName = "trap.jpg",
-                            Name = "Trap",
-                            Price = 1236.66m,
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 5L,
-                            ArtistId = 2L,
-                            CategoryId = 5L,
-                            Created = new DateTime(2019, 11, 28, 13, 10, 7, 302, DateTimeKind.Local).AddTicks(9636),
-                            Description = "messen dit is een ",
-                            ImageName = "messen.jpg",
-                            Name = "Messen",
-                            Price = 9765.12m,
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 6L,
-                            ArtistId = 2L,
-                            CategoryId = 4L,
-                            Created = new DateTime(2019, 11, 28, 13, 10, 7, 302, DateTimeKind.Local).AddTicks(9639),
-                            Description = "een is stenen dit",
-                            ImageName = "stenen.jpg",
-                            Name = "Stenen",
-                            Price = 2343.85m,
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 7L,
-                            ArtistId = 2L,
-                            CategoryId = 2L,
-                            Created = new DateTime(2019, 11, 28, 13, 10, 7, 302, DateTimeKind.Local).AddTicks(9641),
-                            Description = "abstract dit een zijn",
-                            ImageName = "abstract.jpg",
-                            Name = "Abstract",
-                            Price = 9778.59m,
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 8L,
-                            ArtistId = 2L,
-                            CategoryId = 3L,
-                            Created = new DateTime(2019, 11, 28, 13, 10, 7, 302, DateTimeKind.Local).AddTicks(9645),
-                            Description = "is sloten een dit",
-                            ImageName = "sloten.jpg",
-                            Name = "Sloten",
-                            Price = 3305.63m,
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 9L,
-                            ArtistId = 2L,
-                            CategoryId = 1L,
-                            Created = new DateTime(2019, 11, 28, 13, 10, 7, 302, DateTimeKind.Local).AddTicks(9648),
-                            Description = "een boor dit is",
-                            ImageName = "boor.jpg",
-                            Name = "Boor",
-                            Price = 8432.34m,
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 10L,
-                            ArtistId = 2L,
-                            CategoryId = 2L,
-                            Created = new DateTime(2019, 11, 28, 13, 10, 7, 302, DateTimeKind.Local).AddTicks(9651),
-                            Description = "circle dat geweest een",
-                            ImageName = "circle.jpg",
-                            Name = "Circle",
-                            Price = 5943.54m,
-                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("G1_ee_groep1_palamedes.SH_MVL.API.Models.Artist", b =>
@@ -205,22 +83,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Artists");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            ArtistName = "Pablito",
-                            Dob = new DateTime(2019, 11, 28, 13, 10, 7, 303, DateTimeKind.Local).AddTicks(20),
-                            UserId = "1"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            ArtistName = "Jenny",
-                            Dob = new DateTime(2019, 11, 28, 13, 10, 7, 303, DateTimeKind.Local).AddTicks(882),
-                            UserId = "2"
-                        });
                 });
 
             modelBuilder.Entity("G1_ee_groep1_palamedes.SH_MVL.API.Models.BearerHistory", b =>
@@ -241,20 +103,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("BearerHistories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            BearerToken = "qsdfsdfùqsdlfùqsdmlfùmlsdf",
-                            UserId = "1"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            BearerToken = "qsdfsdfùqsdlfùqsdmlfùmlsdf",
-                            UserId = "3"
-                        });
                 });
 
             modelBuilder.Entity("G1_ee_groep1_palamedes.SH_MVL.API.Models.Category", b =>
@@ -270,38 +118,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Name = "Schilderkunst"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            Name = "Fotografie"
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            Name = "Grafiek"
-                        },
-                        new
-                        {
-                            Id = 4L,
-                            Name = "Beeldhouwkunst"
-                        },
-                        new
-                        {
-                            Id = 5L,
-                            Name = "ModerneMedia"
-                        },
-                        new
-                        {
-                            Id = 6L,
-                            Name = "Filmkunst"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -418,50 +234,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1",
-                            AccessFailedCount = 1,
-                            ConcurrencyStamp = "72a60604-c461-4fc9-88ff-19de61f7d069",
-                            Email = "de__manu09@hotmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PasswordHash = "675d13fc79dc2b90de05b11b36ec388a",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "17c1eb11-8724-4d21-be84-91a1c746e998",
-                            TwoFactorEnabled = true,
-                            UserName = "manu"
-                        },
-                        new
-                        {
-                            Id = "2",
-                            AccessFailedCount = 1,
-                            ConcurrencyStamp = "2270e608-ac6a-4d3b-92e1-c3c9ae9bcef1",
-                            Email = "random@mailinator.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PasswordHash = "754f4789adeac685009905e3a5b9c6ef",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "257aa52f-4937-4adb-b9ab-c67403f3a3c4",
-                            TwoFactorEnabled = true,
-                            UserName = "VanGimst"
-                        },
-                        new
-                        {
-                            Id = "3",
-                            AccessFailedCount = 1,
-                            ConcurrencyStamp = "3413d25f-b3b6-434a-bc8a-798c758a021b",
-                            Email = "bob@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            PasswordHash = "2acba7f51acfd4fd5102ad090fc612ee",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "9984768f-392a-4644-b03d-8071015afa9c",
-                            TwoFactorEnabled = false,
-                            UserName = "bob"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>

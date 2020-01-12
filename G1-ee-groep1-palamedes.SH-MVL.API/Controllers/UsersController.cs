@@ -40,6 +40,15 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
             return Ok(artistArts);
         }
 
+        [HttpGet]
+        [Route("basic/{id}")]
+        public async Task<IActionResult> GetArtsBasicByUserId(string id)
+        {
+            Artist artist = artists.GetByUserId(id);
+            var basicArts = await arts.GetBasicsByArtist(artist);
+
+            return Ok(basicArts);
+        }
 
         //good to have?
 

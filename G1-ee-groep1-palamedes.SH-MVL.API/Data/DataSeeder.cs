@@ -26,23 +26,18 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Data
                new Art { Id = 5L, ArtistId = 2L, Name = "Messen", Created = DateTime.Now, Description = "messen dit is een ", CategoryId = 5L, Price = 9765.12M, ImageName = "messen.jpg" },
                new Art { Id = 6L, ArtistId = 2L, Name = "Stenen", Created = DateTime.Now, Description = "een is stenen dit", CategoryId = 4L, Price = 2343.85M, ImageName = "stenen.jpg" },
                new Art { Id = 7L, ArtistId = 2L, Name = "Abstract", Created = DateTime.Now, Description = "abstract dit een zijn", CategoryId = 2L, Price = 9778.59M, ImageName = "abstract.jpg" },
-               new Art { Id = 8L, ArtistId = 2L, Name = "Sloten", Created = DateTime.Now, Description = "is sloten een dit", CategoryId = 3L, Price = 3305.63M, ImageName = "sloten.jpg" },
-               new Art { Id = 9L, ArtistId = 2L, Name = "Boor", Created = DateTime.Now, Description = "een boor dit is", CategoryId = 1L, Price = 8432.34M, ImageName = "boor.jpg" },
-               new Art { Id = 10L, ArtistId = 2L, Name = "Circle", Created = DateTime.Now, Description = "circle dat geweest een", CategoryId = 2L, Price = 5943.54M, ImageName = "circle.jpg" }
+               new Art { Id = 8L, ArtistId = 3L, Name = "Sloten", Created = DateTime.Now, Description = "is sloten een dit", CategoryId = 3L, Price = 3305.63M, ImageName = "sloten.jpg" },
+               new Art { Id = 9L, ArtistId = 3L, Name = "Boor", Created = DateTime.Now, Description = "een boor dit is", CategoryId = 1L, Price = 8432.34M, ImageName = "boor.jpg" },
+               new Art { Id = 10L, ArtistId = 3L, Name = "Circle", Created = DateTime.Now, Description = "circle dat geweest een", CategoryId = 2L, Price = 5943.54M, ImageName = "circle.jpg" }
            );
 
             modelBuilder.Entity<Artist>().ToTable("Artists").HasData(
-                new { Id = 1L, ArtistName = "Pablito", Dob = DateTime.Now, UserId = "1" },
-                new { Id = 2L, ArtistName = "Jenny", Dob = DateTime.Now, UserId = "2" }
-            );
-
-#warning Do not store passwords in plain text.  
-            // 0 = 1234Pasw, 1 = GeneralReaper666, 2 = bob123
-            modelBuilder.Entity<IdentityUser>().ToTable("AspNetUsers").HasData(
-                new IdentityUser { Id = "1", Email = "de__manu09@hotmail.com", PasswordHash = "675d13fc79dc2b90de05b11b36ec388a", UserName = "manu", EmailConfirmed = false, PhoneNumberConfirmed = false, TwoFactorEnabled = true, LockoutEnabled = false, AccessFailedCount = 1 },
-                new IdentityUser { Id = "2", UserName = "VanGimst", PasswordHash = "754f4789adeac685009905e3a5b9c6ef", Email = "random@mailinator.com", EmailConfirmed = false, PhoneNumberConfirmed = false, TwoFactorEnabled = true, LockoutEnabled = false, AccessFailedCount = 1 },
-                new IdentityUser { Id = "3", UserName = "bob", PasswordHash = "2acba7f51acfd4fd5102ad090fc612ee", Email = "bob@gmail.com", EmailConfirmed = true, PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 }
+                new { Id = 1L, ArtistName = "Pablito", Dob = DateTime.Now, UserId = "0d757db8-b82a-4ac8-b978-4aee6b9db522" },
+                new { Id = 2L, ArtistName = "Jenny", Dob = DateTime.Now, UserId = "2d678045-37b5-467e-898e-64a5ab581d03" },
+                new { Id = 3L, ArtistName = "Johnny", Dob = DateTime.Now, UserId = "91424e08-a19f-40d8-a8a8-d45e84336579" }
                 );
+
+
         }
     }
 }

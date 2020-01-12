@@ -51,5 +51,13 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
                 .Where(a => a.Artist == artist)
                 .ToListAsync();
         }
+
+        public async Task<List<ArtBasic>> GetBasicsByArtist(Artist artist)
+        {
+            var arts = await ListBasic();
+            var basics = arts.Where(a => a.ArtistName == artist.ArtistName).ToList() ;
+
+            return basics;
+        }
     }
 }

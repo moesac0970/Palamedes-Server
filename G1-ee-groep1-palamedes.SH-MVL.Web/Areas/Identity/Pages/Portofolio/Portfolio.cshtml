@@ -21,25 +21,47 @@
         <!--=================== put content if needed====================-->
     </main>
 
-
-    <div class="portfolio">
-        <div class="container-fluid">
-            <article id="app" class="row">
-                <header class="col-md-4">
-                    <h3>{{ message }}</h3>
-                    @*Vue mustache*@
+    <section id="app">
+        <div class="portfolio">
+            <div class="container-fluid">
+                <article class="row">
+                    <header class="col-md-4">
+                        <h3>{{ message }}</h3>
+                        <a v-bind:class="becomeArtist" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><h3>become arist</h3></a>
+                        @*Vue mustache*@
                     <nav>
                         <ul class="list-group">
                             <li class="list-group-item" v-for="art in arts">
-                                <span class="name">{{ art.name }}</span>
+                                <span class="name"><a data-toggle="modal" v-bind:data-target="'#' + art.id">{{ art.name }} </a></span>
                             </li>
                         </ul>
                     </nav>
-                </header>
-            </article>
+                    </header>
+                </article>
+            </div>
         </div>
-
-    </div>
+        <div v-for="art in arts">
+            <div class="modal fade" v-bind:id="art.id" tabindex="-1" role="dialog" aria-labelledby="artModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="artModalLabel">{{ art.name }} </h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>name : {{ art.name }}</p>
+                            <p>created : {{ art.created }}</p>
+                            <p>description :{{ art.descripion }}</p>
+                            <p>updated : {{ art.updated }}</p>
+                            <p>price : {{ art.price }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     }
     else
     {
@@ -75,9 +97,11 @@
                             self.arts = arts;
                             if (self.arts.length == 0) {
                                 self.message = "sorry couldn't find any";
+                                self.becomeArtist = "";
                             }
                             else {
                                 self.message = 'Overview of the art pieces';
+                                self.becomeArtist = "d-none";
                             }
                     }).catch(err => console.error('Fout: ' + err));
                 },

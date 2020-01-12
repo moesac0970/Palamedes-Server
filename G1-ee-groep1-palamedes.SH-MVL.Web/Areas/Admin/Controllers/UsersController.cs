@@ -60,6 +60,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(UserVm viewmodel)
         {
+            
             IdentityUser user = new IdentityUser();
             if (ModelState.IsValid)
             {

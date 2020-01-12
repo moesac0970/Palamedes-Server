@@ -1,5 +1,5 @@
 ﻿using G1_ee_groep1_palamedes.SH_MVL.API.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
 using System;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.ViewModels
