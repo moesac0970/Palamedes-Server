@@ -22,7 +22,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
             artists = _artists;
         }
 
-
+        
         [HttpGet]
         [Authorize("RequireAdminRole")]
         public async Task<IActionResult> GetUsers()
@@ -31,6 +31,8 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
         }
 
         [HttpGet]
+
+        [Authorize("RequireMemberRole")]
         [Route("artbyuserid/{id}")]
         public async Task<IActionResult> GetArtByUserId(string id)
         {
@@ -58,6 +60,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 
             return Ok(basicArts);
         }
+
 
         //good to have?
 
