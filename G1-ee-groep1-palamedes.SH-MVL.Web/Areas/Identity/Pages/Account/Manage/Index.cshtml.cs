@@ -16,7 +16,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account.Manage
         private readonly SignInManager<IdentityUser> _signInManager;
         private IConfiguration config;
         string baseUri;
-        public string Checked = "";
+        public bool Checked = false;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
@@ -67,7 +67,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account.Manage
             Artist = await WebApiHelper.GetApiResultAsync<Artist>($"{baseUri}/{_userManager.GetUserId(User)}");
             if(Artist != null)
             {
-                Checked = "checked";
+                Checked = true;
             }
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
