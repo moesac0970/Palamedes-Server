@@ -57,26 +57,26 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // GET: Admin/Artists/Create
         public IActionResult Create()
         {
-            ArtistEditVm editvm = new ArtistEditVm();
+            ArtistVm viewmodel = new ArtistVm();
 
-            editvm.Users = userManager.Users;
-            return View(editvm);
+            viewmodel.Users = userManager.Users;
+            return View(viewmodel);
         }
 
         // POST: Admin/Artists/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ArtEditVm artEditVm)
+        public async Task<IActionResult> Create(ArtistVm viewmodel)
         {
             if (ModelState.IsValid)
             {
                 token = ControllerContext.HttpContext.Request.Cookies["bearerToken"];
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
-                await WebApiHelper.PostAsJsonAsync(httpClient, baseUri, artEditVm);
+                await WebApiHelper.PostAsJsonAsync(httpClient, baseUri, viewmodel);
 
                 return RedirectToAction(nameof(Index));
             }
-            return View(artEditVm);
+            return View(viewmodel);
         }
 
         // GET: Admin/Artists/Edit/5

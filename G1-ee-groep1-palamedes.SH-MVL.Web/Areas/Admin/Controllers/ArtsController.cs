@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ArtsController : Controller
+    public partial class ArtsController : Controller
     {
-        private IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; set; }
         private readonly string baseUri;
         private string ArtUri { get; set; }
         private string ArtistUri { get; set; }
@@ -27,21 +27,17 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         private IEnumerable<Category> categories;
         private IEnumerable<Artist> artists;
 
-        public ArtsController(IConfiguration configuration)
+        public ArtsController(IConfiguration Configuration)
         {
-            Configuration = configuration;
             baseUri = Configuration.GetSection("Data").GetSection("ApiBaseUri").Value;
             ArtistUri = $"{baseUri}artists";
             CategoryUri += $"{baseUri}categories";
             ArtUri += $"{baseUri}arts";
         }
 
-
-        // GET: Admin/Arts
         public async Task<IActionResult> Index()
         {
-
-            arts = await WebApiHelper.GetApiResultAsync<IEnumerable<Art>>(ArtUri);
+            arts = await WebApiHelper.GetApiResultAsync<List<Art>>(ArtUri);
             return View(arts);
         }
 
@@ -60,7 +56,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // GET: Admin/Arts/Create
         public async Task<IActionResult> Create()
         {
-            ArtEditVm viewmodel = new ArtEditVm();
+            ArtVm viewmodel = new ArtVm();
             Art art = new Art();
 
             viewmodel.Art = art;
@@ -77,7 +73,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // POST: Admin/Arts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ArtEditVm viewmodel)
+        public async Task<IActionResult> Create(ArtVm viewmodel)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +94,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // GET: Admin/Arts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            ArtEditVm viewmodel = new ArtEditVm();
+            ArtVm viewmodel = new ArtVm();
 
             if (id == null) return NotFound();
 
@@ -121,7 +117,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
         // POST: Admin/Arts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ArtEditVm viewmodel)
+        public async Task<IActionResult> Edit(int id, ArtVm viewmodel)
         {
             Art art = new Art();
             if (id != viewmodel.Art.Id) return NotFound();
@@ -145,7 +141,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            return View(art);
+            return View("Index");
         }
 
         // GET: Admin/Arts/Delete/5

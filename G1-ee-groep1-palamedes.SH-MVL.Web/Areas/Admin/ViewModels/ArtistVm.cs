@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Admin.ViewModels
 {
-    public class ArtistEditVm
+    public class ArtistVm
     {
         public Artist Artist { get; set; }
 
