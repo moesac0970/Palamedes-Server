@@ -16,4 +16,10 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\G1-ee-groep1-palamedes.SH-MVL.API\G1-ee-groep1-palamedes.SH-MVL.API.csproj" />
+    <ProjectReference Include="..\G1-ee-groep1-palamedes.SH-MVL.Lib\G1-ee-groep1-palamedes.SH-MVL.Lib.csproj" />
+    <ProjectReference Include="..\G1-ee-groep1-palamedes.SH-MVL.Web\G1-ee-groep1-palamedes.SH-MVL.Web.csproj" />
+  </ItemGroup>
+
 </Project>
