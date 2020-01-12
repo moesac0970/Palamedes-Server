@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G1-ee-groep1-palamedes.SH-M
 		{05449ABE-94B8-4827-8210-196F978953C8} = {05449ABE-94B8-4827-8210-196F978953C8}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G1-ee-groep1-palamedes.SH-MVL.UnitTests", "G1-ee-groep1-palamedes.SH-MVL.UnitTests\G1-ee-groep1-palamedes.SH-MVL.UnitTests.csproj", "{8B6C7C0E-0529-4642-A4B4-1C4082AF23D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G1-ee-groep1-palamedes.SH-MVL.UnitTests", "G1-ee-groep1-palamedes.SH-MVL.UnitTests\G1-ee-groep1-palamedes.SH-MVL.UnitTests.csproj", "{8B6C7C0E-0529-4642-A4B4-1C4082AF23D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

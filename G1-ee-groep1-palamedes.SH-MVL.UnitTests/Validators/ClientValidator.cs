@@ -44,17 +44,17 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests.Validators
             {
                 return client;
             }
-            if (respons.StatusCode != HttpStatusCode.Unauthorized)
+            if (respons.StatusCode == HttpStatusCode.Unauthorized)
             {
                 client.ValidationResults.Add(new ValidationResult("not a valid bearer token"));
                 return client;
             }
-            if (respons.StatusCode != HttpStatusCode.Forbidden)
+            if (respons.StatusCode == HttpStatusCode.Forbidden)
             {
                 client.ValidationResults.Add(new ValidationResult("forbidden for user"));
                 return client;
             }
-            if (respons.StatusCode != HttpStatusCode.OK)
+            if (respons.StatusCode == HttpStatusCode.NotFound)
             {
                 client.ValidationResults.Add(new ValidationResult("not a valid bearer token"));
                 return client;

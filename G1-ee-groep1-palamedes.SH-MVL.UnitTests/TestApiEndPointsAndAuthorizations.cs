@@ -70,7 +70,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestGetCategories()
@@ -88,7 +88,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestGetArtists()
@@ -106,7 +106,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestGetUsers()
@@ -124,7 +124,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
 
         #endregion
@@ -146,7 +146,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
 
         [TestCase]
@@ -184,7 +184,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
 
         [TestCase]
@@ -221,7 +221,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestGetArtistsByBadId()
@@ -306,7 +306,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
 
         [TestCase]
@@ -326,7 +326,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestPutEmptyArt()
@@ -364,7 +364,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestPutBadArtist()
@@ -402,7 +402,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestPutBadCategory()
@@ -440,7 +440,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestPostEmptyArt()
@@ -478,7 +478,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestPostBadArtist()
@@ -516,7 +516,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestPostBadCategory()
@@ -553,7 +553,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestDeleteBadIDCategory()
@@ -589,7 +589,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestDeleteBadIDArtist()
@@ -625,7 +625,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.UnitTests
             clienttoValidate = await ClientValidator.ValidateObject(clienttoValidate);
 
             //assert
-            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 1, "the number of errors is more as 1");
+            Assert.IsTrue(clienttoValidate.ValidationResults.Count == 0, "the number of errors is more as 1");
         }
         [TestCase]
         public async Task TestDeleteBadIDArt()
