@@ -1,0 +1,9 @@
+﻿@page
+@model G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.ArtCreate.PickImageModel
+@{
+}
+
+    <form asp-area="Admin" asp-controller="Image" asp-action="UploadFile" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <button type="submit">Upload File</button>
+    </form>
