@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
 {
-    public partial class EmptyMigration : Migration
+    public partial class DatBoiMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -236,6 +236,46 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Artists",
+                columns: new[] { "Id", "ArtistName", "Dob", "UserId" },
+                values: new object[,]
+                {
+                    { 1L, "Pablito", new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(406), null },
+                    { 2L, "Jenny", new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(1209), null },
+                    { 3L, "Johnny", new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(1241), null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1L, "Schilderkunst" },
+                    { 2L, "Fotografie" },
+                    { 3L, "Grafiek" },
+                    { 4L, "Beeldhouwkunst" },
+                    { 5L, "ModerneMedia" },
+                    { 6L, "Filmkunst" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Arts",
+                columns: new[] { "Id", "ArtistId", "CategoryId", "Created", "Description", "ImageName", "Name", "Price", "Updated" },
+                values: new object[,]
+                {
+                    { 1L, 1L, 1L, new DateTime(2020, 1, 13, 0, 27, 37, 134, DateTimeKind.Local).AddTicks(5696), "Dit is een nachtegaal", "vogel.jpg", "Nachtegaal", 3759.99m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 9L, 3L, 1L, new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(78), "een boor dit is", "boor.jpg", "Boor", 8432.34m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2L, 1L, 2L, new DateTime(2020, 1, 13, 0, 27, 37, 137, DateTimeKind.Local).AddTicks(9985), "dat was dit een", "vaas.jpg", "Vaas", 6739.93m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7L, 2L, 2L, new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(71), "abstract dit een zijn", "abstract.jpg", "Abstract", 9778.59m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 10L, 3L, 2L, new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(81), "circle dat geweest een", "circle.jpg", "Circle", 5943.54m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3L, 1L, 3L, new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(56), "dit egel een was", "egel.jpg", "Egel", 6044.74m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 8L, 3L, 3L, new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(75), "is sloten een dit", "sloten.jpg", "Sloten", 3305.63m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4L, 1L, 4L, new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(61), "dit is trap een", "trap.jpg", "Trap", 1236.66m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6L, 2L, 4L, new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(68), "een is stenen dit", "stenen.jpg", "Stenen", 2343.85m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5L, 2L, 5L, new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(65), "messen dit is een ", "messen.jpg", "Messen", 9765.12m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

@@ -65,7 +65,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             Id = 1L,
                             ArtistId = 1L,
                             CategoryId = 1L,
-                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 791, DateTimeKind.Local).AddTicks(8502),
+                            Created = new DateTime(2020, 1, 13, 0, 27, 37, 134, DateTimeKind.Local).AddTicks(5696),
                             Description = "Dit is een nachtegaal",
                             ImageName = "vogel.jpg",
                             Name = "Nachtegaal",
@@ -77,7 +77,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             Id = 2L,
                             ArtistId = 1L,
                             CategoryId = 2L,
-                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9420),
+                            Created = new DateTime(2020, 1, 13, 0, 27, 37, 137, DateTimeKind.Local).AddTicks(9985),
                             Description = "dat was dit een",
                             ImageName = "vaas.jpg",
                             Name = "Vaas",
@@ -89,7 +89,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             Id = 3L,
                             ArtistId = 1L,
                             CategoryId = 3L,
-                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9486),
+                            Created = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(56),
                             Description = "dit egel een was",
                             ImageName = "egel.jpg",
                             Name = "Egel",
@@ -101,7 +101,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             Id = 4L,
                             ArtistId = 1L,
                             CategoryId = 4L,
-                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9492),
+                            Created = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(61),
                             Description = "dit is trap een",
                             ImageName = "trap.jpg",
                             Name = "Trap",
@@ -113,7 +113,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             Id = 5L,
                             ArtistId = 2L,
                             CategoryId = 5L,
-                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9495),
+                            Created = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(65),
                             Description = "messen dit is een ",
                             ImageName = "messen.jpg",
                             Name = "Messen",
@@ -125,7 +125,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             Id = 6L,
                             ArtistId = 2L,
                             CategoryId = 4L,
-                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9499),
+                            Created = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(68),
                             Description = "een is stenen dit",
                             ImageName = "stenen.jpg",
                             Name = "Stenen",
@@ -137,7 +137,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             Id = 7L,
                             ArtistId = 2L,
                             CategoryId = 2L,
-                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9502),
+                            Created = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(71),
                             Description = "abstract dit een zijn",
                             ImageName = "abstract.jpg",
                             Name = "Abstract",
@@ -149,7 +149,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             Id = 8L,
                             ArtistId = 3L,
                             CategoryId = 3L,
-                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9505),
+                            Created = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(75),
                             Description = "is sloten een dit",
                             ImageName = "sloten.jpg",
                             Name = "Sloten",
@@ -161,7 +161,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             Id = 9L,
                             ArtistId = 3L,
                             CategoryId = 1L,
-                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9508),
+                            Created = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(78),
                             Description = "een boor dit is",
                             ImageName = "boor.jpg",
                             Name = "Boor",
@@ -173,7 +173,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                             Id = 10L,
                             ArtistId = 3L,
                             CategoryId = 2L,
-                            Created = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9511),
+                            Created = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(81),
                             Description = "circle dat geweest een",
                             ImageName = "circle.jpg",
                             Name = "Circle",
@@ -209,22 +209,19 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Migrations
                         {
                             Id = 1L,
                             ArtistName = "Pablito",
-                            Dob = new DateTime(2020, 1, 12, 20, 24, 0, 794, DateTimeKind.Local).AddTicks(9808),
-                            UserId = "08cfe1f7-1a38-4496-a0a0-8ac3eed83cb8"
+                            Dob = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(406)
                         },
                         new
                         {
                             Id = 2L,
                             ArtistName = "Jenny",
-                            Dob = new DateTime(2020, 1, 12, 20, 24, 0, 795, DateTimeKind.Local).AddTicks(622),
-                            UserId = "17003ca5-dbfb-4a0e-ac3b-096d96cb4a39"
+                            Dob = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(1209)
                         },
                         new
                         {
                             Id = 3L,
                             ArtistName = "Johnny",
-                            Dob = new DateTime(2020, 1, 12, 20, 24, 0, 795, DateTimeKind.Local).AddTicks(652),
-                            UserId = "3b1f2430-42e7-465f-b90c-830eea5da333"
+                            Dob = new DateTime(2020, 1, 13, 0, 27, 37, 138, DateTimeKind.Local).AddTicks(1241)
                         });
                 });
 
