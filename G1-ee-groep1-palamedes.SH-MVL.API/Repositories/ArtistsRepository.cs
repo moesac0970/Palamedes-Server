@@ -4,6 +4,7 @@ using G1_ee_groep1_palamedes.SH_MVL.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -37,6 +38,23 @@ namespace G1_ee_groep1_palamedes.SH_MVL.API.Repositories
             return db.Artists
                 .Where(a => a.UserId == id)
                 .FirstOrDefault();
+        }
+
+        public override async Task<Artist> Add(Artist artist)
+        {
+            db.Set<Artist>().Add(artist);
+            try
+            {
+                await db.SaveChangesAsync();
+                string directorypath = Path.Combine(Directory.GetCurrentDirectory(),
+                             "wwwroot", $"img/");
+                Directory.CreateDirectory(directorypath + artist.ArtistName);
+            }
+            catch
+            {
+                return null;
+            }
+            return artist;
         }
     }
 }

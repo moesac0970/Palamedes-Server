@@ -105,7 +105,7 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.Account.Manage
             }
             Artist = await WebApiHelper.GetApiResultAsync<Artist>($"{baseUri}/{_userManager.GetUserId(User)}");
 
-            if (Input.BecomeArtist && Artist == null)
+            if (!Checked && Artist == null)
             {
                 
                 await _signInManager.RefreshSignInAsync(user);
