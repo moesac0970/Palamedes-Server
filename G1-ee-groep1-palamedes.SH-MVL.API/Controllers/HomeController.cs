@@ -2,6 +2,7 @@
 
 namespace G1_ee_groep1_palamedes.SH_MVL.API.Controllers
 {
+    [ApiController]
     [Route("/")]
     public class HomeController : Controller
     {
