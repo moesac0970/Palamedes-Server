@@ -27,11 +27,11 @@
             <div class="container-fluid">
                 <article class="row">
                     <header class="col-md-4">
-                        <h3>{{ message }}</h3>
+                        <h3 v-bind:class="not">{{ message }}</h3>
                         <a v-bind:class="becomeArtist" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><h3>become arist</h3></a>
                         @*Vue mustache*@
                     <nav>
-                        <ul class="list-group">
+                        <ul class="list-group" v-bind:class="not">
                             <li class="list-group-item" v-for="art in arts">
                                 <span class="name"><a data-toggle="modal" v-bind:data-target="'#' + art.id">{{ art.name }} </a></span>
                             </li>
@@ -99,6 +99,7 @@
                             if (self.arts.length == 0) {
                                 self.message = "sorry couldn't find any";
                                 self.becomeArtist = "";
+                                self.not = "d-none";
                             }
                             else {
                                 self.message = 'Overview of the art pieces';
