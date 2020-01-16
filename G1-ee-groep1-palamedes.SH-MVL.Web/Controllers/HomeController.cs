@@ -6,13 +6,11 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web.Controllers
 {
     public class HomeController : Controller
     {
-        [Route("")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Route("/privacy")]
         public IActionResult Privacy()
         {
             return View();

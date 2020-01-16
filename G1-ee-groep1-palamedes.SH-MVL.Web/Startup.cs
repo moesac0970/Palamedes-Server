@@ -55,8 +55,6 @@ namespace G1_ee_groep1_palamedes.SH_MVL.Web
 
             app.UseRouting();
 
-            app.UseHttpsRedirection();
-
             app.UseAuthentication();
             app.UseAuthorization();
 

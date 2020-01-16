@@ -1,0 +1,58 @@
+﻿@page
+@model G1_ee_groep1_palamedes.SH_MVL.Web.Areas.Identity.Pages.ArtCreate.IndexModel
+@{
+
+}
+
+
+@{
+    ViewData["Title"] = "register as an artist";
+}
+
+<div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+    <main role="main" class="pb-3">
+        <!--=================== put content if needed====================-->
+        <h1>create your artist name</h1>
+        <!--=================== put content if needed====================-->
+
+        <div class="row">
+            <div class="col-md-10">
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Art.Name" class="control-label"></label>
+                        <input asp-for="@Model.Art.Name" class="form-control" />
+                        <span asp-validation-for="@Model.Art.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Art.Price" class="control-label"></label>
+                        <input asp-for="@Model.Art.Price" class="form-control" />
+                        <span asp-validation-for="@Model.Art.Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Art.Description" class="control-label"></label>
+                        <input asp-for="@Model.Art.Description" class="form-control" />
+                        <span asp-validation-for="@Model.Art.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Art.Category" class="control-label"></label>
+                        <select asp-for="@Model.Art.Category.Name" class="form-control" asp-items="ViewBag.Categorie">
+                            @foreach (var categorie in Model.categories)
+                            {
+                                <option value="@categorie.Name">@categorie.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+
+
+
