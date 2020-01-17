@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Palamedes.Web.ViewModels.Components.FilterVm>
+
+
+    <li data-filter="*" class="active"><a href="javascript:void(0)">all</a></li>
+@foreach (var item in Model)
+{
+    <li data-filter=".@item.CategoryName"> <a href="javascript:void(0)">@item.CategoryName</a></li>
+}

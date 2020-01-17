@@ -1,0 +1,111 @@
+﻿@page
+@model Palamedes.Web.Areas.Identity.Pages.Portofolio.PortfolioModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    string id = Model.ID;
+    string uri = Model.apiUri;
+}
+
+
+@{ ViewBag.Title = "Welcome to your portofolio"; }
+
+<div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+
+    
+    <main role="main" class="pb-3">
+        <!--=================== put content if needed====================-->
+        <h1>@ViewBag.Title @User.Identity.Name</h1>
+        <!--=================== put content if needed====================-->
+    </main>
+
+    <section id="app">
+        <div class="portfolio">
+            <div class="container-fluid">
+                <article class="row">
+                    <header class="col-md-4">
+                        <h3 v-bind:class="not">{{ message }}</h3>
+                        <a v-bind:class="becomeArtist" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><h3>become arist</h3></a>
+                        @*Vue mustache*@
+                    <nav>
+                        <ul class="list-group" v-bind:class="not">
+                            <li class="list-group-item" v-for="art in arts">
+                                <span class="name"><a data-toggle="modal" v-bind:data-target="'#' + art.id">{{ art.name }} </a></span>
+                            </li>
+                        </ul>
+                    </nav>
+                    </header>
+                </article>
+            </div>
+        </div>
+        <div v-for="art in arts">
+            <div class="modal fade" v-bind:id="art.id" tabindex="-1" role="dialog" aria-labelledby="artModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="artModalLabel">{{ art.name }} </h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>name : {{ art.name }}</p>
+                            <p>created : {{ art.created }}</p>
+                            <p>description :{{ art.descripion }}</p>
+                            <p>updated : {{ art.updated }}</p>
+                            <p>price : {{ art.price }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    }
+    else
+    {
+        <main role="main" class="pb-3">
+            <!--=================== put content if needed====================-->
+            <h1>how did u get here</h1>
+            <!--=================== put content if needed====================-->
+        </main>
+    }
+    </div>
+    <script src="~/lib/vue/vue.js"></script>
+    <script>
+        var apiURL = @uri + @id;
+        var cookieArray = document.cookie.split("bearerToken=");
+        var tokenString = cookieArray[1];
+
+        var app = new Vue({
+            el: '#app', data:
+            {
+                message: 'Loading art ....', arts: null,
+            }, created: function () {
+                var self = this; self.fetchArts();
+            }, methods: {
+                fetchArts: function () {
+                    self = this;
+                    fetch(`${apiURL}`,
+                        {
+                            method: 'GET',
+                            headers: {
+                                'bearer': tokenString
+                            }
+                        }).then(res => res.json()).then(function (arts) {
+                            self.arts = arts;
+                            if (self.arts.length == 0) {
+                                self.message = "sorry couldn't find any";
+                                self.becomeArtist = "";
+                                self.not = "d-none";
+                            }
+                            else {
+                                self.message = 'Overview of the art pieces';
+                                self.becomeArtist = "d-none";
+                            }
+                    }).catch(err => console.error('Fout: ' + err));
+                },
+            }
+        });</script>

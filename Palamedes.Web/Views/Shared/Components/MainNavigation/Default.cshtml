@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<Palamedes.Web.ViewModels.Components.MainNavLinkVm>
+
+
+@foreach (var navlink in Model)
+{
+    if (navlink.Area != "Identity")
+    {
+        <li class="nav-item @(Html.Raw(navlink.IsActive ? "active" : ""))">
+            <a class="nav-link" asp-action="@navlink.Action"
+               asp-controller="@navlink.Controller"
+               asp-area="@navlink.Area">
+                @navlink.Text
+            </a>
+        </li>
+    }
+    else
+    {
+        @if ((SignInManager.IsSignedIn(User) == false) && (navlink.IsLoggedIn != true))
+        {
+            <li class="nav-item @(Html.Raw(navlink.IsActive ? "active" : ""))">
+                <a class="nav-link" asp-area="@navlink.Area" asp-page="/@navlink.Controller/@navlink.Action">
+                    @navlink.Text
+                </a>
+            </li>
+        }
+        @if ((SignInManager.IsSignedIn(User) == true) && (navlink.IsLoggedIn == true))
+        {
+            <li class="nav-item @(Html.Raw(navlink.IsActive ? "active" : ""))">
+                <a class="nav-link" asp-area="@navlink.Area" asp-page="/@navlink.Controller/@navlink.Action">
+                    @navlink.Text
+                </a>
+            </li>
+        }
+    }
+}
+

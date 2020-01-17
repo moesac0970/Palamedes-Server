@@ -1,0 +1,46 @@
+﻿@model Palamedes.Web.Areas.Admin.ViewModels.ArtistVm;
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Artist</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label text="Name" class="control-label"></label>
+                <input asp-for="Artist.ArtistName" class="form-control" />
+                <span asp-validation-for="Artist.ArtistName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Artist.Dob" class="control-label"></label>
+                <input asp-for="Artist.Dob" class="form-control" />
+                <span asp-validation-for="Artist.Dob" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Artist.UserId" class="control-label"></label>
+                <select asp-for="Artist.UserId" class="form-control" asp-items="ViewBag.Artist">
+                    @foreach (var user in Model.Users)
+                    {
+                        <option value="@user.Id">@user.Id - @user.UserName</option>
+                    }
+                </select>
+                <span asp-validation-for="Artist.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

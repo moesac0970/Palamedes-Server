@@ -1,0 +1,77 @@
+﻿@model Palamedes.Web.Areas.Admin.ViewModels.ArtVm
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Art</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Art.Name" class="control-label"></label>
+                <input asp-for="Art.Name" class="form-control" />
+                <span asp-validation-for="Art.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Art.Category.Name" class="control-label"></label>
+                <select asp-for="Art.Category.Name" class="form-control" asp-items="ViewBag.Categorie">
+                    @foreach (string categorie in Model.CategoriesList)
+                    {
+                        <option value="@categorie">@categorie</option>
+                    }
+                </select>
+                <span asp-validation-for="Art.Category.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Art.Created" class="control-label"></label>
+                <input asp-for="Art.Created" class="form-control" />
+                <span asp-validation-for="Art.Created" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Art.Description" class="control-label"></label>
+                <input asp-for="Art.Description" class="form-control" />
+                <span asp-validation-for="Art.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Art.Updated" class="control-label"></label>
+                <input asp-for="Art.Updated" class="form-control" />
+                <span asp-validation-for="Art.Updated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Art.Price" class="control-label"></label>
+                <input asp-for="Art.Price" class="form-control" />
+                <span asp-validation-for="Art.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Art.ImageName" class="control-label"></label>
+                <input asp-for="Art.ImageName" class="form-control" />
+                <span asp-validation-for="Art.ImageName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Art.Artist.ArtistName" class="control-label"></label>
+                <select asp-for="Art.Artist.ArtistName" class="form-control" asp-items="ViewBag.Artist">
+                    @foreach (string artist in Model.ArtistsList)
+                    {
+                        <option value="@artist">@artist</option>
+                    }
+                </select>
+                <span asp-validation-for="Art.Artist.ArtistName" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Art.Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
