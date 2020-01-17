@@ -1,0 +1,38 @@
+[
+  {
+    "outputFileName": "wwwroot/css/animate.min.min.css",
+    "inputFiles": [
+      "wwwroot/css/animate.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/animate.min.css",
+    "inputFiles": [
+      "wwwroot/css/animate.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/font-awesome.min.css",
+    "inputFiles": [
+      "wwwroot/css/font-awesome.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/main.min.css",
+    "inputFiles": [
+      "wwwroot/css/main.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/slick.min.css",
+    "inputFiles": [
+      "wwwroot/css/slick.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/vue/vue.min.js",
+    "inputFiles": [
+      "wwwroot/lib/vue/vue.js"
+    ]
+  }
+]
